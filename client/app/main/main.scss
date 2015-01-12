@@ -204,6 +204,9 @@
   margin: 1rem;
 }
 
-.collapse-side-nav {
+.navbar-toggle {
   float: left;
+  icon-bar {
+    color: #999 !important;
+  }
 }
