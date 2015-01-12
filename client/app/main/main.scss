@@ -154,3 +154,24 @@
     margin-right: 0;
   }
 }
+
+.sidebar-nav {
+  label {
+    color: #999 !important;
+    font: 1em $font-family-sans-serif;
+  }
+  h4 {
+    color: #999 !important;
+    text-align: center;
+    font: 1.5em $font-family-sans-serif;
+  }
+  .navbar-search {
+    margin: 1rem;
+  }
+}
+
+.category-group {
+  border: 1px solid #999;
+  border-radius: 5px;
+  margin: 1rem;
+}
