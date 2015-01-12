@@ -1,16 +1,19 @@
 <div id="wrapper">
   <div ng-include="'components/navbar/navbar.html'"></div>
   <div class="top-nav">
-    <button type="button" class="navbar-toggle">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+    <div class="nav-left">
+      <a href="#" id="navbar-toggle"><i class="fa fa-align-justify"></i></a>
+    </div>
+    <div class="nav-right">
+      <span class="glyphicon glyphicon-shopping-cart" style="font-size:1.6em;margin-top:1rem;" aria-hidden="true"></span>
+      <p style="margin-top:-2rem;">Login</p>
+    </div>
     <h2 class="nav-brand">SwftCrdly.io</h2>
+
   </div>
   <div class="fixed-nav-padding">
     <ul>
-      <li><a href="#" class="login-buttons">Login</a></li>
+      <li><a href="#" class="login-buttons"> Login</a></li>
     </ul>
   </div>
 
@@ -53,7 +56,7 @@
 
 <!-- Menu Toggle Script -->
 <script>
-$(".navbar-toggle").click(function(e) {
+$("#navbar-toggle").click(function(e) {
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });

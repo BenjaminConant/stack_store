@@ -204,9 +204,19 @@
   margin: 1rem;
 }
 
-.navbar-toggle {
+.nav-right {
+  color: #999;
+  font-size: 1.2em;
+  float: right;
+}
+
+.nav-left {
+  color: #999;
+  font-size: 1.5em;
   float: left;
-  icon-bar {
-    color: #999 !important;
-  }
+  margin: 1rem 1rem;
+}
+
+#navbar-toggle {
+  color: #999;
 }
