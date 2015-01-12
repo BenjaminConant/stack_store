@@ -1,9 +1,8 @@
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
+
     <ul class="sidebar-nav">
-      <li class="sidebar-brand">
-        <h2>SwftCrdly.io</h2>
-      </li>
+      <div class="fixed-nav-padding"></div>
       <li class="navbar-search">
         <input type="text" class="form-control" placeholder="Search">
       </li>
@@ -56,3 +55,22 @@
     </ul>
   </div>
   <!-- /#sidebar-wrapper -->
+
+  <div class="top-nav">
+    <div class="nav-left hidden-md hidden-lg hidden-sm">
+      <a href="#" id="navbar-toggle"><i class="fa fa-align-justify"></i></a>
+    </div>
+    <div class="nav-right">
+      <span><i class="glyphicon glyphicon-shopping-cart" style="font-size:1.6em;margin-top:1rem;"></i>Login</span>
+    </div>
+    <h2 class="nav-brand">SwftCrdly.io</h2>
+
+  </div>
+  <div class="fixed-nav-padding">
+
+  <script>
+  $("#navbar-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+  </script>
