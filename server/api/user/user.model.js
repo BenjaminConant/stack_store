@@ -5,9 +5,18 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
+var Order = require('../order/order.model');
+var Review = require('../review/review.model');
+var Item = require('../item/item.model');
+
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
+  cart: [Order],
+  pastOrders: [Order],
+  purchasedItems: [Item],
+  contacts: [String],
+  reviews: [Review],
   role: {
     type: String,
     default: 'user'
