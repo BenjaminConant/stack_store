@@ -1,0 +1,17 @@
+'use strict';
+
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
+
+var LineItemSchema = new Schema({
+	item: [Item],
+	sender: [User],
+	receiverName: String,
+	receiverEmail: String,
+	message: String,
+	longMessage: String,
+	value: Number,
+	themeURL: String
+});
+
+module.exports = mongoose.model('LineItem', LineItemSchema);
