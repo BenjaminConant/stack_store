@@ -180,3 +180,16 @@
   border-radius: 5px;
   margin: 1rem;
 }
+
+.top-nav {
+  height: 5rem;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.fixed-nav-padding {
+  height: 5rem;
+}
