@@ -5,28 +5,98 @@
 
 'use strict';
 
-var Thing = require('../api/thing/thing.model');
+var Item = require('../api/item/item.model');
 var User = require('../api/user/user.model');
+var Category = require('../api/category/category.model');
 
-Thing.find({}).remove(function() {
-  Thing.create({
-    name : 'Development Tools',
-    info : 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less.'
+var good = new Category({
+    name: 'Good',
+    popularity: 5
+  });
+
+var bad = new Category({
+    name: 'Bad',
+    popularity: 1
+  });
+
+var ugly = new Category({
+    name: 'Ugly',
+    popularity: -11
+  });
+
+Category.find({}).remove();
+
+good.save();
+bad.save();
+ugly.save();
+
+Item.find({}).remove(function() {
+  Item.create({
+    title : 'Sweet Card',
+    image : '',
+    defaultMessage : 'Happy Celebratory Day, Nimit!',
+    description : 'This card is for Sweet category of things',
+    reviews : [],
+    buyCount: 0,
+    purchaseHistory : [],
+    categories : [good, bad],
+    themeURL : 'www.com',
+    stars : 5
+      }, {
+    title : 'Sour Card',
+    image : '',
+    defaultMessage : 'Happy Celebratory Day, Nimit!',
+    description : 'This card is for Sour category of things',
+    reviews : [],
+    buyCount: 0,
+    purchaseHistory : [],
+    categories : [ugly],
+    themeURL : 'www.com',
+    stars : 5
   }, {
-    name : 'Server and Client integration',
-    info : 'Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node.'
-  }, {
-    name : 'Smart Build System',
-    info : 'Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html'
+    title : 'Spicy Card',
+    image : '',
+    defaultMessage : 'Happy Celebratory Day, Nimit!',
+    description : 'This card is for Spicy category of things',
+    reviews : [],
+    buyCount: 0,
+    purchaseHistory : [],
+    categories : [good, bad, ugly],
+    themeURL : 'www.com',
+    stars : 5
   },  {
-    name : 'Modular Structure',
-    info : 'Best practice client and server structures allow for more code reusability and maximum scalability'
+    title : 'Savory Card',
+    image : '',
+    defaultMessage : 'Happy Celebratory Day, Nimit!',
+    description : 'This card is for Savory category of things',
+    reviews : [],
+    buyCount: 0,
+    purchaseHistory : [],
+    categories : [good],
+    themeURL : 'www.com',
+    stars : 5
   },  {
-    name : 'Optimized Build',
-    info : 'Build process packs up your templates as a single JavaScript payload, minifies your scripts/css/images, and rewrites asset names for caching.'
+    title : 'Salty Card',
+    image : '',
+    defaultMessage : 'Happy Celebratory Day, Nimit!',
+    description : 'This card is for Salty category of things',
+    reviews : [],
+    buyCount: 0,
+    purchaseHistory : [],
+    categories : [good, bad],
+    themeURL : 'www.com',
+    stars : 5
   },{
-    name : 'Deployment Ready',
-    info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
+    title : 'Umami Card',
+    image : '',
+    defaultMessage : 'Happy Celebratory Day, Nimit!',
+    description : 'This card is for Umami category of things',
+    reviews : [],
+    buyCount: 0,
+    purchaseHistory : [],
+    categories : [good, ugly],
+    themeURL : 'www.com',
+    stars : 5
   });
 });
 
