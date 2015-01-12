@@ -170,9 +170,11 @@
   }
 }
 
-.sidebar-brand {
-  font: 1.5em $font-family-sans-serif;
+.nav-brand {
+  font: 2em $font-family-sans-serif;
   color: #999;
+  text-align: center;
+  margin: 0.5rem 0 0 0;
 }
 
 .category-group {
@@ -188,8 +190,20 @@
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1000;
 }
 
 .fixed-nav-padding {
   height: 5rem;
+}
+
+.box {
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 15rem;
+  margin: 1rem;
+}
+
+.collapse-side-nav {
+  float: left;
 }
