@@ -3,6 +3,9 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+var Item = require('../item/item.model');
+var User = require('../user/user.model');
+
 var LineItemSchema = new Schema({
 	item: [Item],
 	sender: [User],

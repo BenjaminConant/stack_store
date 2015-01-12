@@ -3,6 +3,8 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+var Review = require('../review/review.model');
+
 var ItemSchema = new Schema({
 	title: String,
 	image: String,
@@ -12,7 +14,8 @@ var ItemSchema = new Schema({
 	buyCount: Number,
 	purchaseHistory: [Date],
 	categories: [String],
-	themeURL: String
+	themeURL: String,
+	stars: Number
 });
 
 module.exports = mongoose.model('Item', ItemSchema);
