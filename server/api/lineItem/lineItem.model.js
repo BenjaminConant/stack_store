@@ -14,6 +14,7 @@ var LineItemSchema = new Schema({
 	message: String,
 	longMessage: String,
 	value: Number,
+	quantity: Number,
 	themeURL: String
 });
 
