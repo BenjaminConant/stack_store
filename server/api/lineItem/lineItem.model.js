@@ -15,7 +15,7 @@ var LineItemSchema = new Schema({
 	longMessage: String,
 	value: Number,
 	quantity: Number,
-	themeURL: String
+	themeURL: String 
 });
 
 module.exports = mongoose.model('LineItem', LineItemSchema);
