@@ -7,6 +7,8 @@
           <tr>
             <th>Thumbnail</th>
             <th>Title</th>
+            <th>Front</th>
+            <th>Inside</th>
             <th>Recipient</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -16,28 +18,34 @@
           <tr ng-repeat="item in orderItems">
             <td><img ng-src="{{item.themeURL}}" alt=""></td>
             <td>{{item.item[0].title}}</td>
+            <td>{{item.message}}</td>
+            <td>{{item.longMessage}}</td>
             <td>{{item.receiverName}}</td>
             <td>{{item.value | currency : $ : 2 }}</td>
             <td>
-              <select name="quantity" id="quantity">
-                <option value="">{{item.quantity}}</option> <!-- Default value needs to come from cart-->
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
+              <select ng-model="item.quantity" ng-change="updateLineItemQuantity(item)" name="quantity" id="quantity">
+                <option value="{{item.quantity}}">{{item.quantity}}</option> Default value needs to come from cart
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
 
               </select>
-              <span class="cart-delete"><a ng-click="deleteLineItem(item)" href="#">Delete</a></span></td>
+              <p class="cart-delete"><a ng-click="deleteLineItem(item)" href="#">Delete</a></p>
+              <p class="cart-edit"><a ng-click="editLineItem(item)" href="#">Edit</a></p> <!-- this will launch the line item modal -->
+              </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td style="text-align:right;">Subtotal:</td>
-                <td>{{cartTotal | currency : $ : 2}}</td>
-              </tr>
-            </tbody>
-          </table>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          <td style="text-align:right;">Subtotal:</td>
+            <td>{{cartTotal | currency : $ : 2}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
 
