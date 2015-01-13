@@ -9,6 +9,11 @@ angular.module('stackStoreApp')
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
+    $scope.cartTotal = function() {
+      return "$10,000"
+    }
+
+
     $scope.addThing = function() {
       if($scope.newThing === '') {
         return;
@@ -16,6 +21,8 @@ angular.module('stackStoreApp')
       $http.post('/api/things', { name: $scope.newThing });
       $scope.newThing = '';
     };
+
+
 
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
