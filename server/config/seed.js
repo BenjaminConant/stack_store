@@ -33,7 +33,7 @@ ugly.save();
 Item.find({}).remove(function() {
   Item.create({
     title : 'Sweet Card',
-    image : '',
+    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Sweet category of things',
     reviews : [],
@@ -44,7 +44,7 @@ Item.find({}).remove(function() {
     stars : 5
       }, {
     title : 'Sour Card',
-    image : '',
+    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Sour category of things',
     reviews : [],
@@ -55,7 +55,7 @@ Item.find({}).remove(function() {
     stars : 5
   }, {
     title : 'Spicy Card',
-    image : '',
+    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Spicy category of things',
     reviews : [],
@@ -66,7 +66,7 @@ Item.find({}).remove(function() {
     stars : 5
   },  {
     title : 'Savory Card',
-    image : '',
+    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Savory category of things',
     reviews : [],
@@ -77,7 +77,7 @@ Item.find({}).remove(function() {
     stars : 5
   },  {
     title : 'Salty Card',
-    image : '',
+    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Salty category of things',
     reviews : [],
@@ -88,7 +88,7 @@ Item.find({}).remove(function() {
     stars : 5
   },{
     title : 'Umami Card',
-    image : '',
+    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Umami category of things',
     reviews : [],
