@@ -36,6 +36,10 @@ angular.module('stackStoreApp')
       $http.put('/api/lineItems/' + lineItem._id, lineItem);
     }
 
+    $scope.editLineItem = function (lineItem) {
+     console.log(lineItem);
+    }
+
 
 
     $scope.addThing = function() {
