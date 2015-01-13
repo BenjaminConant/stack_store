@@ -12,6 +12,7 @@
             <th>Recipient</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -29,20 +30,22 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-
               </select>
+            </td>
+            <td>
               <p class="cart-delete"><a ng-click="deleteLineItem(item)" href="#">Delete</a></p>
               <p class="cart-edit"><a ng-click="editLineItem(item)" href="#">Edit</a></p> <!-- this will launch the line item modal -->
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-          <td style="text-align:right;">Subtotal:</td>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="text-align:right;">Subtotal:</td>
             <td>{{cartTotal | currency : $ : 2}}</td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>

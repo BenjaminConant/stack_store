@@ -1,3 +1,17 @@
+@import url(http://fonts.googleapis.com/css?family=Poiret+One);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+$font-stack: 'Open Sans', sans-serif;
+$title-font: "Poiret One", cursive;
+
+$blue: #03A9F4;
+$yellow: #FFEB3B;
+$text-color: #212121;
+$secondary-text: #727272;
+
+body {
+  font-family: $font-stack;
+}
+
 .thing-form {
     margin: 20px 0;
 }
@@ -57,7 +71,7 @@
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
+  background: $blue;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -98,7 +112,7 @@
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  color: white;
 }
 
 .sidebar-nav li a:hover {
@@ -119,7 +133,7 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-  color: #999999;
+  color: $text-color;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -157,13 +171,13 @@
 
 .sidebar-nav {
   label {
-    color: #999 !important;
-    font: 1em $font-family-sans-serif;
+    color: white !important;
+    font: 1em $font-stack;
   }
   h4 {
-    color: #999 !important;
+    color: white !important;
     text-align: center;
-    font: 1.5em $font-family-sans-serif;
+    font: 1.5em $font-stack;
   }
   .navbar-search {
     margin: 1rem;
@@ -171,21 +185,28 @@
 }
 
 .nav-brand {
-  font: 2em $font-family-sans-serif;
-  color: #999;
+  font: 2em $title-font;
+  letter-spacing: 0.25em;
   text-align: center;
   margin: 0.5rem 0 0 0;
+  a {
+  text-decoration: none !important;
+  color: white !important;
+  }
 }
 
 .category-group {
-  border: 1px solid #999;
+  border: 1px solid rgba(255,255,255,0.5);
   border-radius: 5px;
   margin: 1rem;
+  li:last-child {
+    margin-bottom: 1rem;
+  }
 }
 
 .top-nav {
   height: 5rem;
-  background-color: #000;
+  background-color: $blue;
   position: fixed;
   top: 0;
   left: 0;
@@ -198,25 +219,76 @@
 }
 
 .box {
-  border: 1px solid #999;
+  border: 1px solid white;
   border-radius: 5px;
   padding: 15rem;
   margin: 1rem;
 }
 
 .nav-right {
-  color: #999;
+  color: white;
   font-size: 1.2em;
   float: right;
 }
 
 .nav-left {
-  color: #999;
+  color: white;
   font-size: 1.5em;
   float: left;
   margin: 1rem 1rem;
 }
 
 #navbar-toggle {
-  color: #999;
+  color: white;
+}
+
+.nav-right {
+  margin-right: 5%;
+  a {
+    color: white;
+  }
+}
+
+.item-thumbnail {
+  p {
+    text-decoration: none;
+    color: $text-color;
+    font: 300 2em $font-stack;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+  img {
+    max-height: 25rem;
+    max-width: 100%;
+    border-radius: 5px;
+  }
+}
+
+.cart-badge {
+  transform: translate(26px,-22px);
+  background-color: green;
+}
+
+.cart-table {
+  td {
+    vertical-align:middle !important;
+  }
+
+  img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+
+}
+
+.customize-button {
+  background-color: $blue;
+  color: white !important;
+  display: block;
+  margin: auto;
+  margin-top: 0.5rem;
 }
