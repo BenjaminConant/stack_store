@@ -12,14 +12,12 @@ angular.module('stackStoreApp')
 
     $http.get('/api/lineItems').success(function(lineItems){
       $scope.orderItems = lineItems;
+      $scope.cartTotal = 0;
+      lineItems.forEach(function(lineItem) {
+        $scope.cartTotal += lineItem.value;
+      });
       console.log(lineItems);
-
     });
-
-    $scope.cartTotal = function() {
-      return "$10,000"
-    }
-
 
 
 

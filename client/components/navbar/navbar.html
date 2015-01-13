@@ -63,7 +63,7 @@
 
     <div class="nav-right">
       <span>
-        {{cartTotal()}}
+        {{cartTotal | currency : $ : 2}}
         <span class="badge cart-badge">{{orderItems.length}}</span><a href="/cart"><i class="glyphicon glyphicon-shopping-cart" style="font-size:1.6em;margin-top:1rem;"></i></a>
         <a href="/login">Login</a>
       </span>
