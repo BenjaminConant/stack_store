@@ -1,6 +1,6 @@
 <div class="homepage-item col-sm-6 col-md-4 col-xs-12" ng-click="store.openModal(item)">
 	<a href="#" class="item-thumbnail">
-		<img src="http://placekitten.com/300/240?{{$index}}" alt="¯\_(ツ)_/¯">
+		<img ng-src="{{item.image}}" alt="¯\_(ツ)_/¯">
 		<p>{{item.title}}</p>
 	</a>
 </div>

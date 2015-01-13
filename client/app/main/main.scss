@@ -248,3 +248,25 @@ body {
     color: $text-color;
   }
 }
+
+.item-thumbnail {
+  p {
+    text-decoration: none;
+    color: $text-color;
+    font: 300 1.8em $font-stack;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+  img {
+    max-height: 25rem;
+    max-width: 100%;
+    border-radius: 5px;
+  }
+}
+
+.homepage-item {
+
+}
