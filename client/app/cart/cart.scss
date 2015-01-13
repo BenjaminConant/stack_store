@@ -1,3 +1,15 @@
 .cart-delete {
   float:right;
 }
+
+.cart-badge {
+  transform: translate(26px,-22px);
+  background-color: green;
+}
+
+.nav-right {
+  margin-right: 5%;
+  a {
+    color: #999;
+  }
+}
