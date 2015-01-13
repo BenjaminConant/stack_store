@@ -3,21 +3,11 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var LineItem = require('../lineItem/lineItem.model');
-
-// var OrderSchema = new Schema({
-//   orderItems: Array,
-//   status: String
-// });
-
+var LineItemSchema = require('../lineItem/lineItem.model');
 
 var OrderSchema = new Schema({
-  status: String,
-  orderItems:[LineItem]
+  orderItems: [LineItemSchema],
+  status: String
 });
-
-
-// module.exports = mongoose.model('Order', OrderSchema);
-
 
 module.exports = OrderSchema;
