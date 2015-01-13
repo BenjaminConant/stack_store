@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var LineItem = require('../lineItem/lineItem.model');
 
 var OrderSchema = new Schema({
-  orderItems: [LineItem],
+  orderItems: [LineItem.schema],
   status: String
 });
 

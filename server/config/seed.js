@@ -9,6 +9,7 @@ var Item = require('../api/item/item.model');
 var LineItem = require('../api/lineItem/lineItem.model');
 var User = require('../api/user/user.model');
 var Category = require('../api/category/category.model');
+var Order = require('../api/order/order.model');
 
 var good = new Category({
     name: 'Good',
@@ -25,12 +26,19 @@ var ugly = new Category({
     popularity: -11
   });
 
-var user1 = new User ({
+// var order = new Order({
+//     test:'test'
+// });
+
+// console.log(order);
+var user1 = new User({
   provider: 'local',
   name: 'a',
   email: 'a@a.com',
-  password: 'aaa'
+  password: 'aaa',
+  cart: [{status:'test'}]
 });
+
 
 var item1 = new Item ({
   title : 'Sweet Card',
@@ -118,7 +126,7 @@ lineItem1.save();
 lineItem2.save();
 lineItem3.save();
 
-
+// Order.find({}).remove();
 
 Category.find({}).remove();
 good.save();
@@ -209,6 +217,9 @@ Item.find({}).remove(function() {
 //   purchasedItems: [Item],
 //   contacts: [String],
 //   reviews: [Review],
+// order.save(function(err, order) {
+//   User.findOne({name: 'a'});
+// });
 
 
 User.find({}).remove(function() {

@@ -7,9 +7,9 @@ var Item = require('../item/item.model');
 var User = require('../user/user.model');
 
 var ReviewSchema = new Schema({
-	author: [User],
+	author: [User.schema],
 	text: String,
-	item: [Item],
+	item: [Item.schema],
 	usefulness: Number,
 	stars: Number
 });

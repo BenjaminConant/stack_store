@@ -12,11 +12,11 @@ var Item = require('../item/item.model');
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
-  cart: [Order],
-  pastOrders: [Order],
-  purchasedItems: [Item],
+  cart: [Order.schema],
+  pastOrders: [Order.schema],
+  purchasedItems: [Item.schema],
   contacts: [String],
-  reviews: [Review],
+  reviews: [Review.schema],
   role: {
     type: String,
     default: 'user'

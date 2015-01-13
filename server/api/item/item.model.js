@@ -10,7 +10,7 @@ var ItemSchema = new Schema({
 	image: String,
 	defaultMessage: String,
 	description: String,
-	reviews: [Review],
+	reviews: [Review.schema],
 	buyCount: Number,
 	purchaseHistory: [Date],
 	categories: [String],
