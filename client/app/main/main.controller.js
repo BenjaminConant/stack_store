@@ -4,8 +4,9 @@ angular.module('stackStoreApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
     $scope.orderItems = [];
+    $scope.select
 
-    $http.get('/api/things').success(function(awesomeThings) {
+    $http.get('/api/things').success(function(awesomeThings, index) {
       $scope.awesomeThings = awesomeThings;
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
@@ -29,6 +30,11 @@ angular.module('stackStoreApp')
       $http.delete('/api/lineItems/' + lineItem._id);
       $scope.getLineItems();
     };
+
+    $scope.updateLineItemQuantity = function (lineItem) {
+      console.log(lineItem);
+      $http.put('/api/lineItems/' + lineItem._id, lineItem);
+    }
 
 
 

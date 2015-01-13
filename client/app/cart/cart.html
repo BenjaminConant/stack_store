@@ -19,12 +19,12 @@
             <td>{{item.receiverName}}</td>
             <td>{{item.value | currency : $ : 2 }}</td>
             <td>
-              <select name="quantity" id="quantity">
-                <option value="">{{item.quantity}}</option> <!-- Default value needs to come from cart-->
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
+              <select ng-model="item.quantity" ng-change="updateLineItemQuantity(item)" name="quantity" id="quantity">
+                <option value="{{item.quantity}}">{{item.quantity}}</option> <!-- Default value needs to come from cart-->
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
 
               </select>
               <span class="cart-delete"><a ng-click="deleteLineItem(item)" href="#">Delete</a></span></td>
