@@ -199,6 +199,9 @@ body {
   border: 1px solid $text-color;
   border-radius: 5px;
   margin: 1rem;
+  li:last-child {
+    margin-bottom: 1rem;
+  }
 }
 
 .top-nav {
