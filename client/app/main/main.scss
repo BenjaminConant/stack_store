@@ -182,6 +182,9 @@ body {
   .navbar-search {
     margin: 1rem;
   }
+  .navbar-select {
+    margin: 1rem;
+  }
 }
 
 .nav-brand {
@@ -261,7 +264,6 @@ body {
     text-decoration: none;
   }
   img {
-    max-height: 25rem;
     max-width: 100%;
     border-radius: 5px;
   }
