@@ -1,3 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Poiret+One);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+$font-stack: 'Open Sans', sans-serif;
+$title-font: "Poiret One", cursive;
+
+/* \$red: #5D1521;
+\$blue: #0C1732;
+\$gold: #D4B86C; */
+
+body {
+  font-family: $font-stack;
+}
+
 .thing-form {
     margin: 20px 0;
 }
@@ -171,7 +184,8 @@
 }
 
 .nav-brand {
-  font: 2em $font-family-sans-serif;
+  font: 2em $title-font;
+  letter-spacing: 0.25em;
   color: #999;
   text-align: center;
   margin: 0.5rem 0 0 0;
