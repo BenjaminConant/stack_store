@@ -4,6 +4,7 @@ angular.module('stackStoreApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
     $scope.orderItems = [];
+    $scope.showCartDropdown = false;
     $scope.select
 
     $http.get('/api/things').success(function(awesomeThings, index) {
@@ -40,6 +41,10 @@ angular.module('stackStoreApp')
      console.log(lineItem);
     }
 
+
+    $scope.toggleShowCartDropdown = function () {
+      $scope.showCartDropdown = !$scope.showCartDropdown;
+    }
 
 
     $scope.addThing = function() {
