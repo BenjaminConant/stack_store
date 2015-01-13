@@ -7,8 +7,8 @@ var Item = require('../item/item.model');
 var User = require('../user/user.model');
 
 var LineItemSchema = new Schema({
-	item: [Item],
-	sender: [User],
+	item: [Item.schema],
+	sender: [User.schema],
 	receiverName: String,
 	receiverEmail: String,
 	message: String,
