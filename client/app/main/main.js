@@ -6,5 +6,9 @@ angular.module('stackStoreApp')
       .when('/', {
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
+      })
+      .when("/cart", {
+        templateUrl: "app/cart/cart.html",
+        controller: "MainCtrl"
       });
   });
