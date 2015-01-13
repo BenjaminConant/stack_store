@@ -1,0 +1,18 @@
+<div id="cart-dropdown">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Qty.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="lineItem in orderItems">
+        <td>{{lineItem.item[0].title}}</td>
+        <td>{{lineItem.value}}</td>
+        <td>{{lineItem.quantity}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
