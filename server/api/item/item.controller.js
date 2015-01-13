@@ -5,12 +5,8 @@ var Item = require('./item.model');
 
 // Get list of items
 exports.index = function(req, res) {
-  console.log("HI");
-  Item.find(function (err, items) {
-    console.log(items);
-
-    if(err) {
-      console.log('ERROR ' + err);
+  Item.find(function(err, items) {
+    if (err) {
       return handleError(res, err);
     }
     return res.json(200, items);
@@ -19,9 +15,13 @@ exports.index = function(req, res) {
 
 // Get a single item
 exports.show = function(req, res) {
-  Item.findById(req.params.id, function (err, item) {
-    if(err) { return handleError(res, err); }
-    if(!item) { return res.send(404); }
+  Item.findById(req.params.id, function(err, item) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!item) {
+      return res.send(404);
+    }
     return res.json(item);
   });
 };
@@ -29,20 +29,30 @@ exports.show = function(req, res) {
 // Creates a new item in the DB.
 exports.create = function(req, res) {
   Item.create(req.body, function(err, item) {
-    if(err) { return handleError(res, err); }
+    if (err) {
+      return handleError(res, err);
+    }
     return res.json(201, item);
   });
 };
 
 // Updates an existing item in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Item.findById(req.params.id, function (err, item) {
-    if (err) { return handleError(res, err); }
-    if(!item) { return res.send(404); }
+  if (req.body._id) {
+    delete req.body._id;
+  }
+  Item.findById(req.params.id, function(err, item) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!item) {
+      return res.send(404);
+    }
     var updated = _.merge(item, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+    updated.save(function(err) {
+      if (err) {
+        return handleError(res, err);
+      }
       return res.json(200, item);
     });
   });
@@ -50,11 +60,17 @@ exports.update = function(req, res) {
 
 // Deletes a item from the DB.
 exports.destroy = function(req, res) {
-  Item.findById(req.params.id, function (err, item) {
-    if(err) { return handleError(res, err); }
-    if(!item) { return res.send(404); }
+  Item.findById(req.params.id, function(err, item) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!item) {
+      return res.send(404);
+    }
     item.remove(function(err) {
-      if(err) { return handleError(res, err); }
+      if (err) {
+        return handleError(res, err);
+      }
       return res.send(204);
     });
   });
