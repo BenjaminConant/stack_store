@@ -5,8 +5,14 @@ var Item = require('./item.model');
 
 // Get list of items
 exports.index = function(req, res) {
+  console.log("HI");
   Item.find(function (err, items) {
-    if(err) { return handleError(res, err); }
+    console.log(items);
+
+    if(err) {
+      console.log('ERROR ' + err);
+      return handleError(res, err);
+    }
     return res.json(200, items);
   });
 };
