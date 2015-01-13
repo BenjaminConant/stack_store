@@ -7,6 +7,8 @@
           <tr>
             <th>Thumbnail</th>
             <th>Title</th>
+            <th>Front</th>
+            <th>Inside</th>
             <th>Recipient</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -16,6 +18,8 @@
           <tr ng-repeat="item in orderItems">
             <td><img ng-src="{{item.themeURL}}" alt=""></td>
             <td>{{item.item[0].title}}</td>
+            <td>{{item.message}}</td>
+            <td>{{item.longMessage}}</td>
             <td>{{item.receiverName}}</td>
             <td>{{item.value | currency : $ : 2 }}</td>
             <td>
@@ -32,14 +36,16 @@
               </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td style="text-align:right;">Subtotal:</td>
-                <td>{{cartTotal | currency : $ : 2}}</td>
-              </tr>
-            </tbody>
-          </table>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          <td style="text-align:right;">Subtotal:</td>
+            <td>{{cartTotal | currency : $ : 2}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
 
