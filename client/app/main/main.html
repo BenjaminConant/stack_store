@@ -7,10 +7,7 @@
         <div class="col-lg-12">
           <h1>Toolbar goes here?</h1>
             <div class="row">
-              <div>
-                <p>{{store.allItems}}</p>
-                <item-thumbnail></item-thumbnail>
-              </div>
+              <item-thumbnail ng-repeat='item in store.allItems'></item-thumbnail>
             </div>
         </div>
       </div>
