@@ -17,18 +17,18 @@
   <h1>{{currentItem.title}}</h1>
   <img width="400" src="{{currentItem.image}}">
 
-	<label for="receiverName">Recipient Name:</label> 
+	<label for="receiverName">Recipient Name:</label>
 	<input type="text" class="form-control" id="receiverName" ng-model="newItem.receiverName"></input>
-	<label for="receiverEmail">Recipient Email:</label> 
+	<label for="receiverEmail">Recipient Email:</label>
 	<input type="text" class="form-control" id="receiverEmail" ng-model="newItem.receiverEmail"></input>
-	<label for="message">Message:</label> 
+	<label for="message">Message:</label>
 	<input type="text" class="form-control" id="message" ng-model="newItem.message"></input>
 	<label for="quantity">Quantity:</label>
 	<input type="number" class="form-control" id="quantity" ng-model="newItem.quantity"></input>
 
 
 
-  <button type="submit" class="btn btn-primary" ng-click="store.addToCart(currentItem)">Add to Cart</button>
+  <button type="submit" class="btn btn-primary" ng-click="store.addToCart(currentItem, newItem)">Add to Cart</button>
 
 <h1>{{newItem}}</h1>
 
