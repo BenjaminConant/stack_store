@@ -20,14 +20,16 @@
             <td>{{item.value | currency : $ : 2 }}</td>
             <td>
               <select ng-model="item.quantity" ng-change="updateLineItemQuantity(item)" name="quantity" id="quantity">
-                <option value="{{item.quantity}}">{{item.quantity}}</option> <!-- Default value needs to come from cart-->
+                <option value="{{item.quantity}}">{{item.quantity}}</option> Default value needs to come from cart
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
 
               </select>
-              <span class="cart-delete"><a ng-click="deleteLineItem(item)" href="#">Delete</a></span></td>
+              <p class="cart-delete"><a ng-click="deleteLineItem(item)" href="#">Delete</a></p>
+              <p class="cart-edit"><a ng-click="editLineItem(item)" href="#">Edit</a></p> <!-- this will launch the line item modal -->
+              </td>
             </tr>
             <tr>
                 <td></td>
