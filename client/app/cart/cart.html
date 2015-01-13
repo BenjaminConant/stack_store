@@ -13,44 +13,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><img src="http://i.embed.ly/1/display/resize?url=http%3A%2F%2Fwww.stevelaube.com%2Fwp-content%2Fuploads%2F2011%2F11%2Ffun.gif&width=200&grow=true&key=92b31102528511e1a2ec4040d3dc5c07&height=200" alt=""></td>
-            <td>Amazon gift</td>
-            <td>Bob</td>
-            <td>100</td>
+          <tr ng-repeat="item in orderItems">
+            <td><img ng-src="{{item.themeURL}}" alt=""></td>
+            <td>{{item.item[0].title}}</td>
+            <td>{{item.receiverName}}</td>
+            <td>{{item.value | currency : $ : 2 }}</td>
             <td>
               <select name="quantity" id="quantity">
-                <option value="">1</option> <!-- Default value needs to come from cart-->
+                <option value="">{{item.quantity}}</option> <!-- Default value needs to come from cart-->
                 <option value="">2</option>
                 <option value="">3</option>
                 <option value="">4</option>
                 <option value="">5</option>
 
               </select>
-              <span class="cart-delete"><a href="#">Delete</a></span></td>
+              <span class="cart-delete"><a ng-click="deleteLineItem(item)" href="#">Delete</a></span></td>
             </tr>
             <tr>
-              <td><img src="http://i.embed.ly/1/display/resize?url=http%3A%2F%2Fwww.kumah.org%2Fuploaded_images%2F193_9331-730753.JPG&width=200&grow=true&key=92b31102528511e1a2ec4040d3dc5c07&height=200" alt=""></td>
-              <td>Amazon gift</td>
-              <td>Bob</td>
-              <td>100</td>
-              <td>
-                <select name="quantity" id="quantity">
-                  <option value="">1</option> <!-- Default value needs to come from cart-->
-                  <option value="">2</option>
-                  <option value="">3</option>
-                  <option value="">4</option>
-                  <option value="">5</option>
-
-                </select>
-                <span class="cart-delete"><a href="#">Delete</a></span></td>
-              </tr>
-              <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td style="text-align:right;">Subtotal:</td>
-                <td>{{cartTotal()}}</td>
+                <td>{{cartTotal | currency : $ : 2}}</td>
               </tr>
             </tbody>
           </table>
