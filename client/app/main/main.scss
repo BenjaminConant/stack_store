@@ -112,7 +112,7 @@ body {
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: $text-color;
+  color: white;
 }
 
 .sidebar-nav li a:hover {
@@ -171,13 +171,13 @@ body {
 
 .sidebar-nav {
   label {
-    color: $text-color !important;
-    font: 1em $font-family-sans-serif;
+    color: white !important;
+    font: 1em $font-stack;
   }
   h4 {
-    color: $text-color !important;
+    color: white !important;
     text-align: center;
-    font: 1.5em $font-family-sans-serif;
+    font: 1.5em $font-stack;
   }
   .navbar-search {
     margin: 1rem;
@@ -191,12 +191,12 @@ body {
   margin: 0.5rem 0 0 0;
   a {
   text-decoration: none !important;
-  color: $text-color !important;
+  color: white !important;
   }
 }
 
 .category-group {
-  border: 1px solid $text-color;
+  border: 1px solid rgba(255,255,255,0.5);
   border-radius: 5px;
   margin: 1rem;
   li:last-child {
@@ -219,33 +219,33 @@ body {
 }
 
 .box {
-  border: 1px solid $text-color;
+  border: 1px solid white;
   border-radius: 5px;
   padding: 15rem;
   margin: 1rem;
 }
 
 .nav-right {
-  color: $text-color;
+  color: white;
   font-size: 1.2em;
   float: right;
 }
 
 .nav-left {
-  color: $text-color;
+  color: white;
   font-size: 1.5em;
   float: left;
   margin: 1rem 1rem;
 }
 
 #navbar-toggle {
-  color: $text-color;
+  color: white;
 }
 
 .nav-right {
   margin-right: 5%;
   a {
-    color: $text-color;
+    color: white;
   }
 }
 
@@ -253,7 +253,7 @@ body {
   p {
     text-decoration: none;
     color: $text-color;
-    font: 300 1.8em $font-stack;
+    font: 300 2em $font-stack;
     text-align: center;
     margin-bottom: 2rem;
   }
@@ -267,6 +267,28 @@ body {
   }
 }
 
-.homepage-item {
+.cart-badge {
+  transform: translate(26px,-22px);
+  background-color: green;
+}
 
+.cart-table {
+  td {
+    vertical-align:middle !important;
+  }
+
+  img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+
+}
+
+.customize-button {
+  background-color: $blue;
+  color: white !important;
+  display: block;
+  margin: auto;
+  margin-top: 0.5rem;
 }
