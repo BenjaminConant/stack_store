@@ -10,6 +10,8 @@ angular.module('stackStoreApp')
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
+
+    $scope.getLineItems = function () {
     $http.get('/api/lineItems').success(function(lineItems){
       $scope.orderItems = lineItems;
       $scope.cartTotal = 0;
@@ -18,6 +20,15 @@ angular.module('stackStoreApp')
       });
       console.log(lineItems);
     });
+    }
+    $scope.getLineItems();
+
+
+
+    $scope.deleteLineItem = function(lineItem) {
+      $http.delete('/api/lineItems/' + lineItem._id);
+      $scope.getLineItems();
+    };
 
 
 
