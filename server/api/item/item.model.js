@@ -14,7 +14,7 @@ var ItemSchema = new Schema({
 	buyCount: Number,
 	purchaseHistory: [Date],
 	categories: [String],
-	themeURL: String//,
+	themeURL: String,
 	stars: Number
 });
 
