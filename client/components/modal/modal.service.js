@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .factory('Modal', function ($rootScope, $modal) {
+  .factory('Modal', function($rootScope, $modal) {
     /**
      * Opens a modal
      * @param  {Object} scope      - an object to be merged with modal's scope
@@ -25,6 +25,9 @@ angular.module('stackStoreApp')
     // Public API here
     return {
 
+      itemModal: openModal,
+
+
       /* Confirmation modals */
       confirm: {
 
@@ -43,8 +46,8 @@ angular.module('stackStoreApp')
            */
           return function() {
             var args = Array.prototype.slice.call(arguments),
-                name = args.shift(),
-                deleteModal;
+              name = args.shift(),
+              deleteModal;
 
             deleteModal = openModal({
               modal: {
