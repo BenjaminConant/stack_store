@@ -4,9 +4,42 @@
 </div>
 <div class="modal-body">
   <p ng-if="modal.text" ng-bind="modal.text"></p>
+
+
+
+
+
+
+
+
+
+<form>
   <h1>{{currentItem.title}}</h1>
   <img width="400" src="{{currentItem.image}}">
-  <button class="btn btn-primary" ng-click="addToCart(currentItem)">Add to Cart</button>
+
+	<label for="receiverName">Recipient Name:</label> 
+	<input type="text" class="form-control" id="receiverName" ng-model="newItem.receiverName"></input>
+	<label for="receiverEmail">Recipient Email:</label> 
+	<input type="text" class="form-control" id="receiverEmail" ng-model="newItem.receiverEmail"></input>
+	<label for="message">Message:</label> 
+	<input type="text" class="form-control" id="message" ng-model="newItem.message"></input>
+	<label for="quantity">Quantity:</label>
+	<input type="number" class="form-control" id="quantity" ng-model="newItem.quantity"></input>
+
+
+
+  <button type="submit" class="btn btn-primary" ng-click="store.addToCart(currentItem)">Add to Cart</button>
+
+<h1>{{newItem}}</h1>
+
+</form>
+
+
+
+
+
+
+
   <div ng-if="modal.html" ng-bind-html="itemModal.html"></div>
 </div>
 <div class="modal-footer">
