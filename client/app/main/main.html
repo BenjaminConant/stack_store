@@ -1,16 +1,16 @@
 <div id="wrapper">
   <div ng-include="'components/navbar/navbar.html'"></div>
 
-  <div id="page-content-wrapper">
-    <div class="container-fluid">
+  <div  id="page-content-wrapper">
+    <div class="container-fluid" ng-controller='StoreCtrl as store'>
       <div class="row">
         <div class="col-lg-12">
           <h1>Toolbar goes here?</h1>
             <div class="row">
-              <item-thumbnail></item-thumbnail>
-              <item-thumbnail></item-thumbnail>
-              <item-thumbnail></item-thumbnail>
-              <item-thumbnail></item-thumbnail>
+              <div>
+                <p>{{store.allItems}}</p>
+                <item-thumbnail></item-thumbnail>
+              </div>
             </div>
         </div>
       </div>
