@@ -40,10 +40,8 @@ var user1 = new User({
 
 });
 
-Order.find({}).remove(function() {
-  order.save(function(err, data) {
-
-  });
+Order.find({}).remove(function () {
+  order.save();
 });
 
 
@@ -117,14 +115,14 @@ var lineItem3 = new LineItem({
   quantity: 1
 });
 
-Item.find({}).remove(function() {
+Item.find({}).remove(function () {
   item1.save();
   item2.save();
   item3.save();
 });
 
 
-LineItem.find({}).remove(function() {
+LineItem.find({}).remove(function () {
   lineItem1.save();
   lineItem2.save();
   lineItem3.save();
@@ -132,14 +130,14 @@ LineItem.find({}).remove(function() {
 
 // Order.find({}).remove();
 
-Category.find({}).remove(function() {
+Category.find({}).remove(function () {
   good.save();
   bad.save();
   ugly.save();
 });
 
 
-Item.find({}).remove(function() {
+Item.find({}).remove(function () {
   Item.create({
     title: 'Sweet Card',
     image: 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
@@ -220,7 +218,7 @@ Item.find({}).remove(function() {
 // });
 
 
-User.find({}).remove(function() {
+User.find({}).remove(function () {
   user1.save();
 
   User.create({
@@ -234,7 +232,7 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
-  }, function() {
+  }, function () {
     console.log('finished populating users');
   });
 });
