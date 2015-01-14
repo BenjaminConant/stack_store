@@ -1,4 +1,4 @@
-<div id="wrapper">	
+<div id="wrapper">
 	<div ng-include="'components/navbar/navbar.html'"></div>
 	<div id="page-content-wrapper">
 		<div class="container">
@@ -10,6 +10,44 @@
 		        <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
 		    </li>
 		  </ul>
+		</div>
+		<hr>
+		<div class="container">
+			<h2 style="text-align:center;margin-bottom:2rem;">Add Item</h2>
+			<form ng-controller="AdminCtrl">
+				<div class="row" style="margin:0 20%;">
+					<div class="form-group col-xs-12">
+						<label for="itemTitle">Title</label>
+						<input ng-model="title" type="text" class="form-control" id="itemTitle" placeholder="Title">
+					</div>
+					<div class="form-group col-xs-12" style="text-align:center;">
+						<div class="placeholder-image" style="height:200px;width:200px;border-radius:5px;background-color:whitesmoke;border:1px solid #ccc;display:block;margin:auto;">
+							<p>No Image Yet :(</p>
+						</div>
+						<label for="itemImage">Image</label>
+						<div><button id="itemImage" class="btn btn-primary">Add Image</button></div>
+					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemDescription">Description</label>
+						<input ng-model="description" type="text" class="form-control" id="itemDescription" placeholder="Description">
+					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemMessage">Message</label>
+						<textarea ng-model="message" type="text" class="form-control" id="itemMessage" placeholder="Message"></textarea>
+					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemCategories">Categories</label>
+						<div>
+							<input type="checkbox"> Test
+						</div> <!-- ng-repeat over all the categories, in its own row -->
+					</div>
+				</div>
+				<button class="btn btn-primary" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>
+			</form>
+		</div>
+		<hr>
+		<div class="container">
+
 		</div>
 	</div>
 </div>
