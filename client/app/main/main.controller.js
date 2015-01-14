@@ -46,6 +46,12 @@ angular.module('stackStoreApp')
       $scope.showCartDropdown = !$scope.showCartDropdown;
     }
 
+    $scope.openCheckout = function () {
+      console.log("working");
+      $http.post("/api/stripes", { email: "benconant@gmail.com"})
+    }
+
+
 
     $scope.addThing = function() {
       if($scope.newThing === '') {
