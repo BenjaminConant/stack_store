@@ -40,10 +40,8 @@ var user1 = new User({
 
 });
 
-Order.find({}).remove(function() {
-  order.save(function(err, data) {
-
-  });
+Order.find({}).remove(function () {
+  order.save();
 });
 
 
@@ -57,7 +55,6 @@ var item1 = new Item({
   buyCount: 0,
   purchaseHistory: [],
   categories: [good._id, bad._id],
-  themeURL: 'www.com',
   stars: 5
 });
 
@@ -70,7 +67,6 @@ var item2 = new Item({
   buyCount: 0,
   purchaseHistory: [],
   categories: [ugly._id],
-  themeURL: 'www.com',
   stars: 5
 });
 
@@ -83,7 +79,6 @@ var item3 = new Item({
   buyCount: 0,
   purchaseHistory: [],
   categories: [good._id, bad._id, ugly._id],
-  themeURL: 'www.com',
   stars: 5
 });
 
@@ -95,7 +90,6 @@ var lineItem1 = new LineItem({
   message: "happy day",
   longMessage: "you are soooooo coool",
   value: 125,
-  themeURL: "http://jasontheodor.com/wp-content/uploads//2012/02/things.jpg",
   quantity: 1
 });
 
@@ -107,7 +101,6 @@ var lineItem2 = new LineItem({
   message: "happy day",
   longMessage: "you are soooooo coool",
   value: 125,
-  themeURL: "http://www.kumah.org/uploaded_images/193_9331-730753.JPG",
   quantity: 1
 });
 
@@ -119,18 +112,17 @@ var lineItem3 = new LineItem({
   message: "happy day",
   longMessage: "you are soooooo coool",
   value: 125,
-  themeURL: "http://www.stuff4multiples.com/assets/images/Thing_3_birthday.jpg",
   quantity: 1
 });
 
-Item.find({}).remove(function() {
+Item.find({}).remove(function () {
   item1.save();
   item2.save();
   item3.save();
 });
 
 
-LineItem.find({}).remove(function() {
+LineItem.find({}).remove(function () {
   lineItem1.save();
   lineItem2.save();
   lineItem3.save();
@@ -138,14 +130,14 @@ LineItem.find({}).remove(function() {
 
 // Order.find({}).remove();
 
-Category.find({}).remove(function() {
+Category.find({}).remove(function () {
   good.save();
   bad.save();
   ugly.save();
 });
 
 
-Item.find({}).remove(function() {
+Item.find({}).remove(function () {
   Item.create({
     title: 'Sweet Card',
     image: 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
@@ -155,7 +147,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, bad],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Sour Card',
@@ -166,7 +157,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [ugly],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Spicy Card',
@@ -177,7 +167,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, bad, ugly],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Savory Card',
@@ -188,7 +177,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Salty Card',
@@ -199,7 +187,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, bad],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Umami Card',
@@ -210,7 +197,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, ugly],
-    themeURL: 'www.com',
     stars: 5
   });
 });
@@ -232,7 +218,7 @@ Item.find({}).remove(function() {
 // });
 
 
-User.find({}).remove(function() {
+User.find({}).remove(function () {
   user1.save();
 
   User.create({
@@ -246,7 +232,7 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
-  }, function() {
+  }, function () {
     console.log('finished populating users');
   });
 });
