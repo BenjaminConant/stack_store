@@ -20,7 +20,6 @@ angular.module('stackStoreApp')
       lineItems.forEach(function(lineItem) {
         $scope.cartTotal += lineItem.value;
       });
-      console.log(lineItems);
     });
     }
     $scope.getLineItems();

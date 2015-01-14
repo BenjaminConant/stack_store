@@ -13,11 +13,18 @@ exports.index = function(req, res) {
 
 // Get a single order
 exports.show = function(req, res) {
+  console.log(req.params.id);
   Order.findById(req.params.id, function (err, order) {
+
+
     if(err) { return handleError(res, err); }
     if(!order) { return res.send(404); }
     return res.json(order);
-  });
+  })
+  // .populate('orderItems')
+  // .exec(function(err, orderItems){
+  //   console.log(err + orderItems);
+  // });
 };
 
 // Creates a new order in the DB.
