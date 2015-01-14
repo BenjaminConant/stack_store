@@ -13,8 +13,7 @@ var ItemSchema = new Schema({
 	reviews: [{type: Schema.Types.ObjectId, ref:'Review'}],
 	buyCount: Number,
 	purchaseHistory: [Date],
-	categories: [String],
-	themeURL: String,
+	categories: [{type:Schema.Types.ObjectId, ref:'Category'}],
 	stars: Number
 });
 

@@ -7,22 +7,22 @@ angular.module('stackStoreApp')
 
 		var user = Auth.getCurrentUser();
 
-		if (user.$promise) {
-			console.log('User has a promise!');
-			user.$promise.then(function(currentUser){
+		// if (user.$promise) {
+		// 	console.log('User has a promise!');
+		// 	user.$promise.then(function(currentUser){
 
-					$http.get('/api/orders/' + currentUser.cart)
-					.success(function(data){
-						self.cart = data.orderItems;
-					});
-			});
-		} else {
-			console.log("User doesn't have a promise")
-			$http.get('/api/orders/' + user.cart)
-			.success(function(data){
-				self.cart = data.orderItems;
-			});
-		}
+		// 			$http.get('/api/orders/' + currentUser.cart)
+		// 			.success(function(data){
+		// 				self.cart = data.orderItems;
+		// 			});
+		// 	});
+		// } else {
+		// 	console.log("User doesn't have a promise")
+		// 	$http.get('/api/orders/' + user.cart)
+		// 	.success(function(data){
+		// 		self.cart = data.orderItems;
+		// 	});
+		// }
 
 		//console.log(user);
 		//console.log(user.cart);
