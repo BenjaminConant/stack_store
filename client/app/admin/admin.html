@@ -37,9 +37,9 @@
 					</div>
 					<div class="form-group col-xs-12">
 						<label for="itemCategories">Categories</label>
-						<div>
-							<input type="checkbox"> Test
-						</div> <!-- ng-repeat over all the categories, in its own row -->
+						<div ng-repeat="category in categories">
+							<input type="checkbox"> {{category}}
+						</div>
 					</div>
 				</div>
 				<button class="btn btn-primary" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>

@@ -3,6 +3,12 @@
 angular.module('stackStoreApp')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
 
+    $http.get("/api/categorys").success(function(err,categories) {
+      if (err) console.log(err);
+      $scope.categories = categories;
+      console.log(categories);
+    })
+
     // Use the User $resource to fetch all users
     $scope.users = User.query();
 
