@@ -26,17 +26,17 @@ var ugly = new Category({
     popularity: -11
   });
 
-// var order = new Order({
-//     test:'test'
-// });
+var order = new Order({
+    status:'test',
+    orderItems: []
+});
 
-// console.log(order);
 var user1 = new User({
   provider: 'local',
   name: 'a',
   email: 'a@a.com',
   password: 'aaa',
-  cart: [{status:'test'}]
+  cart: order._id
 });
 
 
@@ -48,7 +48,7 @@ var item1 = new Item ({
   reviews : [],
   buyCount: 0,
   purchaseHistory : [],
-  categories : [good, bad],
+  categories : [good._id, bad._id],
   themeURL : 'www.com',
   stars : 5
 });
@@ -61,7 +61,7 @@ var item2 = new Item ({
   reviews : [],
   buyCount: 0,
   purchaseHistory : [],
-  categories : [ugly],
+  categories : [ugly._id],
   themeURL : 'www.com',
   stars : 5
 });
@@ -74,7 +74,7 @@ var item3 = new Item ({
   reviews : [],
   buyCount: 0,
   purchaseHistory : [],
-  categories : [good, bad, ugly],
+  categories : [good._id, bad._id, ugly._id],
   themeURL : 'www.com',
   stars : 5
 });
