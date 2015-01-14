@@ -4,11 +4,25 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var ReviewSchema = new Schema({
-	author: [{type: Schema.Types.ObjectId, ref:'User'}],
-	text: String,
-	item: [{type: Schema.Types.ObjectId, ref:'Item'}],
+	author: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
+		required: true
+	},
+	text: {
+		type: String,
+		required: true
+	},
+	item: {
+		type: Schema.Types.ObjectId,
+		ref: 'Item',
+		required: true
+	},
 	usefulness: Number,
-	stars: Number
+	stars: {
+		type: Number,
+		required: true
+	}
 });
 
 module.exports = mongoose.model('Review', ReviewSchema);

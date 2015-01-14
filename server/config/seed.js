@@ -88,8 +88,8 @@ var item3 = new Item({
 });
 
 var lineItem1 = new LineItem({
-  item: [item1],
-  sender: [user1],
+  item: item1._id,
+  sender: user1._id,
   receiverName: "Ben",
   receiverEmail: "conantbenjamin@gmail.com",
   message: "happy day",
@@ -100,8 +100,8 @@ var lineItem1 = new LineItem({
 });
 
 var lineItem2 = new LineItem({
-  item: [item2],
-  sender: [user1],
+  item: item2._id,
+  sender: user1._id,
   receiverName: "Tom",
   receiverEmail: "tom@tom.com",
   message: "happy day",
@@ -112,8 +112,8 @@ var lineItem2 = new LineItem({
 });
 
 var lineItem3 = new LineItem({
-  item: [item3],
-  sender: [user1],
+  item: item3._id,
+  sender: user1._id,
   receiverName: "whaaaaaa",
   receiverEmail: "whaaa@com",
   message: "happy day",

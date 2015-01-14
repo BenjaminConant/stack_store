@@ -37,6 +37,8 @@ exports.create = function(req, res) {
     if (err) {
       return handleError(res, err);
     }
+    if (!lineItem.sender[0]) return res.json(201, lineItem);
+
     User.findById(lineItem.sender[0], function(err, user) {
       Order.findByIdAndUpdate(user.cart, {
         $push: {
