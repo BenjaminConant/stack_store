@@ -26,18 +26,24 @@ var ugly = new Category({
     popularity: -11
   });
 
-// var order = new Order({
-//     test:'test'
-// });
-
-// console.log(order);
+var order = new Order({
+    status:'test',
+    orderItems:[]
+});
 var user1 = new User({
   provider: 'local',
   name: 'a',
   email: 'a@a.com',
   password: 'aaa',
-  cart: [{status:'test'}]
+  cart: order._id
 });
+
+Order.find({}).remove(function(){
+  order.save(function(err, data){
+
+  });
+});
+
 
 
 var item1 = new Item ({
