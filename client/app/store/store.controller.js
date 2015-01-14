@@ -1,14 +1,35 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('StoreCtrl', function($scope, item, $http, $modal, Auth) {
-    var self = this;
-    self.allItems = item.query();
-    $scope.currentItem = {};
-    $scope.newItem = {
-      quantity: 1
-    };
 
+	.controller('StoreCtrl', function($scope, item, $http, $modal, Auth, cart) {
+		var self = this;
+		self.allItems = item.query();
+
+		var user = Auth.getCurrentUser();
+
+		// if (user.$promise) {
+		// 	console.log('User has a promise!');
+		// 	user.$promise.then(function(currentUser){
+
+		// 			$http.get('/api/orders/' + currentUser.cart)
+		// 			.success(function(data){
+		// 				self.cart = data.orderItems;
+		// 			});
+		// 	});
+		// } else {
+		// 	console.log("User doesn't have a promise")
+		// 	$http.get('/api/orders/' + user.cart)
+		// 	.success(function(data){
+		// 		self.cart = data.orderItems;
+		// 	});
+		// }
+
+		//console.log(user);
+		//console.log(user.cart);
+
+		var currentItem = {};
+		$scope.newItem = {quantity:1};
 
 		this.openModal = function(item) {
 			$scope.currentItem = item;
@@ -17,7 +38,6 @@ angular.module('stackStoreApp')
 				scope: $scope
 			})
 		};
-
 
 
     this.addToCart = function(item, optionsObj) {

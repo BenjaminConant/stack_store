@@ -42,6 +42,7 @@ var user1 = new User({
 
 Order.find({}).remove(function () {
   order.save();
+
 });
 
 
@@ -116,18 +117,19 @@ var lineItem3 = new LineItem({
 });
 
 Item.find({}).remove(function () {
+
   item1.save();
   item2.save();
   item3.save();
 });
 
 
-LineItem.find({}).remove(function () {
+
+LineItem.find({}).remove(function() {
   lineItem1.save();
   lineItem2.save();
   lineItem3.save();
 });
-
 // Order.find({}).remove();
 
 Category.find({}).remove(function () {
@@ -146,7 +148,7 @@ Item.find({}).remove(function () {
     reviews: [],
     buyCount: 0,
     purchaseHistory: [],
-    categories: [good, bad],
+    categories: [good._id, bad._id],
     stars: 5
   }, {
     title: 'Sour Card',
@@ -156,7 +158,7 @@ Item.find({}).remove(function () {
     reviews: [],
     buyCount: 0,
     purchaseHistory: [],
-    categories: [ugly],
+    categories: [ugly._id],
     stars: 5
   }, {
     title: 'Spicy Card',
@@ -166,7 +168,7 @@ Item.find({}).remove(function () {
     reviews: [],
     buyCount: 0,
     purchaseHistory: [],
-    categories: [good, bad, ugly],
+    categories: [good._id, bad._id, ugly._id],
     stars: 5
   }, {
     title: 'Savory Card',
@@ -176,7 +178,7 @@ Item.find({}).remove(function () {
     reviews: [],
     buyCount: 0,
     purchaseHistory: [],
-    categories: [good],
+    categories: [good._id],
     stars: 5
   }, {
     title: 'Salty Card',
@@ -186,7 +188,7 @@ Item.find({}).remove(function () {
     reviews: [],
     buyCount: 0,
     purchaseHistory: [],
-    categories: [good, bad],
+    categories: [good._id, bad._id],
     stars: 5
   }, {
     title: 'Umami Card',
@@ -196,7 +198,7 @@ Item.find({}).remove(function () {
     reviews: [],
     buyCount: 0,
     purchaseHistory: [],
-    categories: [good, ugly],
+    categories: [good._id, ugly._id],
     stars: 5
   });
 });
@@ -233,6 +235,7 @@ User.find({}).remove(function () {
     email: 'admin@admin.com',
     password: 'admin'
   }, function () {
+
     console.log('finished populating users');
   });
 });

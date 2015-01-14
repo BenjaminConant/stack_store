@@ -29,6 +29,7 @@ var LineItemSchema = new Schema({
 		type: Number,
 		default: 1
 	}
+
 });
 
 module.exports = mongoose.model('LineItem', LineItemSchema);
