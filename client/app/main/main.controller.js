@@ -18,7 +18,7 @@ angular.module('stackStoreApp')
       $scope.orderItems = lineItems;
       $scope.cartTotal = 0;
       lineItems.forEach(function(lineItem) {
-        $scope.cartTotal += lineItem.value;
+        $scope.cartTotal += lineItem.value * lineItem.quantity;
       });
       console.log(lineItems);
     });
@@ -35,6 +35,7 @@ angular.module('stackStoreApp')
     $scope.updateLineItemQuantity = function (lineItem) {
       console.log(lineItem);
       $http.put('/api/lineItems/' + lineItem._id, lineItem);
+      $scope.getLineItems();
     }
 
     $scope.editLineItem = function (lineItem) {
@@ -52,14 +53,6 @@ angular.module('stackStoreApp')
         scope: $scope
       })
     }
-
-    // this.openModal = function(item) {
-    //   $scope.currentItem = item;
-    //   $scope.modal = $modal.open({
-    //     templateUrl:'../../components/modal/itemModal.html',
-    //     scope: $scope
-    //   })
-    // };
 
 
 
