@@ -32,7 +32,7 @@ exports.create = function(req, res) {
     })
     .then(function(customer) {
     return stripe.charges.create({
-      amount: req.body.amount,
+      amount: req.body.amount + "00",
       currency: 'usd',
       customer: customer.id
     });
