@@ -15,8 +15,8 @@
 
 <form class="modal-form">
   <h1 style="text-align:center;">{{currentItem.title}}</h1>
-  <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" src="{{currentItem.image}}">
-  <div class="row">
+  <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{currentItem.image}}">
+  <div class="row" style="margin:0 2rem;">
     <div class="col-xs-12 col-sm-6">
       <label for="receiverName">Recipient Name:</label>
       <input type="text" class="form-control" id="receiverName" ng-model="newItem.receiverName"></input>
@@ -33,15 +33,13 @@
       <label for="receiverEmail">Amount</label>
       <input type="text" class="form-control" id="" ng-model=""></input>
     </div>
+    <div class="col-xs-12">
+      <label for="message">Message:</label>
+      <textarea class="form-control" id="message" ng-model="newItem.message"></textarea>
+    </div>
   </div>
-  <div class="col-xs-12" style="padding:0;">
-    <label for="message">Message:</label>
-    <textarea class="form-control" id="message" ng-model="newItem.message"></textarea>
-  </div>
 
-
-
-  <button type="submit" class="btn btn-primary" style="margin:2rem;float:right;" ng-click="store.addToCart(currentItem, newItem)">Add to Cart</button>
+  <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="store.addToCart(currentItem, newItem)">Add to Cart</button>
 
 <h1>{{newItem}}</h1>
 
