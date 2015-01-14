@@ -3,11 +3,10 @@
 angular.module('stackStoreApp')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
 
-    $http.get("/api/categorys").success(function(err,categories) {
-      if (err) console.log(err);
+    $http.get("/api/categorys").success(function(categories) {
       $scope.categories = categories;
-      console.log(categories);
     })
+
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
@@ -16,7 +15,6 @@ angular.module('stackStoreApp')
     $scope.image = "";
     $scope.description = "";
     $scope.message = "";
-    $scope.categories = [];
 
     $scope.submitItem = function() {
       $http.post('api/items', {

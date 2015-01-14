@@ -36,9 +36,9 @@
 						<textarea ng-model="message" type="text" class="form-control" id="itemMessage" placeholder="Message"></textarea>
 					</div>
 					<div class="form-group col-xs-12">
-						<label for="itemCategories">Categories</label>
-						<div ng-repeat="category in categories">
-							<input type="checkbox"> {{category}}
+						<label for="itemCategories" style="display:block;">Categories</label>
+						<div style="display:inline;margin:1rem;" ng-repeat="category in categories">
+							<input type="checkbox"> {{category.name}}
 						</div>
 					</div>
 				</div>
