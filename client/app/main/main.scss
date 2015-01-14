@@ -304,9 +304,10 @@ body {
 }
 
 #cart-dropdown {
+  position: absolute;
+  right: 50px;
   margin-top: 15px;
   background-color: whitesmoke;
-  height: 100% !important;
   max-height: 50rem;
   width: 300px;
   overflow: scroll;
