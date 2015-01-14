@@ -13,22 +13,35 @@
 
 
 
-<form>
-  <h1>{{currentItem.title}}</h1>
-  <img width="400" src="{{currentItem.image}}">
+<form class="modal-form">
+  <h1 style="text-align:center;">{{currentItem.title}}</h1>
+  <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" src="{{currentItem.image}}">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <label for="receiverName">Recipient Name:</label>
+      <input type="text" class="form-control" id="receiverName" ng-model="newItem.receiverName"></input>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <label for="receiverEmail">Recipient Email:</label>
+      <input type="text" class="form-control" id="receiverEmail" ng-model="newItem.receiverEmail"></input>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <label for="quantity">Quantity:</label>
+      <input type="number" class="form-control" id="quantity" ng-model="newItem.quantity"></input>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <label for="receiverEmail">Amount</label>
+      <input type="text" class="form-control" id="" ng-model=""></input>
+    </div>
+  </div>
+  <div class="col-xs-12" style="padding:0;">
+    <label for="message">Message:</label>
+    <textarea class="form-control" id="message" ng-model="newItem.message"></textarea>
+  </div>
 
-	<label for="receiverName">Recipient Name:</label>
-	<input type="text" class="form-control" id="receiverName" ng-model="newItem.receiverName"></input>
-	<label for="receiverEmail">Recipient Email:</label>
-	<input type="text" class="form-control" id="receiverEmail" ng-model="newItem.receiverEmail"></input>
-	<label for="message">Message:</label>
-	<input type="text" class="form-control" id="message" ng-model="newItem.message"></input>
-	<label for="quantity">Quantity:</label>
-	<input type="number" class="form-control" id="quantity" ng-model="newItem.quantity"></input>
 
 
-
-  <button type="submit" class="btn btn-primary" ng-click="store.addToCart(currentItem, newItem)">Add to Cart</button>
+  <button type="submit" class="btn btn-primary" style="margin:2rem;float:right;" ng-click="store.addToCart(currentItem, newItem)">Add to Cart</button>
 
 <h1>{{newItem}}</h1>
 
