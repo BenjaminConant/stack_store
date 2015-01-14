@@ -17,8 +17,8 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in orderItems">
-            <td><img ng-src="{{item.themeURL}}" alt=""></td>
-            <td>{{item.item[0].title}}</td>
+            <td><img ng-src="{{item.item.image}}" alt=""></td>
+            <td>{{item.item.title}}</td>
             <td>{{item.message}}</td>
             <td>{{item.longMessage}}</td>
             <td>{{item.receiverName}}</td>
