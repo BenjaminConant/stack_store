@@ -6,7 +6,8 @@ angular.module('stackStoreApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angularPayments'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

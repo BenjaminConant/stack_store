@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('MainCtrl', function ($scope, $http, socket, $modal) {
+  .config(function(){
+    //  window.Stripe.setPublishableKey('pk_test_SfHPLGrI9nwZrQOGPcFCWkzN');
+  })
+  .controller('MainCtrl', function ($scope, $http, socket, $modal, $window) {
     $scope.awesomeThings = [];
     $scope.orderItems = [];
     $scope.showCartDropdown = false;
