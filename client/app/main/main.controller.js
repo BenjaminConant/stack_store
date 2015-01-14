@@ -8,6 +8,7 @@ angular.module('stackStoreApp')
     $scope.awesomeThings = [];
     $scope.orderItems = [];
     $scope.showCartDropdown = false;
+    $scope.stripeEmail = "";
     $scope.select
 
     $http.get('/api/things').success(function(awesomeThings, index) {
@@ -57,8 +58,20 @@ angular.module('stackStoreApp')
       })
     }
 
-    $scope.stripeCallback = function (code, result) { if (result.error) { window.alert('it failed! error: ' + result.error.message); } else { window.alert('success! token: ' + result.id); } };
-  
+    $scope.stripeCallback = function (code, result) {
+      if (result.error) {
+        window.alert('it failed! error: ' + result.error.message);
+      } else {
+        window.alert('success! token: ' + result.id);
+        $http.post("/api/stripes", {
+          token: result.id,
+          email: $scope.stripeEmail,
+          amount: $scope.cartTotal
+        });
+      }
+
+    };
+
 
 
 

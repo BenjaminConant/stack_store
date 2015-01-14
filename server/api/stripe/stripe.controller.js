@@ -26,10 +26,13 @@ exports.show = function(req, res) {
 
 // Creates a new stripe in the DB.
 exports.create = function(req, res) {
-  stripe.customers.create({ email: req.body.email })
+  stripe.customers.create({
+    email: req.body.email,
+    card: req.body.token
+    })
     .then(function(customer) {
     return stripe.charges.create({
-      amount: req.body.subtotal,
+      amount: req.body.amount,
       currency: 'usd',
       customer: customer.id
     });
