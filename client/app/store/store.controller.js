@@ -20,14 +20,14 @@ angular.module('stackStoreApp')
 			var user = Auth.getCurrentUser();
 			//create temporary frontend object to send as req.body
 			var tempLineItem = {
-				item: [item._id],
-				sender: [user._id],
+				item: item._id,
+				sender: user._id,
 				receiverName: optionsObj.receiverName,
 				receiverEmail: optionsObj.receiverEmail,
 				message: optionsObj.message,
 				quantity: optionsObj.quantity,
-				value: 20, //replace with actual value later
-				themeURL: item.image
+				value: 20//, //replace with actual value later
+				// themeURL: item.image
 			}
 			// create a line item on the server
 			$http.post('/api/lineItems/', tempLineItem).
