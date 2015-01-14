@@ -37,7 +37,15 @@ var user1 = new User({
   email: 'a@a.com',
   password: 'aaa',
   cart: order._id
+
 });
+
+Order.find({}).remove(function(){
+  order.save(function(err, data){
+
+  });
+});
+
 
 
 var item1 = new Item ({
