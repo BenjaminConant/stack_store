@@ -4,15 +4,31 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var LineItemSchema = new Schema({
-	item: {type: Schema.Types.ObjectId, ref:'Item'},
-	sender: {type: Schema.Types.ObjectId, ref:'User'},
+	item: {
+		type: Schema.Types.ObjectId,
+		ref: 'Item',
+		required: true
+	},
+	sender: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
+		required: true
+	},
 	receiverName: String,
-	receiverEmail: String,
+	receiverEmail: {
+		type: String,
+		required: true
+	},
 	message: String,
 	longMessage: String,
-	value: Number,
-	quantity: Number,
-	themeURL: String
+	value: {
+		type: Number,
+		default: 25
+	},
+	quantity: {
+		type: Number,
+		default: 1
+	}
 });
 
 module.exports = mongoose.model('LineItem', LineItemSchema);

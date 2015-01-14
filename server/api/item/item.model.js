@@ -6,15 +6,35 @@ var mongoose = require('mongoose'),
 var Review = require('../review/review.model');
 
 var ItemSchema = new Schema({
-	title: { type: String, required: true },
-	image: String,
-	defaultMessage: String,
-	description: String,
-	reviews: [{type: Schema.Types.ObjectId, ref:'Review'}],
-	buyCount: Number,
+	title: {
+		type: String,
+		required: true
+	},
+	image: {
+		type: String,
+		default: 'https://placekitten.com/g/200/300'
+	},
+	defaultMessage: {
+		type: String,
+		default: 'Cold-pressed organic blog swag, Brooklyn pour-over jean shorts butcher skateboard fixie American Apparel hashtag PBR&B Schlitz fap. PBR readymade Thundercats cliche.'
+	},
+	description: {
+		type: String,
+		required: true
+	},
+	reviews: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Review'
+	}],
+	buyCount: {
+		type: Number,
+		default: 0
+	},
 	purchaseHistory: [Date],
-	categories: [String],
-	themeURL: String,
+	categories: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Category'
+	}],
 	stars: Number
 });
 
@@ -23,12 +43,12 @@ ItemSchema.virtuals.stars = function() {
 	// return math...
 }
 
-ItemSchema.methods.purchase  = function() {
+ItemSchema.methods.purchase = function() {
 	//make line item
 	//inc buyCount
 };
 
-ItemSchema.methods.review  = function() {
+ItemSchema.methods.review = function() {
 	//update average
 }
 

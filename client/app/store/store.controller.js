@@ -9,36 +9,32 @@ angular.module('stackStoreApp')
       quantity: 1
     };
 
-    this.openModal = function(item) {
-      $scope.currentItem = item;
-      $scope.modal = $modal.open({
-        templateUrl: '../../components/modal/itemModal.html',
-        scope: $scope
-      });
-    };
+
+		this.openModal = function(item) {
+			$scope.currentItem = item;
+			$scope.modal = $modal.open({
+				templateUrl:'../../components/modal/itemModal.html',
+				scope: $scope
+			})
+		};
+
+
 
     this.addToCart = function(item, optionsObj) {
       //find current user
       var user = Auth.getCurrentUser();
       //create temporary frontend object to send as req.body
       var tempLineItem = {
-        item: [item._id],
-        sender: [user._id],
+        item: item._id,
+        sender: user._id,
         receiverName: optionsObj.receiverName,
         receiverEmail: optionsObj.receiverEmail,
         message: optionsObj.message,
         quantity: optionsObj.quantity,
-        value: 20, //replace with actual value later
-        themeURL: item.image
-      };
-      // create a line item on the server
-      $http.post('/api/lineItems/', tempLineItem);
-        // .success(function(data, status) {})
-        // .error(function(data, status) {
-        //   console.log('Error Data = ' + data);
-        //   console.log('Error Status = ' + status);
-        // });
-
+        value: 20//, //replace with actual value later
+        // themeURL: item.image
+      }
+    
 
       //if user has a cart: add to cart ONLY DO THIS IN FIRST STEP
 
@@ -51,6 +47,12 @@ angular.module('stackStoreApp')
       //Push line item to users cart
       //
 
+      $http.post('/api/lineItems/', tempLineItem);
+        // .success(function(data, status) {})
+        // .error(function(data, status) {
+        //   console.log('Error Data = ' + data);
+        //   console.log('Error Status = ' + status);
+        // });
       $scope.modal.close(); //this works
     }
 

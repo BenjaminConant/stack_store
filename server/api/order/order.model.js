@@ -1,11 +1,17 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+	Schema = mongoose.Schema;
 
 var OrderSchema = new Schema({
-  orderItems: [{type: Schema.Types.ObjectId, ref:'LineItem'}],
-  status: String
+	orderItems: [{
+		type: Schema.Types.ObjectId,
+		ref: 'LineItem'
+	}],
+	status: {
+		type: String,
+		default: 'pending'
+	}
 });
 
 module.exports = mongoose.model('Order', OrderSchema);

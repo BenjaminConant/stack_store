@@ -6,14 +6,15 @@ angular.module('stackStoreApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angularPayments'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .otherwise({
         redirectTo: '/'
       });
-
+      window.Stripe.setPublishableKey('pk_test_SfHPLGrI9nwZrQOGPcFCWkzN');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })

@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .config(function(){
+    //  window.Stripe.setPublishableKey('pk_test_SfHPLGrI9nwZrQOGPcFCWkzN');
+  })
+  .controller('MainCtrl', function ($scope, $http, socket, $modal, $window) {
     $scope.awesomeThings = [];
     $scope.orderItems = [];
     $scope.showCartDropdown = false;
+    $scope.stripeEmail = "";
     $scope.select
 
     $http.get('/api/things').success(function(awesomeThings, index) {
@@ -18,7 +22,7 @@ angular.module('stackStoreApp')
       $scope.orderItems = lineItems;
       $scope.cartTotal = 0;
       lineItems.forEach(function(lineItem) {
-        $scope.cartTotal += lineItem.value;
+        $scope.cartTotal += lineItem.value * lineItem.quantity;
       });
       console.log(lineItems);
     });
@@ -35,6 +39,7 @@ angular.module('stackStoreApp')
     $scope.updateLineItemQuantity = function (lineItem) {
       console.log(lineItem);
       $http.put('/api/lineItems/' + lineItem._id, lineItem);
+      $scope.getLineItems();
     }
 
     $scope.editLineItem = function (lineItem) {
@@ -45,6 +50,29 @@ angular.module('stackStoreApp')
     $scope.toggleShowCartDropdown = function () {
       $scope.showCartDropdown = !$scope.showCartDropdown;
     }
+
+    $scope.openCheckout = function () {
+      $scope.modal = $modal.open({
+        templateUrl: "../../components/modal/stripeModal.html",
+        scope: $scope
+      })
+    }
+
+    $scope.stripeCallback = function (code, result) {
+      if (result.error) {
+        window.alert('it failed! error: ' + result.error.message);
+      } else {
+        window.alert('success! token: ' + result.id);
+        $http.post("/api/stripes", {
+          token: result.id,
+          email: $scope.stripeEmail,
+          amount: $scope.cartTotal
+        });
+      }
+
+    };
+
+
 
 
     $scope.addThing = function() {
@@ -64,4 +92,6 @@ angular.module('stackStoreApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
     });
+
+
   });
