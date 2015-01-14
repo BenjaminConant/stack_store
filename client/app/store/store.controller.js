@@ -20,8 +20,8 @@ angular.module('stackStoreApp')
 			var user = Auth.getCurrentUser();
 			//create temporary frontend object to send as req.body
 			var tempLineItem = {
-				item: [item],
-				sender: [user],
+				item: [item._id],
+				sender: [user._id],
 				receiverName: optionsObj.receiverName,
 				receiverEmail: optionsObj.receiverEmail,
 				message: optionsObj.message,

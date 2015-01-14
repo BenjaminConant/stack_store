@@ -3,10 +3,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var LineItem = require('../lineItem/lineItem.model');
-
 var OrderSchema = new Schema({
-  orderItems: [LineItem.schema],
+  orderItems: [{type: Schema.Types.ObjectId, ref:'LineItem'}],
   status: String
 });
 
