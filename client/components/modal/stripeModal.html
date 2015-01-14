@@ -28,47 +28,32 @@
   </div>
 
   <form stripe-form="stripeCallback">
-    <input ng-model="number" placeholder="Card Number" />
-    <input ng-model="expiry" placeholder="Expiration" />
-    <input ng-model="cvc" placeholder="CVC" />
-    <input ng-model="stripeEmail" placeholder="Email">
-    <button type="submit">Submit</button>
+    <div class="form-group">
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="number" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="Card Number" />
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="expiry" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="Expiration" />
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="cvc" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="CVC" />
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="stripeEmail" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="Email">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" style="display:block;margin:auto;margin-top:2rem;width:20rem;" class="btn btn-primary col-sm-12">Submit</button>
+    </div>
   </form>
 
 
-  <!-- <form id="form" action="/charge" method="POST" class="form-horizontal">
-    <div class="form-group">
-      <div class="col-sm-12">
-        <div class="input-group">
-          <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
-          <input id="card-num" class="form-control" type="text" size="16" placeholder="Card number" autofocus="autofocus" />
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-6">
-        <div class="input-group">
-          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-          <input id="card-exp" class="form-control" type="text" size="5" placeholder="MM/YY" />
-        </div>
-      </div>
-
-      <div class="col-sm-6">
-        <div class="input-group">
-          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-          <input id="card-cvc" class="form-control" type="text" size="4" placeholder="CVC" />
-        </div>
-      </div>
-    </div>
-  </form> -->
-</div>
-
-<div class="modal-footer">
-  <button id="submit" type="button" class="btn btn-primary col-sm-12"
-  data-progress-text="<span class='glyphicon glyphicon-refresh fa-spin'></span>"
-  data-success-text="<span class='glyphicon glyphicon-ok'></span>"
-  >
-  Pay
-  </button>
 </div>
