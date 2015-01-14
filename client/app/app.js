@@ -14,7 +14,7 @@ angular.module('stackStoreApp', [
       .otherwise({
         redirectTo: '/'
       });
-
+      window.Stripe.setPublishableKey('pk_test_SfHPLGrI9nwZrQOGPcFCWkzN');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })

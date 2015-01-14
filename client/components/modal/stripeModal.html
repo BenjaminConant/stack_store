@@ -27,7 +27,15 @@
     </table>
   </div>
 
-  <form id="form" action="/charge" method="POST" class="form-horizontal">
+  <form stripe-form="stripeCallback">
+    <input ng-model="number" placeholder="Card Number" /> 
+    <input ng-model="expiry" placeholder="Expiration" />
+    <input ng-model="cvc" placeholder="CVC" />
+    <button type="submit">Submit</button>
+  </form>
+
+
+  <!-- <form id="form" action="/charge" method="POST" class="form-horizontal">
     <div class="form-group">
       <div class="col-sm-12">
         <div class="input-group">
@@ -52,7 +60,7 @@
         </div>
       </div>
     </div>
-  </form>
+  </form> -->
 </div>
 
 <div class="modal-footer">
