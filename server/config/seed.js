@@ -12,23 +12,23 @@ var Category = require('../api/category/category.model');
 var Order = require('../api/order/order.model');
 
 var good = new Category({
-    name: 'Good',
-    popularity: 5
-  });
+  name: 'Good',
+  popularity: 5
+});
 
 var bad = new Category({
-    name: 'Bad',
-    popularity: 1
-  });
+  name: 'Bad',
+  popularity: 1
+});
 
 var ugly = new Category({
-    name: 'Ugly',
-    popularity: -11
-  });
+  name: 'Ugly',
+  popularity: -11
+});
 
 var order = new Order({
-    status:'test',
-    orderItems: []
+  status: 'test',
+  orderItems: []
 });
 
 var user1 = new User({
@@ -40,51 +40,51 @@ var user1 = new User({
 
 });
 
-Order.find({}).remove(function(){
-  order.save(function(err, data){
+Order.find({}).remove(function() {
+  order.save(function(err, data) {
 
   });
 });
 
 
 
-var item1 = new Item ({
-  title : 'Sweet Card',
-  image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
-  defaultMessage : 'Happy Celebratory Day, Nimit!',
-  description : 'This card is for Sweet category of things',
-  reviews : [],
+var item1 = new Item({
+  title: 'Sweet Card',
+  image: 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+  defaultMessage: 'Happy Celebratory Day, Nimit!',
+  description: 'This card is for Sweet category of things',
+  reviews: [],
   buyCount: 0,
-  purchaseHistory : [],
-  categories : [good._id, bad._id],
-  themeURL : 'www.com',
-  stars : 5
+  purchaseHistory: [],
+  categories: [good._id, bad._id],
+  themeURL: 'www.com',
+  stars: 5
 });
 
-var item2 = new Item ({
-  title : 'Sour Card',
-  image : 'http://cdn.charlottesgotalot.com/sites/charlottesgotalot.com/master/files/styles/image_650x345/public/Attractions_Intimidator_970x550.jpg',
-  defaultMessage : 'Happy Celebratory Day, Nimit!',
-  description : 'This card is for Sour category of things',
-  reviews : [],
+var item2 = new Item({
+  title: 'Sour Card',
+  image: 'http://cdn.charlottesgotalot.com/sites/charlottesgotalot.com/master/files/styles/image_650x345/public/Attractions_Intimidator_970x550.jpg',
+  defaultMessage: 'Happy Celebratory Day, Nimit!',
+  description: 'This card is for Sour category of things',
+  reviews: [],
   buyCount: 0,
-  purchaseHistory : [],
-  categories : [ugly._id],
-  themeURL : 'www.com',
-  stars : 5
+  purchaseHistory: [],
+  categories: [ugly._id],
+  themeURL: 'www.com',
+  stars: 5
 });
 
-var item3 = new Item ({
-  title : 'Spicy Card',
-  image : 'http://cdn-media-2.lifehack.org/wp-content/files/2013/12/30-Fun-Things-to-Do-at-Home.jpg',
-  defaultMessage : 'Happy Celebratory Day, Nimit!',
-  description : 'This card is for Spicy category of things',
-  reviews : [],
+var item3 = new Item({
+  title: 'Spicy Card',
+  image: 'http://cdn-media-2.lifehack.org/wp-content/files/2013/12/30-Fun-Things-to-Do-at-Home.jpg',
+  defaultMessage: 'Happy Celebratory Day, Nimit!',
+  description: 'This card is for Spicy category of things',
+  reviews: [],
   buyCount: 0,
-  purchaseHistory : [],
-  categories : [good._id, bad._id, ugly._id],
-  themeURL : 'www.com',
-  stars : 5
+  purchaseHistory: [],
+  categories: [good._id, bad._id, ugly._id],
+  themeURL: 'www.com',
+  stars: 5
 });
 
 var lineItem1 = new LineItem({
@@ -123,95 +123,97 @@ var lineItem3 = new LineItem({
   quantity: 1
 });
 
-Item.find({}).remove();
-item1.save();
-item2.save();
-item3.save();
+Item.find({}).remove(function() {
+  item1.save();
+  item2.save();
+  item3.save();
+});
 
 
-LineItem.find({}).remove();
-lineItem1.save();
-lineItem2.save();
-lineItem3.save();
+LineItem.find({}).remove(function() {
+  lineItem1.save();
+  lineItem2.save();
+  lineItem3.save();
+});
 
 // Order.find({}).remove();
 
-Category.find({}).remove();
-good.save();
-bad.save();
-ugly.save();
+Category.find({}).remove(function() {
+  good.save();
+  bad.save();
+  ugly.save();
+});
 
 
 Item.find({}).remove(function() {
   Item.create({
-    title : 'Sweet Card',
-    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
-    defaultMessage : 'Happy Celebratory Day, Nimit!',
-    description : 'This card is for Sweet category of things',
-    reviews : [],
+    title: 'Sweet Card',
+    image: 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+    defaultMessage: 'Happy Celebratory Day, Nimit!',
+    description: 'This card is for Sweet category of things',
+    reviews: [],
     buyCount: 0,
-    purchaseHistory : [],
-    categories : [good, bad],
-    themeURL : 'www.com',
-    stars : 5
-      }, {
-    title : 'Sour Card',
-    image : 'http://alphamom.com/wp-content/uploads/2011/04/fun_things_april-e1302009947363.jpg',
-    defaultMessage : 'Happy Celebratory Day, Nimit!',
-    description : 'This card is for Sour category of things',
-    reviews : [],
-    buyCount: 0,
-    purchaseHistory : [],
-    categories : [ugly],
-    themeURL : 'www.com',
-    stars : 5
+    purchaseHistory: [],
+    categories: [good, bad],
+    themeURL: 'www.com',
+    stars: 5
   }, {
-    title : 'Spicy Card',
-    image : 'http://www.romanceways.com/files/2012/06/Fun-Things-To-Do-As-A-Couple.jpg',
-    defaultMessage : 'Happy Celebratory Day, Nimit!',
-    description : 'This card is for Spicy category of things',
-    reviews : [],
+    title: 'Sour Card',
+    image: 'http://alphamom.com/wp-content/uploads/2011/04/fun_things_april-e1302009947363.jpg',
+    defaultMessage: 'Happy Celebratory Day, Nimit!',
+    description: 'This card is for Sour category of things',
+    reviews: [],
     buyCount: 0,
-    purchaseHistory : [],
-    categories : [good, bad, ugly],
-    themeURL : 'www.com',
-    stars : 5
-  },  {
-    title : 'Savory Card',
-    image : 'http://www.breakmyface.com/images/funthings.jpg',
-    defaultMessage : 'Happy Celebratory Day, Nimit!',
-    description : 'This card is for Savory category of things',
-    reviews : [],
+    purchaseHistory: [],
+    categories: [ugly],
+    themeURL: 'www.com',
+    stars: 5
+  }, {
+    title: 'Spicy Card',
+    image: 'http://www.romanceways.com/files/2012/06/Fun-Things-To-Do-As-A-Couple.jpg',
+    defaultMessage: 'Happy Celebratory Day, Nimit!',
+    description: 'This card is for Spicy category of things',
+    reviews: [],
     buyCount: 0,
-    purchaseHistory : [],
-    categories : [good],
-    themeURL : 'www.com',
-    stars : 5
-  },  {
-    title : 'Salty Card',
-    image : 'http://www.bopandtigerbeat.com/wp-content/uploads/2013/08/00summertreatpoll.jpg',
-    defaultMessage : 'Happy Celebratory Day, Nimit!',
-    description : 'This card is for Salty category of things',
-    reviews : [],
+    purchaseHistory: [],
+    categories: [good, bad, ugly],
+    themeURL: 'www.com',
+    stars: 5
+  }, {
+    title: 'Savory Card',
+    image: 'http://www.breakmyface.com/images/funthings.jpg',
+    defaultMessage: 'Happy Celebratory Day, Nimit!',
+    description: 'This card is for Savory category of things',
+    reviews: [],
     buyCount: 0,
-    purchaseHistory : [],
-    categories : [good, bad],
-    themeURL : 'www.com',
-    stars : 5
-  },{
-    title : 'Umami Card',
-    image : 'http://img.allw.mn/content/www/2010/02/10-fun-things-to-do-with-kids-in-winter/Make-hot-chocolate_fun-things-do-kids-winter.jpg',
-    defaultMessage : 'Happy Celebratory Day, Nimit!',
-    description : 'This card is for Umami category of things',
-    reviews : [],
+    purchaseHistory: [],
+    categories: [good],
+    themeURL: 'www.com',
+    stars: 5
+  }, {
+    title: 'Salty Card',
+    image: 'http://www.bopandtigerbeat.com/wp-content/uploads/2013/08/00summertreatpoll.jpg',
+    defaultMessage: 'Happy Celebratory Day, Nimit!',
+    description: 'This card is for Salty category of things',
+    reviews: [],
     buyCount: 0,
-    purchaseHistory : [],
-    categories : [good, ugly],
-    themeURL : 'www.com',
-    stars : 5
+    purchaseHistory: [],
+    categories: [good, bad],
+    themeURL: 'www.com',
+    stars: 5
+  }, {
+    title: 'Umami Card',
+    image: 'http://img.allw.mn/content/www/2010/02/10-fun-things-to-do-with-kids-in-winter/Make-hot-chocolate_fun-things-do-kids-winter.jpg',
+    defaultMessage: 'Happy Celebratory Day, Nimit!',
+    description: 'This card is for Umami category of things',
+    reviews: [],
+    buyCount: 0,
+    purchaseHistory: [],
+    categories: [good, ugly],
+    themeURL: 'www.com',
+    stars: 5
   });
 });
-
 
 
 
@@ -245,7 +247,6 @@ User.find({}).remove(function() {
     email: 'admin@admin.com',
     password: 'admin'
   }, function() {
-      console.log('finished populating users');
-    }
-  );
+    console.log('finished populating users');
+  });
 });
