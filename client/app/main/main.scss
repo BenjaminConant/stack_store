@@ -299,3 +299,26 @@ body {
   height: 70px;
 }
 
+.checkout-button {
+  background-color: $blue;
+  color: white;
+  margin: 0 10rem 3rem 0;
+}
+
+#cart-dropdown {
+  margin-top: 15px;
+  background-color: whitesmoke;
+  height: 100% !important;
+  max-height: 50rem;
+  width: 300px;
+  overflow: scroll;
+  border: 1px solid black;
+  color: $text-color;
+  border-radius: 5px;
+}
+
+#cart-dropdown-item {
+  height: 70px;
+  padding: 10px;
+  background-color: white;
+}

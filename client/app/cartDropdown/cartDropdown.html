@@ -3,16 +3,22 @@
     <thead>
       <tr>
         <th>Title</th>
-        <th>Price</th>
         <th>Qty.</th>
+        <th>Price</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="lineItem in orderItems">
         <td>{{lineItem.item[0].title}}</td>
-        <td>{{lineItem.value}}</td>
         <td>{{lineItem.quantity}}</td>
+        <td>{{lineItem.value | currency : $ : 2}}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="font-weight:bold;">Subtotal</td>
+        <td style="font-weight:bold;">{{cartTotal | currency : $ : 2}}</td>
       </tr>
     </tbody>
   </table>
-</div> 
+  <button class="btn checkout-button" style="display:block;margin:auto;margin-bottom:2rem;">Checkout!</button>
+</div>
