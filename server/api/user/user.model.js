@@ -12,7 +12,7 @@ var Item = require('../item/item.model');
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
-  cart: [Order.schema],
+  cart: { type: Schema.Types.ObjectId, ref: 'Order' },
   pastOrders: [Order.schema],
   purchasedItems: [Item.schema],
   contacts: [String],

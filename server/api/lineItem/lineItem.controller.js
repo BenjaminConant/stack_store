@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var LineItem = require('./lineItem.model');
+var Order = require('../order/order.model');
 
 // Get list of lineItems
 exports.index = function(req, res) {
@@ -23,8 +24,14 @@ exports.show = function(req, res) {
 // Creates a new lineItem in the DB.
 exports.create = function(req, res) {
   LineItem.create(req.body, function(err, lineItem) {
+
+
     if(err) { return handleError(res, err); }
-    return res.json(201, lineItem);
+    Order.findByIdAndUpdate(lineItem.sender[0].cart, {$push:{orderItems: lineItem}}, function(err, data){
+      console.log('Find by ID data: ', data);
+      if(err){console.log(err);}
+      return res.json(201, lineItem);
+    })
   });
 };
 
