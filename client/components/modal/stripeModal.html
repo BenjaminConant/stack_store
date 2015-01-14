@@ -1,0 +1,59 @@
+ <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<div class="modal-body">
+  <div class="stripe-cart-view">
+    <table ng-controller="MainCtrl" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Qty.</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="lineItem in orderItems">
+          <td>{{lineItem.item[0].title}}</td>
+          <td style="text-align:center;">{{lineItem.quantity}}</td>
+          <td>{{lineItem.value | currency : $ : 2}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="font-weight:bold;">Subtotal</td>
+          <td style="font-weight:bold;">{{cartTotal | currency : $ : 2}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <form stripe-form="stripeCallback">
+    <div class="form-group">
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="number" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="Card Number" />
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="expiry" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="Expiration" />
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="cvc" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="CVC" />
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <div class="input-group">
+          <input ng-model="stripeEmail" class="form-control" style="border-radius:5px;margin:1rem;" placeholder="Email">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" style="display:block;margin:auto;margin-top:2rem;width:20rem;" class="btn btn-primary col-sm-12">Submit</button>
+    </div>
+  </form>
+
+
+</div>
