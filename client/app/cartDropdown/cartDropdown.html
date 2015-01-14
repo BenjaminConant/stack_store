@@ -10,7 +10,7 @@
     <tbody>
       <tr ng-repeat="lineItem in orderItems">
         <td>{{lineItem.item[0].title}}</td>
-        <td>{{lineItem.quantity}}</td>
+        <td style="text-align:center;">{{lineItem.quantity}}</td>
         <td>{{lineItem.value | currency : $ : 2}}</td>
       </tr>
       <tr>
@@ -20,5 +20,12 @@
       </tr>
     </tbody>
   </table>
-  <button class="btn checkout-button" style="display:block;margin:auto;margin-bottom:2rem;">Checkout!</button>
+  <div class="row">
+    <div class="col-xs-6">
+      <button class="btn checkout-button" style="display:block;margin:auto;margin-bottom:2rem;">Checkout!</button>
+    </div>
+    <div class="col-xs-6">
+      <a href="/cart" style="text-decoration:none;"><button class="btn checkout-button" style="display:block;margin:auto;margin-bottom:2rem;">View Cart</button></a>
+    </div>
+  </div>
 </div>
