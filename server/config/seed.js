@@ -55,7 +55,7 @@ var item1 = new Item ({
 
 var item2 = new Item ({
   title : 'Sour Card',
-  image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+  image : 'http://cdn.charlottesgotalot.com/sites/charlottesgotalot.com/master/files/styles/image_650x345/public/Attractions_Intimidator_970x550.jpg',
   defaultMessage : 'Happy Celebratory Day, Nimit!',
   description : 'This card is for Sour category of things',
   reviews : [],
@@ -68,7 +68,7 @@ var item2 = new Item ({
 
 var item3 = new Item ({
   title : 'Spicy Card',
-  image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+  image : 'http://cdn-media-2.lifehack.org/wp-content/files/2013/12/30-Fun-Things-to-Do-at-Home.jpg',
   defaultMessage : 'Happy Celebratory Day, Nimit!',
   description : 'This card is for Spicy category of things',
   reviews : [],
@@ -148,7 +148,7 @@ Item.find({}).remove(function() {
     stars : 5
       }, {
     title : 'Sour Card',
-    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+    image : 'http://alphamom.com/wp-content/uploads/2011/04/fun_things_april-e1302009947363.jpg',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Sour category of things',
     reviews : [],
@@ -159,7 +159,7 @@ Item.find({}).remove(function() {
     stars : 5
   }, {
     title : 'Spicy Card',
-    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+    image : 'http://www.romanceways.com/files/2012/06/Fun-Things-To-Do-As-A-Couple.jpg',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Spicy category of things',
     reviews : [],
@@ -170,7 +170,7 @@ Item.find({}).remove(function() {
     stars : 5
   },  {
     title : 'Savory Card',
-    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+    image : 'http://www.breakmyface.com/images/funthings.jpg',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Savory category of things',
     reviews : [],
@@ -181,7 +181,7 @@ Item.find({}).remove(function() {
     stars : 5
   },  {
     title : 'Salty Card',
-    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+    image : 'http://www.bopandtigerbeat.com/wp-content/uploads/2013/08/00summertreatpoll.jpg',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Salty category of things',
     reviews : [],
@@ -192,7 +192,7 @@ Item.find({}).remove(function() {
     stars : 5
   },{
     title : 'Umami Card',
-    image : 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
+    image : 'http://img.allw.mn/content/www/2010/02/10-fun-things-to-do-with-kids-in-winter/Make-hot-chocolate_fun-things-do-kids-winter.jpg',
     defaultMessage : 'Happy Celebratory Day, Nimit!',
     description : 'This card is for Umami category of things',
     reviews : [],
