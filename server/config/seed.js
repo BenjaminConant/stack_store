@@ -57,7 +57,6 @@ var item1 = new Item({
   buyCount: 0,
   purchaseHistory: [],
   categories: [good._id, bad._id],
-  themeURL: 'www.com',
   stars: 5
 });
 
@@ -70,7 +69,6 @@ var item2 = new Item({
   buyCount: 0,
   purchaseHistory: [],
   categories: [ugly._id],
-  themeURL: 'www.com',
   stars: 5
 });
 
@@ -83,43 +81,39 @@ var item3 = new Item({
   buyCount: 0,
   purchaseHistory: [],
   categories: [good._id, bad._id, ugly._id],
-  themeURL: 'www.com',
   stars: 5
 });
 
 var lineItem1 = new LineItem({
-  item: [item1],
-  sender: [user1],
+  item: item1._id,
+  sender: user1._id,
   receiverName: "Ben",
   receiverEmail: "conantbenjamin@gmail.com",
   message: "happy day",
   longMessage: "you are soooooo coool",
   value: 125,
-  themeURL: "http://jasontheodor.com/wp-content/uploads//2012/02/things.jpg",
   quantity: 1
 });
 
 var lineItem2 = new LineItem({
-  item: [item2],
-  sender: [user1],
+  item: item2._id,
+  sender: user1._id,
   receiverName: "Tom",
   receiverEmail: "tom@tom.com",
   message: "happy day",
   longMessage: "you are soooooo coool",
   value: 125,
-  themeURL: "http://www.kumah.org/uploaded_images/193_9331-730753.JPG",
   quantity: 1
 });
 
 var lineItem3 = new LineItem({
-  item: [item3],
-  sender: [user1],
+  item: item3._id,
+  sender: user1._id,
   receiverName: "whaaaaaa",
   receiverEmail: "whaaa@com",
   message: "happy day",
   longMessage: "you are soooooo coool",
   value: 125,
-  themeURL: "http://www.stuff4multiples.com/assets/images/Thing_3_birthday.jpg",
   quantity: 1
 });
 
@@ -155,7 +149,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, bad],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Sour Card',
@@ -166,7 +159,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [ugly],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Spicy Card',
@@ -177,7 +169,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, bad, ugly],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Savory Card',
@@ -188,7 +179,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Salty Card',
@@ -199,7 +189,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, bad],
-    themeURL: 'www.com',
     stars: 5
   }, {
     title: 'Umami Card',
@@ -210,7 +199,6 @@ Item.find({}).remove(function() {
     buyCount: 0,
     purchaseHistory: [],
     categories: [good, ugly],
-    themeURL: 'www.com',
     stars: 5
   });
 });

@@ -11,7 +11,9 @@ exports.index = function(req, res) {
     if (err) {
       return handleError(res, err);
     }
-    return res.json(200, lineItems);
+    LineItem.populate(lineItems, 'item', function() {
+      return res.json(200, lineItems);
+    })
   });
 };
 
@@ -24,7 +26,9 @@ exports.show = function(req, res) {
     if (!lineItem) {
       return res.send(404);
     }
-    return res.json(lineItem);
+    LineItem.populate(lineItem, 'item', function() {
+      return res.json(lineItem);
+    });
   });
 };
 
