@@ -26,13 +26,29 @@ exports.show = function(req, res) {
 
 // Creates a new stripe in the DB.
 exports.create = function(req, res) {
-  stripe.customers.create(
-    { email: req.body.email },
-    function(err, customer) {
-      if (err) console.log(err);
-      res.json(200, customer);
-    }
-  );
+  stripe.customers.create({ email: req.body.email })
+    .then(function(customer) {
+    return stripe.charges.create({
+      amount: req.body.subtotal,
+      currency: 'usd',
+      customer: customer.id
+    });
+  })
+  .then(function(charge) {
+    console.log(charge);
+  }, function(err) {
+    console.log(err);
+  });
+
+
+
+  // stripe.customers.create(
+  //   { email: req.body.email },
+  //   function(err, customer) {
+  //     if (err) console.log(err);
+  //     res.json(200, customer);
+  //   }
+  // );
 
   // Stripe.create(req.body, function(err, stripe) {
   //   if(err) { return handleError(res, err); }

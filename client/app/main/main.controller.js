@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, $modal) {
     $scope.awesomeThings = [];
     $scope.orderItems = [];
     $scope.showCartDropdown = false;
@@ -47,9 +47,20 @@ angular.module('stackStoreApp')
     }
 
     $scope.openCheckout = function () {
-      console.log("working");
-      $http.post("/api/stripes", { email: "benconant@gmail.com"})
+      $scope.modal = $modal.open({
+        templateUrl: "../../components/modal/stripeModal.html",
+        scope: $scope
+      })
     }
+
+    // this.openModal = function(item) {
+    //   $scope.currentItem = item;
+    //   $scope.modal = $modal.open({
+    //     templateUrl:'../../components/modal/itemModal.html',
+    //     scope: $scope
+    //   })
+    // };
+
 
 
 

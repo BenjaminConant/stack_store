@@ -49,12 +49,59 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn checkout-button pull-right" ng-click="openCheckout()">Checkout!</button>
+      <button class="btn checkout-button pull-right" ng-click="openCheckout()">Checkout!</button> <!-- ng-click="openCheckout()" -->
     </div>
 
 
 
 
 
-  </div>
+
+  <!-- <script src="https://js.stripe.com/v2/"></script>
+
+  <script type="text/javascript">
+    Stripe.setPublishableKey('pk_MY_PUBLISHABLE_KEY');
+
+    var \$btn = \$('#submit');
+    \$btn.on('click', function() {
+      \$btn.prop('disabled', true);
+      \$btn.button('progress');
+
+      var cardNum = \$('#card-num').val();
+      var cardExp = \$('#card-exp').val().split('/');
+      var cardCVC = \$('#card-cvc').val();
+
+      // First submit the card information to Stripe to get back a token
+      Stripe.card.createToken({
+        number: cardNum,
+        exp_month: cardExp[0],
+        exp_year: cardExp[1],
+        cvc: cardCVC
+      }, function(status, response) {
+        var \$form = \$('#form');
+        var token = response.id;
+
+        // Save the token into a hidden input field
+        \$form.append(\$('<input type="hidden" name="stripeToken" />').val(token));
+
+        // Now submit the form to our server so it can make the charge against the token
+        \$form.get(0).submit();
+
+        // All done!
+        \$btn.addClass('btn-success').removeClass('btn-primary');
+        \$btn.button('success');
+        setTimeout(function() {
+          \$('#checkout').modal('hide');
+        }, 250);
+      });
+
+      return false;
+    });
+  </script> -->
+
+
+
+
+
+      </div>
 </div>
