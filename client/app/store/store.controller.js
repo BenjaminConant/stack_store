@@ -2,7 +2,7 @@
 
 angular.module('stackStoreApp')
 
-	.controller('StoreCtrl', function($scope, item, $http, $modal, Auth, cart) {
+	.controller('StoreCtrl', function($scope, item, $http, $modal, Auth) {
 		var self = this;
 		self.allItems = item.query();
 
