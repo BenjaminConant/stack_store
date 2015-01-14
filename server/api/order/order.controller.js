@@ -19,6 +19,8 @@ exports.show = function(req, res) {
 
     if(err) { return handleError(res, err); }
     if(!order) { return res.send(404); }
+
+    
     return res.json(order);
   })
   // .populate('orderItems')

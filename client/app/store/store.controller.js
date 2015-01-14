@@ -13,14 +13,14 @@ angular.module('stackStoreApp')
 
 					$http.get('/api/orders/' + currentUser.cart)
 					.success(function(data){
-						self.cart=data.orderItems;
+						self.cart = data.orderItems;
 					});
 			});
 		} else {
 			console.log("User doesn't have a promise")
 			$http.get('/api/orders/' + user.cart)
 			.success(function(data){
-				self.cart=data.orderItems;
+				self.cart = data.orderItems;
 			});
 		}
 
@@ -43,8 +43,8 @@ angular.module('stackStoreApp')
 			var user = Auth.getCurrentUser();
 			//create temporary frontend object to send as req.body
 			var tempLineItem = {
-				item: [item._id],
-				sender: [user._id],
+				item: item._id,
+				sender: user._id,
 				receiverName: optionsObj.receiverName,
 				receiverEmail: optionsObj.receiverEmail,
 				message: optionsObj.message,
