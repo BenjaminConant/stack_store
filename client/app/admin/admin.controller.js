@@ -35,6 +35,7 @@ angular.module('stackStoreApp')
     $scope.categories = [];
 
     $scope.toggleCat = function(cat) {
+      console.log("this cat", cat);
       if ($scope.categories.indexOf(cat._id) === -1) {
         $scope.categories.push(cat._id)
       } else {
@@ -47,7 +48,6 @@ angular.module('stackStoreApp')
       filepicker.pick(
         function(Blob){
           $scope.image = Blob.url;
-          console.log($scope.image);
           $scope.$apply();
         }
       );
@@ -70,8 +70,28 @@ angular.module('stackStoreApp')
       })
     }
 
-    $scope.updateItemDetail = function(item) {
-      $http.put("/api/items/" + item._id, item);
+    $scope.updateItemDetail = function(item, category) {
+      if (category) {
+        category = JSON.parse(category.category)._id;
+        var newArray = [];
+        item.categories.forEach(function(catObj) {
+            newArray.push(catObj._id);
+         });
+         item.categories = newArray
+         if (item.categories.indexOf(category === -1)) {
+           item.categories.push(category);
+          }
+        }
+      console.log("this is the imte we send", item);
+      $http.put("/api/items/" + item._id, item).success(function(item){
+        console.log(item);
+        $scope.getItems();
+      });
+    }
+
+    $scope.deleteCat = function(item, catId) {
+      console.log(item, catId);
+      $http.delete("/api/items/" + item._id)
       $scope.getItems();
     }
 

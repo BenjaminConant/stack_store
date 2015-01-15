@@ -10,7 +10,7 @@ exports.index = function(req, res) {
       return handleError(res, err);
     }
     Item.populate(items, 'categories', function() {
-      return res.json(200, items);      
+      return res.json(200, items);
     })
   });
 };
@@ -52,11 +52,19 @@ exports.update = function(req, res) {
       return res.send(404);
     }
     var updated = _.merge(item, req.body);
-    updated.save(function(err) {
+    updated.categories = req.body.categories;
+    console.log(updated);
+    updated.markModified('categories');
+    updated.save(function(err, updatedItem, numModified) {
+      console.log("err", err);
+      console.log("updatedItem", updatedItem);
+      console.log("numModified", numModified);
+
       if (err) {
+        console.log(err);
         return handleError(res, err);
       }
-      return res.json(200, item);
+      return res.json(200, updatedItem);
     });
   });
 };
