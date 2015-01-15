@@ -15,7 +15,7 @@ angular.module('stackStoreApp')
     $scope.users = User.query();
 
     $scope.title = "";
-    $scope.image = "";
+    $scope.image = false;
     $scope.description = "";
     $scope.message = "";
     $scope.categories = [];
@@ -28,11 +28,13 @@ angular.module('stackStoreApp')
         $scope.categories.splice(index, 1)
       }
     }
-    
+
     $scope.pickFile = function () {
       filepicker.pick(
         function(Blob){
           $scope.image = Blob.url;
+          console.log($scope.image);
+          $scope.$apply();
         }
       );
     }
