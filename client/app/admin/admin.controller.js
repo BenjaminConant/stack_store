@@ -12,7 +12,6 @@ angular.module('stackStoreApp')
     $scope.getItems = function() {
       $http.get("/api/items").success(function(items) {
         $scope.items = items;
-        console.log($scope.items);
       })
     }
     $scope.getItems()
@@ -44,13 +43,23 @@ angular.module('stackStoreApp')
       }
     }
 
-    $scope.pickFile = function () {
-      filepicker.pick(
-        function(Blob){
-          $scope.image = Blob.url;
-          $scope.$apply();
-        }
-      );
+    $scope.pickFile = function (item) {
+      if (item) {
+        filepicker.pick(
+          function(Blob){
+            item.image = Blob.url;
+            $scope.updateItemDetail(item);
+
+          }
+        );
+      } else {
+        filepicker.pick(
+          function(Blob){
+            $scope.image = Blob.url;
+            $scope.$apply();
+          }
+        );
+      }
     }
 
     $scope.deleteItem = function(item) {
@@ -71,22 +80,24 @@ angular.module('stackStoreApp')
     }
 
     $scope.updateItemDetail = function(item, category) {
+      var itemCatArray = []; // This has all the IDs of the categories in the item
+      item.categories.forEach(function(catObj) {
+        itemCatArray.push(catObj._id);
+      });
+      item.categories = itemCatArray
+
       if (category) {
         category = JSON.parse(category.category)._id;
-
-        var newArray = [];
-        item.categories.forEach(function(catObj) {
-            newArray.push(catObj._id);
-        });
-        item.categories = newArray
         if (item.categories.indexOf(category) === -1) {
           item.categories.push(category);
         }
       }
       console.log("this is the imte we send", item);
       $http.put("/api/items/" + item._id, item).success(function(item){
-        console.log(item);
+
+        console.log("this is item being sent",item);
         $scope.getItems();
+
       });
     }
 

@@ -41,6 +41,7 @@ exports.create = function(req, res) {
 
 // Updates an existing item in the DB.
 exports.update = function(req, res) {
+  console.log(req.body);
   if (req.body._id) {
     delete req.body._id;
   }
@@ -53,13 +54,8 @@ exports.update = function(req, res) {
     }
     var updated = _.merge(item, req.body);
     updated.categories = req.body.categories;
-    console.log(updated);
     updated.markModified('categories');
     updated.save(function(err, updatedItem, numModified) {
-      console.log("err", err);
-      console.log("updatedItem", updatedItem);
-      console.log("numModified", numModified);
-
       if (err) {
         console.log(err);
         return handleError(res, err);

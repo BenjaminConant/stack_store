@@ -53,9 +53,9 @@
 			<ul class="list-group" style="margin:5% 0;">
 				<li class="list-group-item" ng-repeat="item in items">
 					<div class="row">
-						<div class="col-xs-2 img-list">
-							<img ng-src="{{item.image}}" alt="" style="height:100px;width:150px;">
-							<span class="text-content"><span>Edit</span></span>
+						<div class="col-xs-2">
+							<a href="#" ng-click="pickFile(item)"><img ng-src="{{item.image}}" alt="" style="height:100px;width:150px;"></a>
+							<!-- <span class="text-content"><span>Edit</span></span> -->
 						</div>
 						<div class="col-xs-2">
 							<p editable-text="item.title" onbeforesave="updateItemDetail(item)">{{item.title}}</p>
