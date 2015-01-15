@@ -12,6 +12,7 @@ angular.module('stackStoreApp')
     $scope.getItems = function() {
       $http.get("/api/items").success(function(items) {
         $scope.items = items;
+        console.log($scope.items);
       })
     }
     $scope.getItems()

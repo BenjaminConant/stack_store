@@ -9,7 +9,9 @@ exports.index = function(req, res) {
     if (err) {
       return handleError(res, err);
     }
-    return res.json(200, items);
+    Item.populate(items, 'categories', function() {
+      return res.json(200, items);      
+    })
   });
 };
 

@@ -67,7 +67,15 @@
 							<p editable-text="item.defaultMessage" onbeforesave="updateItemDetail(item)">{{item.defaultMessage}}</p>
 						</div>
 						<div class="col-xs-2">
-							fds
+							<span class="admin-category" ng-repeat="cat in item.categories">
+								<span>{{cat.name}} <a class="remove-category" href="#">&times;</a></span>
+							</span>
+							<div>
+								<select name="" id="">
+									<option value="">Add new category</option>
+									<option value="{{category._id}}" ng-repeat="category in cat">{{category.name}}</option>
+								</select>
+							</div>
 						</div>
 						<div class="col-xs-1">
 							<a ng-click="deleteItem(item)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>

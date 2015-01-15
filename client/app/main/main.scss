@@ -422,3 +422,24 @@ span.text-content {
   -o-transition: opacity 500ms;
   transition: opacity 500ms;
 }
+
+.admin-category {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  &:hover {
+    background-color: rgba(200,200,200,0.2)
+  }
+  a {
+    color: $text-color !important;
+    text-decoration: none !important;
+  }
+}
+
+.remove-category {
+  font-size: 1.5em;
+  &:hover {
+    color: red !important;
+  }
+}
