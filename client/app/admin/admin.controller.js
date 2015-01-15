@@ -90,8 +90,14 @@ angular.module('stackStoreApp')
     }
 
     $scope.deleteCat = function(item, catId) {
-      console.log(item, catId);
-      $http.delete("/api/items/" + item._id)
+      var itemCatArray = []; // This has all the IDs of the categories in the item
+      item.categories.forEach(function(category) {
+        itemCatArray.push(category._id);
+      })
+      var index = itemCatArray.indexOf(catId); //this is the index of what we want to remove
+      itemCatArray.splice(index, 1);
+      item.categories = itemCatArray;
+      $scope.updateItemDetail(item);
       $scope.getItems();
     }
 
