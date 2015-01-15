@@ -27,7 +27,7 @@ var ItemSchema = new Schema({
 		default: 0
 	},
 	available: {
-		type: boolean,
+		type: Boolean,
 		default: true
 	},
 	purchaseHistory: [Date],
