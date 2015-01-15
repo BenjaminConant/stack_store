@@ -49,6 +49,15 @@
 			</form>
 		</div>
 		<hr>
+		<div class="add-category-group">
+			<form action="">
+				<label for="">Add New Category</label><br>
+				<input class="form-control" type="text" ng-model="newCatName" placeholder="New Category Name">
+				<input class="form-control" type="text" ng-model="newCatPop" placeholder="New Category Popularity">
+				<button type="button" class="btn btn-primary" ng-click="addCategory()">Add Category</button>
+			</form>
+		</div>
+		<hr>
 		<div class="container" ng-controller="AdminCtrl">
 			<ul class="list-group" style="margin:5% 0;">
 				<li class="list-group-item" ng-repeat="item in items">

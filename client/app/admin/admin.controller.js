@@ -3,11 +3,17 @@
 angular.module('stackStoreApp')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
 
-    $http.get("/api/categorys").success(function(cat) {
-      $scope.cat = cat;
-    })
+    $scope.getCategories = function() {
+      $http.get("/api/categorys").success(function(cat) {
+        $scope.cat = cat;
+      })
+    }
+    $scope.getCategories();
 
     $scope.itemCat = [];
+
+    $scope.newCatName = "";
+    $scope.newCatPop;
 
     $scope.getItems = function() {
       $http.get("/api/items").success(function(items) {
@@ -42,6 +48,29 @@ angular.module('stackStoreApp')
         $scope.categories.splice(index, 1)
       }
     }
+
+    $scope.addCategory = function() {
+      var newCat = {
+        name: $scope.newCatName,
+        popularity: $scope.newCatPop
+      }
+      $scope.cat.push(newCat);
+
+      $http.post('/api/categorys/', {
+        name: $scope.newCatName,
+        popularity: $scope.newCatPop
+      })
+
+    };
+
+    // var CategorySchema = new Schema({
+    //   name: {
+    //     type: String,
+    //     required: true
+    //   },
+    //   popularity: Number
+    // });
+
 
     $scope.pickFile = function (item) {
       if (item) {
