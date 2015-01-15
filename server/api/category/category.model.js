@@ -8,7 +8,10 @@ var CategorySchema = new Schema({
 		type: String,
 		required: true
 	},
-	popularity: Number
+	popularity: {
+		type: Number,
+		default: 1
+	}
 });
 
 module.exports = mongoose.model('Category', CategorySchema);
