@@ -303,14 +303,22 @@ body {
   margin: 0 10rem 3rem 0;
 }
 
+.empty-cart {
+  text-align: center;
+  padding-bottom: 60px;
+  padding-top: 60px;
+}
+
 #cart-dropdown {
   position: absolute;
   right: 50px;
+  height: 250px;
   margin-top: 15px;
   background-color: whitesmoke;
   max-height: 50rem;
   width: 300px;
   overflow: scroll;
+    overflow-x: hidden;
   border: 1px solid black;
   color: $text-color;
   border-radius: 5px;
