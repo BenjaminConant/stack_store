@@ -9,7 +9,9 @@ exports.index = function(req, res) {
     if (err) {
       return handleError(res, err);
     }
-    return res.json(200, items);
+    Item.populate(items, 'categories', function() {
+      return res.json(200, items);
+    })
   });
 };
 
@@ -40,6 +42,7 @@ exports.create = function(req, res) {
 
 // Updates an existing item in the DB.
 exports.update = function(req, res) {
+  console.log(req.body);
   if (req.body._id) {
     delete req.body._id;
   }
@@ -51,12 +54,14 @@ exports.update = function(req, res) {
       return res.send(404);
     }
     var updated = _.merge(item, req.body);
-    updated.save(function(err) {
+    updated.categories = req.body.categories;
+    updated.markModified('categories');
+    updated.save(function(err, updatedItem, numModified) {
       if (err) {
         return res.json(422, err);
         //return handleError(res, err);
       }
-      return res.json(200, item);
+      return res.json(200, updatedItem);
     });
   });
 };
