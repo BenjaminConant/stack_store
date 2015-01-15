@@ -58,13 +58,13 @@
 							<span class="text-content"><span>Edit</span></span>
 						</div>
 						<div class="col-xs-2">
-							<p>{{item.title}}</p>
+							<p editable-text="item.title" onbeforesave="updateItemDetail(item)">{{item.title}}</p>
 						</div>
 						<div class="col-xs-3">
-							<p>{{item.description}}</p>
+							<p editable-text="item.description" onbeforesave="updateItemDetail(item)">{{item.description}}</p>
 						</div>
 						<div class="col-xs-3">
-							<p>{{item.defaultMessage}}</p>
+							<p editable-text="item.defaultMessage" onbeforesave="updateItemDetail(item)">{{item.defaultMessage}}</p>
 						</div>
 						<div class="col-xs-1">
 							<a ng-click="deleteItem(item)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>

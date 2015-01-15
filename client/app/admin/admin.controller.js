@@ -63,6 +63,11 @@ angular.module('stackStoreApp')
       })
     }
 
+    $scope.updateItemDetail = function(item) {
+      $http.put("/api/items/" + item._id, item);
+      $scope.getItems();
+    }
+
     $scope.delete = function(user) {
       User.remove({ id: user._id });
       angular.forEach($scope.users, function(u, i) {
