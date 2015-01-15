@@ -7,12 +7,18 @@ angular.module('stackStoreApp')
       $scope.cat = cat;
     })
 
+    $scope.itemCat = [];
+
     $scope.getItems = function() {
-      $http.get("/api/items").success(function(item) {
-        $scope.items = item;
+      $http.get("/api/items").success(function(items) {
+        $scope.items = items;
       })
     }
     $scope.getItems()
+
+    $scope.getItemCats = function(item) {
+
+    }
 
     filepicker.setKey("ACZTMJqmFR7K1eeuAVsurz");
 
