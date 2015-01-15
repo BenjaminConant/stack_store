@@ -55,7 +55,7 @@
 
     <div class="nav-right">
       <span>
-        <span ng-show="isAdmin"><a href="/admin">Admin</a></span>
+        <span ng-show="isAdmin"><a href="/admin">Admin Panel</a></span>
         <div style="display:inline;padding-right:2rem;"><span class="badge cart-badge">{{orderItems.length}}</span><a href="#"><i ng-click="toggleShowCartDropdown()" class="glyphicon glyphicon-shopping-cart" style="font-size:1.6em;margin-top:1rem;"></i></a></div>
         <a href="/login">{{getCurrentUser().name}}</a>
         <a href="/login" ng-hide="getCurrentUser().name">Login</a>
@@ -63,6 +63,8 @@
       </span>
     </div>
     <h2 class="nav-brand"><a href="/">SwiftCard</a></h2>
+    <!-- <flash:messages></flash:messages> -->
+
 
   </div>
   <div class="fixed-nav-padding">

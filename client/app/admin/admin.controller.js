@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('AdminCtrl', function ($scope, $http, Auth, User) {
+  .controller('AdminCtrl', function ($scope, $http, Auth, User, flash) {
 
     $scope.getCategories = function() {
       $http.get("/api/categorys").success(function(cat) {
@@ -97,15 +97,28 @@ angular.module('stackStoreApp')
     }
 
     $scope.submitItem = function() {
-      $http.post('api/items', {
-        title: $scope.title,
-        image: $scope.image,
-        description: $scope.description,
-        defaultMessage: $scope.message,
-        categories: $scope.categories
-      }).success(function(err, item) {
-        if (err) console.log(err);
-      })
+      if ($scope.categories.length > 0) {
+        $http.post('api/items', {
+          title: $scope.title,
+          image: $scope.image,
+          description: $scope.description,
+          defaultMessage: $scope.message,
+          categories: $scope.categories
+        }).success(function(err, item) {
+          if (err) {
+            console.log(err);
+          }
+          $scope.title = "";
+          $scope.image = "";
+          $scope.description = "";
+          $scope.message = "";
+          $scope.getCategories();
+          alert("Successfully added to database!")
+
+        })
+      } else {
+        alert("must have at least one cat")
+      }
     }
 
     $scope.updateItemDetail = function(item, category) {

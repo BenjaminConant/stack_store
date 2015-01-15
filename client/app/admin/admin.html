@@ -13,6 +13,7 @@
 		</div>
 		<hr>
 		<div class="container">
+
 			<h2 style="text-align:center;margin-bottom:2rem;">Add Item</h2>
 			<form ng-controller="AdminCtrl">
 				<div class="row" style="margin:0 20%;">
@@ -46,12 +47,14 @@
 					</div>
 				</div>
 				<button class="btn btn-primary" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>
+				<!-- <flash:messages></flash:messages> -->
 			</form>
 		</div>
 		<hr>
 		<div class="add-category-group">
 			<form action="">
 				<label for="">Add New Category</label><br>
+
 				<input class="form-control" type="text" ng-model="newCatName" placeholder="New Category Name">
 				<input class="form-control" type="text" ng-model="newCatPop" placeholder="New Category Popularity">
 				<button type="button" class="btn btn-primary" ng-click="addCategory()">Add Category</button>
