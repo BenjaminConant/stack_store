@@ -73,15 +73,16 @@ angular.module('stackStoreApp')
     $scope.updateItemDetail = function(item, category) {
       if (category) {
         category = JSON.parse(category.category)._id;
+
         var newArray = [];
         item.categories.forEach(function(catObj) {
             newArray.push(catObj._id);
-         });
-         item.categories = newArray
-         if (item.categories.indexOf(category === -1)) {
-           item.categories.push(category);
-          }
+        });
+        item.categories = newArray
+        if (item.categories.indexOf(category) === -1) {
+          item.categories.push(category);
         }
+      }
       console.log("this is the imte we send", item);
       $http.put("/api/items/" + item._id, item).success(function(item){
         console.log(item);
