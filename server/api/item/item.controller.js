@@ -33,7 +33,8 @@ exports.create = function(req, res) {
   console.log(req.body);
   Item.create(req.body, function(err, item) {
     if (err) {
-      return handleError(res, err);
+      return res.json(422, err);
+      //return handleError(res, err);
     }
     return res.json(201, item);
   });
@@ -57,8 +58,8 @@ exports.update = function(req, res) {
     updated.markModified('categories');
     updated.save(function(err, updatedItem, numModified) {
       if (err) {
-        console.log(err);
-        return handleError(res, err);
+        return res.json(422, err);
+        //return handleError(res, err);
       }
       return res.json(200, updatedItem);
     });
