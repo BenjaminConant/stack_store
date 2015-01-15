@@ -353,3 +353,13 @@ body {
   -moz-box-shadow: inset 0px 0px 15px 1px rgba(0,0,0,0.75);
   box-shadow: inset 0px 0px 15px 1px rgba(0,0,0,0.75);
 }
+
+.valign-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .valign {
+    display: block;
+  }
+}

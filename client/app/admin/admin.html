@@ -3,7 +3,7 @@
 	<div id="page-content-wrapper">
 		<div class="container">
 		  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-		  <ul class="list-group">
+		  <ul class="list-group" style="margin:5% 20%;">
 		    <li class="list-group-item" ng-repeat="user in users">
 		        <strong>{{user.name}}</strong><br>
 		        <span class="text-muted">{{user.email}}</span>
@@ -49,8 +49,32 @@
 			</form>
 		</div>
 		<hr>
-		<div class="container">
+		<div class="container" ng-controller="AdminCtrl">
+			<ul class="list-group" style="margin:5% 15%;">
+				<li class="list-group-item" ng-repeat="item in items">
+					<div class="row">
+						<div class="col-xs-3">
+							<img ng-src="{{item.image}}" alt="" style="height:100px;width:150px;">
+						</div>
+						<div class="col-xs-2">
+							<p>{{item.title}}</p>
+						</div>
+						<div class="col-xs-3">
+							<p>{{item.description}}</p>
+						</div>
+						<div class="col-xs-3">
+							<p>{{item.defaultMessage}}</p>
+						</div>
+						<div class="col-xs-1">
+							<a ng-click="deleteItem(item)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+						</div>
+					</div>
+
+
+				</li>
+			</ul>
 
 		</div>
+		<hr>
 	</div>
 </div>

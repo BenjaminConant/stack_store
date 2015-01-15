@@ -7,6 +7,13 @@ angular.module('stackStoreApp')
       $scope.cat = cat;
     })
 
+    $scope.getItems = function() {
+      $http.get("/api/items").success(function(item) {
+        $scope.items = item;
+      })
+    }
+    $scope.getItems()
+
     filepicker.setKey("ACZTMJqmFR7K1eeuAVsurz");
 
 
@@ -37,6 +44,11 @@ angular.module('stackStoreApp')
           $scope.$apply();
         }
       );
+    }
+
+    $scope.deleteItem = function(item) {
+      $http.delete("/api/items/" + item._id);
+      $scope.getItems();
     }
 
     $scope.submitItem = function() {
