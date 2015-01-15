@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="lineItem in orderItems">
-        <td>{{lineItem.item[0].title}}</td>
+        <td>{{lineItem.item.title}}</td>
         <td style="text-align:center;">{{lineItem.quantity}}</td>
         <td>{{lineItem.value | currency : $ : 2}}</td>
       </tr>
