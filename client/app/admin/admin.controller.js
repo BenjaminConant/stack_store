@@ -7,6 +7,9 @@ angular.module('stackStoreApp')
       $scope.cat = cat;
     })
 
+    filepicker.setKey("ACZTMJqmFR7K1eeuAVsurz");
+
+
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
@@ -21,12 +24,17 @@ angular.module('stackStoreApp')
       if ($scope.categories.indexOf(cat._id) === -1) {
         $scope.categories.push(cat._id)
       } else {
-        console.log("hi");
         var index = $scope.categories.indexOf(cat);
-        console.log(index);
         $scope.categories.splice(index, 1)
       }
-      console.log($scope.categories);
+    }
+    
+    $scope.pickFile = function () {
+      filepicker.pick(
+        function(Blob){
+          $scope.image = Blob.url;
+        }
+      );
     }
 
     $scope.submitItem = function() {
@@ -38,7 +46,6 @@ angular.module('stackStoreApp')
         categories: $scope.categories
       }).success(function(err, item) {
         if (err) console.log(err);
-        console.log(item);
       })
     }
 
