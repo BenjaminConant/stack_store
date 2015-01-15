@@ -1,84 +1,101 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .config(function(){
-    //  window.Stripe.setPublishableKey('pk_test_SfHPLGrI9nwZrQOGPcFCWkzN');
-  })
-  .controller('MainCtrl', function ($scope, $http, socket, $modal, $window) {
+  .controller('MainCtrl', function($scope, $http, socket, Auth) {
     $scope.awesomeThings = [];
     $scope.orderItems = [];
     $scope.showCartDropdown = false;
-    $scope.stripeEmail = "";
-    $scope.select
-
-    $http.get('/api/things').success(function(awesomeThings, index) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
-    });
 
 
-    $scope.getLineItems = function () {
-    $http.get('/api/lineItems').success(function(lineItems){
-      $scope.orderItems = lineItems;
-      $scope.cartTotal = 0;
-      lineItems.forEach(function(lineItem) {
-        $scope.cartTotal += lineItem.value * lineItem.quantity;
-      });
-    });
+    // $http.get('/api/things').success(function(awesomeThings, index) {
+    //   $scope.awesomeThings = awesomeThings;
+    //   socket.syncUpdates('thing', $scope.awesomeThings);
+    // });
+
+    $scope.getCart = function() {
+      var user = Auth.getCurrentUser();
+
+      if (user.$promise) {
+        user.$promise.then(function(currentUser) {
+          cartServerCall(currentUser);
+          // $http.get('/api/orders/' + currentUser.cart)
+          //   .success(function(data) {
+          //     var lineItems = data.orderItems;
+          //     $scope.orderItems = lineItems;
+          //     $scope.cartTotal = 0;
+          //     lineItems.forEach(function(lineItem) {
+          //       $scope.cartTotal += lineItem.value;
+          //     });
+          //   });
+        });
+      } else {
+        cartServerCall(user);
+        // $http.get('/api/orders/' + user.cart)
+        //   .success(function(data) {
+        //     var lineItems = data.orderItems;
+        //     $scope.orderItems = lineItems;
+        //     $scope.cartTotal = 0;
+        //     lineItems.forEach(function(lineItem) {
+        //       $scope.cartTotal += lineItem.value;
+        //     });
+        //   });
+
+      }
+    };
+    $scope.getCart();
+
+    function cartServerCall(user) {
+      $http.get('/api/orders/' + user.cart)
+          .success(function(data) {
+            console.log('This is the order from the server', data);
+            var lineItems = data.orderItems;
+            $scope.orderItems = lineItems;
+            $scope.cartTotal = 0;
+            lineItems.forEach(function(lineItem) {
+              $scope.cartTotal += lineItem.value;
+            });
+          });
     }
-    $scope.getLineItems();
+
+    // $scope.getLineItems = function() {
+    // $http.get('/api/lineItems').success(function(lineItems) {
+    //   $scope.orderItems = lineItems;
+    //   $scope.cartTotal = 0;
+    //   lineItems.forEach(function(lineItem) {
+    //     $scope.cartTotal += lineItem.value;
+    //   });
+    // });
 
 
+    //$scope.getLineItems();
 
     $scope.deleteLineItem = function(lineItem) {
       $http.delete('/api/lineItems/' + lineItem._id);
       $scope.getLineItems();
     };
 
-    $scope.updateLineItemQuantity = function (lineItem) {
+    $scope.updateLineItemQuantity = function(lineItem) {
       console.log(lineItem);
       $http.put('/api/lineItems/' + lineItem._id, lineItem);
-      $scope.getLineItems();
     }
 
-    $scope.editLineItem = function (lineItem) {
-     console.log(lineItem);
+    $scope.editLineItem = function(lineItem) {
+      console.log(lineItem);
     }
 
 
-    $scope.toggleShowCartDropdown = function () {
+    $scope.toggleShowCartDropdown = function() {
       $scope.showCartDropdown = !$scope.showCartDropdown;
     }
 
-    $scope.openCheckout = function () {
-      $scope.modal = $modal.open({
-        templateUrl: "../../components/modal/stripeModal.html",
-        scope: $scope
-      })
-    }
-
-    $scope.stripeCallback = function (code, result) {
-      if (result.error) {
-        window.alert('it failed! error: ' + result.error.message);
-      } else {
-        window.alert('success! token: ' + result.id);
-        $http.post("/api/stripes", {
-          token: result.id,
-          email: $scope.stripeEmail,
-          amount: $scope.cartTotal
-        });
-      }
-
-    };
-
-
-
 
     $scope.addThing = function() {
-      if($scope.newThing === '') {
+      if ($scope.newThing === '') {
         return;
       }
-      $http.post('/api/things', { name: $scope.newThing });
+      $http.post('/api/things', {
+        name: $scope.newThing
+      });
       $scope.newThing = '';
     };
 
@@ -88,9 +105,7 @@ angular.module('stackStoreApp')
       $http.delete('/api/things/' + thing._id);
     };
 
-    $scope.$on('$destroy', function () {
+    $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
-
-
   });
