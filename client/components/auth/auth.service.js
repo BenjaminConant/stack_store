@@ -99,6 +99,19 @@ angular.module('stackStoreApp')
        */
       getCurrentUser: function() {
         return currentUser;
+        // var deferred = $q.defer();
+        // $rootScope.$watch(function(){
+        //   return currentUser;
+        // },function(newVal, oldVal){
+        //   if(newVal !== oldVal){
+        //     deferred.resolve(currentUser);
+        //   }
+        // });
+        //
+        // return deferred.promise;
+      },
+      getCurrentUserPromise: function(){
+        return currentUser.$promise;
       },
 
       /**

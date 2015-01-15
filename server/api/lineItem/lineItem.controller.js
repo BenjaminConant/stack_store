@@ -34,9 +34,7 @@ exports.show = function(req, res) {
 
 // Creates a new lineItem in the DB.
 exports.create = function(req, res) {
-  console.log(req.body);
   LineItem.create(req.body, function(err, lineItem) {
-    console.log(lineItem);
 
     if (err) {
       return handleError(res, err);
@@ -49,7 +47,6 @@ exports.create = function(req, res) {
           orderItems: lineItem._id
         }
       }, function(err, data) {
-        console.log('Find by ID data: ', data);
         if (err) {
           console.log(err);
         }
