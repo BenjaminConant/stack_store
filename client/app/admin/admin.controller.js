@@ -3,8 +3,8 @@
 angular.module('stackStoreApp')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
 
-    $http.get("/api/categorys").success(function(categories) {
-      $scope.categories = categories;
+    $http.get("/api/categorys").success(function(cat) {
+      $scope.cat = cat;
     })
 
 
@@ -15,6 +15,19 @@ angular.module('stackStoreApp')
     $scope.image = "";
     $scope.description = "";
     $scope.message = "";
+    $scope.categories = [];
+
+    $scope.toggleCat = function(cat) {
+      if ($scope.categories.indexOf(cat._id) === -1) {
+        $scope.categories.push(cat._id)
+      } else {
+        console.log("hi");
+        var index = $scope.categories.indexOf(cat);
+        console.log(index);
+        $scope.categories.splice(index, 1)
+      }
+      console.log($scope.categories);
+    }
 
     $scope.submitItem = function() {
       $http.post('api/items', {
