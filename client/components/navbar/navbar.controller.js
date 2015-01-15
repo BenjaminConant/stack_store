@@ -11,6 +11,7 @@ angular.module('stackStoreApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    console.log($scope.getCurrentUser());
 
     $scope.logout = function() {
       Auth.logout();

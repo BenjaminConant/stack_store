@@ -1,9 +1,9 @@
-<div id="wrapper">	
+<div id="wrapper">
 	<div ng-include="'components/navbar/navbar.html'"></div>
 	<div id="page-content-wrapper">
 		<div class="container">
 		  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-		  <ul class="list-group">
+		  <ul class="list-group" style="margin:5% 20%;">
 		    <li class="list-group-item" ng-repeat="user in users">
 		        <strong>{{user.name}}</strong><br>
 		        <span class="text-muted">{{user.email}}</span>
@@ -11,5 +11,74 @@
 		    </li>
 		  </ul>
 		</div>
+		<hr>
+		<div class="container">
+			<h2 style="text-align:center;margin-bottom:2rem;">Add Item</h2>
+			<form ng-controller="AdminCtrl">
+				<div class="row" style="margin:0 20%;">
+					<div class="form-group col-xs-12">
+						<label for="itemTitle">Title</label>
+						<input ng-model="title" type="text" class="form-control" id="itemTitle" placeholder="Title" required>
+					</div>
+					<div class="form-group col-xs-12" style="text-align:center;">
+						<div ng-hide="image" class="placeholder-image" style="height:200px;width:200px;border-radius:5px;background-color:whitesmoke;border:1px solid #ccc;display:block;margin:auto;">
+							<p>No Image Yet :(</p>
+						</div>
+						<div ng-show="image" style="display:block;margin:auto;">
+							<img ng-src="{{image}}" style="height:200px;width:200px;border-radius:5px;border:1px solid #ccc;" alt="">
+						</div>
+						<label for="itemImage">Image</label>
+						<div><button id="itemImage" class="btn btn-primary" ng-click="pickFile()">Add Image</button></div>
+					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemDescription">Description</label>
+						<input ng-model="description" type="text" class="form-control" id="itemDescription" placeholder="Description" required>
+					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemMessage">Message</label>
+						<textarea ng-model="message" type="text" class="form-control" id="itemMessage" placeholder="Message" required></textarea>
+					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemCategories" style="display:block;">Categories</label>
+						<div style="display:inline;margin:1rem;" ng-repeat="category in cat">
+							<input ng-change="toggleCat(category)" ng-model="hi" type="checkbox"> {{category.name}}
+						</div>
+					</div>
+				</div>
+				<button class="btn btn-primary" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>
+			</form>
+		</div>
+		<hr>
+		<div class="container" ng-controller="AdminCtrl">
+			<ul class="list-group" style="margin:5% 0;">
+				<li class="list-group-item" ng-repeat="item in items">
+					<div class="row">
+						<div class="col-xs-2 img-list">
+							<img ng-src="{{item.image}}" alt="" style="height:100px;width:150px;">
+							<span class="text-content"><span>Edit</span></span>
+						</div>
+						<div class="col-xs-2">
+							<p editable-text="item.title" onbeforesave="updateItemDetail(item)">{{item.title}}</p>
+						</div>
+						<div class="col-xs-2">
+							<p editable-text="item.description" onbeforesave="updateItemDetail(item)">{{item.description}}</p>
+						</div>
+						<div class="col-xs-3">
+							<p editable-text="item.defaultMessage" onbeforesave="updateItemDetail(item)">{{item.defaultMessage}}</p>
+						</div>
+						<div class="col-xs-2">
+							fds
+						</div>
+						<div class="col-xs-1">
+							<a ng-click="deleteItem(item)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+						</div>
+					</div>
+
+
+				</li>
+			</ul>
+
+		</div>
+		<hr>
 	</div>
 </div>
