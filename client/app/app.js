@@ -7,7 +7,8 @@ angular.module('stackStoreApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'angularPayments'
+  'angularPayments',
+  'xeditable'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -45,7 +46,7 @@ angular.module('stackStoreApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth, editableOptions) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -54,4 +55,5 @@ angular.module('stackStoreApp', [
         }
       });
     });
+    editableOptions.theme = "bs3";
   });
