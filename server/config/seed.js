@@ -27,7 +27,7 @@ var ugly = new Category({
 });
 
 var order = new Order({
-  status: 'test',
+  status: 'pending',
   orderItems: []
 });
 

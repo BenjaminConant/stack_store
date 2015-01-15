@@ -35,22 +35,29 @@ exports.show = function(req, res) {
 // Creates a new lineItem in the DB.
 exports.create = function(req, res) {
   LineItem.create(req.body, function(err, lineItem) {
-
+    console.log('we created this lineItem: ', lineItem);
     if (err) {
       return handleError(res, err);
     }
-    if (!lineItem.sender[0]) return res.json(201, lineItem);
+    if (!lineItem.sender) return res.json(201, lineItem);
 
-    User.findById(lineItem.sender[0], function(err, user) {
+    User.findById(lineItem.sender, function(err, user) {
+      console.log('We found this user: ', user);
       Order.findByIdAndUpdate(user.cart, {
         $push: {
           orderItems: lineItem._id
         }
       }, function(err, data) {
+        //console.log('we found this error: ', err);
+        console.log('we found this data: ', data);
         if (err) {
           console.log(err);
         }
-        return res.json(201, lineItem);
+        console.log('lineItem unpopulated', lineItem);
+        LineItem.populate(lineItem, 'item', function() {
+          console.log('lineitem populated: ', lineItem)
+          return res.json(201, lineItem);
+        })
       })
     });
   });
