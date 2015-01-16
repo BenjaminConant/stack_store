@@ -28,8 +28,6 @@ angular.module('stackStoreApp')
           $http.get("/api/orders").success(function(orders){
             $scope.items = items;
             $scope.cat = cat;
-            $scope.orders = orders;
-            console.log(orders);
           })
         })
       })
