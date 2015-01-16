@@ -38,7 +38,8 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  stripeToken: String
 });
 
 /**

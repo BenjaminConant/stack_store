@@ -41,27 +41,42 @@ exports.create = function(req, res) {
     }
     if (!lineItem.sender) return res.json(201, lineItem);
 
-    User.findById(lineItem.sender, function(err, user) {
-      console.log('We found this user: ', user);
-      Order.findByIdAndUpdate(user.cart, {
-        $push: {
-          orderItems: lineItem._id
-        }
-      }, function(err, data) {
-        //console.log('we found this error: ', err);
-        console.log('we found this data: ', data);
+    Order.findOneAndUpdate({ userId:lineItem.sender._id },
+    {$push: { orderItems: lineItem._id }},
+      function(err, order) {
+        console.log('We found this order: ', order);
         if (err) {
           console.log(err);
         }
         console.log('lineItem unpopulated', lineItem);
         LineItem.populate(lineItem, 'item', function() {
-          console.log('lineitem populated: ', lineItem)
-          return res.json(201, lineItem);
-        })
-      })
+        console.log('lineitem populated: ', lineItem)
+        return res.json(201, lineItem);
+      });
     });
   });
 };
+
+// exports.create = function(req, res) {
+//   LineItem.create(req.body, function(err, lineItem) {
+//     if(err){
+//       return handleError(res,err);
+//     }
+//     if(!lineItem.sender) return res.json(201, lineItem);
+//
+//     User.findById(lineItem.sender._id, function(err, user){
+//       console.log(user);
+//       lineItem.orderId = user.cart;
+//       lineItem.save(function(err, lineItem){
+//         console.log('lineItem unpopulated', lineItem);
+//         LineItem.populate(lineItem, 'item', function() {
+//           console.log('lineitem populated: ', lineItem)
+//           return res.json(201, lineItem);
+//         });
+//       });
+//     });
+//   });
+// }
 
 // Updates an existing lineItem in the DB.
 exports.update = function(req, res) {

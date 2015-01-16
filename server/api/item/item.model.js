@@ -22,13 +22,13 @@ var ItemSchema = new Schema({
 		type: String,
 		required: true
 	},
-	reviews: [{
-		type: Schema.Types.ObjectId,
-		ref: 'Review'
-	}],
 	buyCount: {
 		type: Number,
 		default: 0
+	},
+	available: {
+		type: Boolean,
+		default: true
 	},
 	purchaseHistory: [Date],
 	categories: [{
@@ -37,6 +37,23 @@ var ItemSchema = new Schema({
 	}],
 	stars: Number
 });
+
+// Validate title is not taken
+ItemSchema
+	.path('title')
+	.validate(function(value, respond) {
+		var self = this;
+		this.constructor.findOne({
+			title: value
+		}, function(err, item) {
+			if (err) throw err;
+			if (item) {
+				if (self.id === item.id) return respond(true);
+				return respond(false);
+			}
+			respond(true);
+		});
+	}, 'The specified item title is already in use.');
 
 ItemSchema.virtuals.stars = function() {
 	//this is an a product
