@@ -104,11 +104,15 @@ angular.module('stackStoreApp')
         name: $scope.newCatName,
         popularity: $scope.newCatPop
       }
-      $scope.cat.push(newCat);
+
 
       $http.post('/api/categorys/', {
         name: $scope.newCatName,
         popularity: $scope.newCatPop
+      }).success(function(newCat) {
+        $scope.cat.push(newCat);
+        $scope.newCatName = "";
+        $scope.newCatPop = "";
       })
     };
 
