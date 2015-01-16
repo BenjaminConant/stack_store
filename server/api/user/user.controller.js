@@ -59,6 +59,50 @@ exports.destroy = function(req, res) {
 };
 
 /**
+ * Makes a user a admin
+ * restriction: 'admin'
+ */
+ exports.makeAdmin = function(req, res) {
+  var userId = req.params.id;
+  User.findById(userId, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+    user.role = "admin"
+    user.save(function(err, savedUser) {
+      if (err) {
+        return handleError(res, err);
+      }
+      return res.json(200, savedUser);
+    });
+  });
+};
+
+/**
+ * Allows admin to change a users password
+ * restriction: 'admin'
+ */
+ exports.adminChangePassword = function(req, res) {
+  var userId = req.params.id;
+  var oldPass = String(req.body.oldPassword);
+  var newPass = String(req.body.newPassword);
+  User.findById(userId, function (err, user) {
+    if(user.authenticate(oldPass)) {
+      user.password = newPass;
+      user.save(function(err) {
+        if (err) return validationError(res, err);
+        res.send(200);
+      });
+    } else {
+      res.send(403);
+    }
+  });
+};
+
+
+
+
+
+/**
  * Change a users password
  */
 exports.changePassword = function(req, res, next) {
