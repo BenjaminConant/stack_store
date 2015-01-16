@@ -124,42 +124,40 @@
 			<div ng-controller="AccordionCtrl">
 				<h2 style="text-align:center;">Orders</h2>
 				<div class="row order-status">
-					<div class="col-xs-3">
-						<input name="orderStatusRadio" type="radio"> Created
-					</div>
-					<div class="col-xs-3">
-						<input name="orderStatusRadio" type="radio"> Processing
-					</div>
-					<div class="col-xs-3">
-						<input name="orderStatusRadio" type="radio"> Cancelled
-					</div>
-					<div class="col-xs-3">
-						<input name="orderStatusRadio" type="radio"> Completed
-					</div>
+					
+						<input ng-change="changedStatusRadio()" ng-model="filterStatus" ng-value="" name="orderStatusRadio" type="radio"> All
+				
+					
+						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="pending" name="orderStatusRadio" type="radio"> Pending
+				
+						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="cancelled" name="orderStatusRadio" type="radio"> Cancelled
+				
+						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="complete" name="orderStatusRadio" type="radio"> Completed
+			
+						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="created" name="orderStatusRadio" type="radio"> Created
 				</div>
 				<accordion>
-					<accordion-group>
-						
+					
+					<accordion-group ng-repeat="order in orders | filter: {status: filterStatus}">
 						<accordion-heading>
 							<div class="row">
 								<div class="col-xs-6 col-sm-3">
-									{{order.userId.email}} email
+									{{order.user.email}}
 								</div>
 								<div class="col-xs-6 col-sm-3">
-									{{order.status}} status
+									{{order.status}}
 								</div>
 								<div class="col-xs-6 col-sm-3">
-									{{order.date}} date
+									{{order.date}}
 								</div>
 								<div class="col-xs-6 col-sm-3">
-									{{order.total}} $total
+									{{order.total}}
 								</div>
 							</div>
 						</accordion-heading>
 
 
 						<div class="row">
-							Status
 							<div>
 								<select ng-model="category" ng-change="updateItemDetail(item, this)" name="" id="">
 									<option value="">Change Order Status</option>
@@ -167,23 +165,6 @@
 								</select>
 							</div>
 						</div>
-
-						<div class="row">
-							<div class="col-xs-6 col-sm-3">
-								ccol
-							</div>
-							<div class="col-xs-6 col-sm-3">
-								col
-							</div>
-							<div class="col-xs-6 col-sm-3">
-								col
-							</div>
-							<div class="col-xs-6 col-sm-3">
-								col
-							</div>
-						</div>
-
-
 						<p>The body of the accordion group grows to fit the contents</p>
 						<div ng-repeat="item in items">fghjfghjf</div>
 					</accordion-group>

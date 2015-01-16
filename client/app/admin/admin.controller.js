@@ -19,6 +19,12 @@ angular.module('stackStoreApp')
     $scope.availabilityTrue = true;
     $scope.itemAvailable = true;
     $scope.orders;
+    $scope.filterStatus = "";
+    console.log($scope.filterStatus);
+
+    $scope.changedStatusRadio = function () {
+      console.log($scope.filterStatus);
+    }
 
 
     // get all data used in view
@@ -27,7 +33,8 @@ angular.module('stackStoreApp')
         $http.get("/api/items").success(function(items) {
           $http.get("/api/orders").success(function(orders){
             $scope.items = items;
-            $scope.cat = cat;
+            $scope.orders = orders;
+            console.log(orders);
           })
         })
       })
