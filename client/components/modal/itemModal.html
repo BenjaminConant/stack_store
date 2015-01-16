@@ -15,7 +15,7 @@
 
 <form class="modal-form">
   <h1 style="text-align:center;">{{currentItem.title}}</h1>
-  <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{currentItem.image}}">
+  <a href=""><img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{currentItem.image}}" ng-click="store.productView()"></a>
   <div class="row" style="margin:0 2rem;">
     <div class="col-xs-12 col-sm-6">
       <label for="receiverName">Recipient Name:</label>
@@ -39,8 +39,9 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="store.addToCart(currentItem, newItem)">Add to Cart</button>
-
+  <div class="btn-group" role="group">
+    <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="store.add2Cart(currentItem, newItem)">Add to Cart</button>
+  </div>
 <h1>{{newItem}}</h1>
 
 </form>

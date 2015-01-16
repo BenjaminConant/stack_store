@@ -10,5 +10,9 @@ angular.module('stackStoreApp')
       .when("/cart", {
         templateUrl: "app/cart/cart.html",
         controller: "MainCtrl"
+      })
+      .when("/item/:id", {
+        templateUrl: "app/item/item.html",
+        controller: "ItemCtrl as Item"
       });
   });

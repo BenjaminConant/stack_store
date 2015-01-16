@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="lineItem in orderItems">
+        <tr ng-repeat="lineItem in orderItems.get()">
           <td>{{lineItem.item[0].title}}</td>
           <td style="text-align:center;">{{lineItem.quantity}}</td>
           <td>{{lineItem.value | currency : $ : 2}}</td>
@@ -21,7 +21,7 @@
         <tr>
           <td></td>
           <td style="font-weight:bold;">Subtotal</td>
-          <td style="font-weight:bold;">{{cartTotal | currency : $ : 2}}</td>
+          <td style="font-weight:bold;">{{cartTotal.get() | currency : $ : 2}}</td>
         </tr>
       </tbody>
     </table>
