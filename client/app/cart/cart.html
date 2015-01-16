@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="item in orderItems">
+          <tr ng-repeat="item in orderItems.get()">
             <td><img ng-src="{{item.item.image}}" alt=""></td>
             <td>{{item.item.title}}</td>
             <td>{{item.message}}</td>
@@ -43,7 +43,7 @@
             <td></td>
             <td></td>
             <td style="text-align:right;">Subtotal:</td>
-            <td>{{cartTotal | currency : $ : 2}}</td>
+            <td>{{cartTotal.get() | currency : $ : 2}}</td>
             <td></td>
             <td></td>
           </tr>
