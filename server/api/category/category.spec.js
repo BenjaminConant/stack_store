@@ -23,19 +23,26 @@ describe('GET /api/categorys', function() {
     var testCat = new Category({});
     testCat.popularity.should.eql(1);
 
-    var testCat2 = new Category({popularity:5});
+    var testCat2 = new Category({
+      popularity: 5
+    });
     testCat2.popularity.should.eql(5);
   });
 
   it('should validate the presence of a name', function() {
     var testCat = new Category({});
-    testCat.save(function(err, data){
+    testCat.save(function(err, data) {
       err.should.be.ok;
     });
-    var testCat2 = new Category({name:'Good'});
-    testCat2.save(function(err, data) {
-      data.name.should.eql('Good');
-    });
+    Category.find({}).remove(function() {
+
+      var testCat2 = new Category({
+        name: 'Good'
+      });
+      testCat2.save(function(err, data) {
+        data.name.should.eql('Good');
+      });
+    })
   })
 
 
