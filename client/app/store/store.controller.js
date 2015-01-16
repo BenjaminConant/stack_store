@@ -5,6 +5,7 @@ angular.module('stackStoreApp')
 .controller('StoreCtrl', function($scope, items, orderItems, cartTotal, addToCart, $http, $modal, Auth, $window) {
   var self = this;
   self.allItems = items.query();
+  self.available = {available:true};
 
   var user = Auth.getCurrentUser();
 
