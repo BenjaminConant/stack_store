@@ -161,6 +161,13 @@ angular.module('stackStoreApp')
       });
     }
 
+    $scope.changeAvailability = function(item, bool) {
+      var newBool = JSON.parse(bool.availability);
+      item.available = newBool;
+      $scope.updateItemDetail(item);
+
+    }
+
     $scope.deleteCat = function(item, catId) {
       if (item.categories.length <= 1) {
         alert("Items must have at least one category!")

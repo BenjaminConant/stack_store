@@ -87,8 +87,16 @@
 						<div class="col-xs-2">
 							<p editable-text="item.description" onbeforesave="updateItemDetail(item)">{{item.description}}</p>
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-2">
 							<p editable-text="item.defaultMessage" onbeforesave="updateItemDetail(item)">{{item.defaultMessage}}</p>
+						</div>
+						<div class="col-xs-1">
+							{{item.available}}
+							<select ng-model="availability" ng-change="changeAvailability(item, this)" name="" id="">
+								<option value="">Change Availability</option>
+								<option ng-value="availabilityTrue">Available</option>
+								<option ng-value="availabilityFalse">Not Available</option>
+							</select>
 						</div>
 						<div class="col-xs-2" style="overflow:scroll;">
 							<span class="admin-category" ng-repeat="cat in item.categories">
