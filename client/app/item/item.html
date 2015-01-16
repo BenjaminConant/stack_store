@@ -1,30 +1,37 @@
-<div class="body">
-  <form class="form">
-    <h1 style="text-align:center;">{{Item.currentItem.title}}</h1>
-    <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{Item.currentItem.image}}">
-    <div class="row" style="margin:0 2rem;">
-      <div class="col-xs-12 col-sm-6">
-        <label for="receiverName">Recipient Name:</label>
-        <input type="text" class="form-control" id="receiverName" ng-model="Item.newItem.receiverName"></input>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <label for="receiverEmail">Recipient Email:</label>
-        <input type="text" class="form-control" id="receiverEmail" ng-model="Item.newItem.receiverEmail"></input>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <label for="quantity">Quantity:</label>
-        <input type="number" class="form-control" id="quantity" ng-model="Item.newItem.quantity"></input>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <label for="receiverEmail">Amount</label>
-        <input type="text" class="form-control" id="" ng-model=""></input>
-      </div>
-      <div class="col-xs-12">
-        <label for="message">Message:</label>
-        <textarea class="form-control" id="message" ng-model="Item.newItem.message"></textarea>
-      </div>
+<div id="wrapper">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+
+  <div  id="page-content-wrapper" class="shadow-inset">
+
+    <div class="body">
+      <form class="form">
+        <h1 style="text-align:center;">{{Item.currentItem.title}}</h1>
+        <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{Item.currentItem.image}}">
+        <div class="row" style="margin:0 2rem;">
+          <div class="col-xs-12 col-sm-6">
+            <label for="receiverName">Recipient Name:</label>
+            <input type="text" class="form-control" id="receiverName" ng-model="Item.newItem.receiverName"></input>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <label for="receiverEmail">Recipient Email:</label>
+            <input type="text" class="form-control" id="receiverEmail" ng-model="Item.newItem.receiverEmail"></input>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" ng-model="Item.newItem.quantity"></input>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <label for="receiverEmail">Amount</label>
+            <input type="text" class="form-control" id="" ng-model=""></input>
+          </div>
+          <div class="col-xs-12">
+            <label for="message">Message:</label>
+            <textarea class="form-control" id="message" ng-model="Item.newItem.message"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="Item.add2Cart(Item.currentItem, Item.newItem)">Add to Cart</button>
+        <h1>{{Item.newItem}}</h1>
+      </form>
     </div>
-    <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="Item.add2Cart(Item.currentItem, Item.newItem)">Add to Cart</button>
-    <h1>{{Item.newItem}}</h1>
-  </form>
+  </div>
 </div>
