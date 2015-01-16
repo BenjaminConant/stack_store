@@ -15,6 +15,9 @@ angular.module('stackStoreApp')
     $scope.description = "";
     $scope.message = "";
     $scope.categories = [];
+    $scope.availabilityFalse = false;
+    $scope.availabilityTrue = true;
+    $scope.itemAvailable = true;
 
 
     // get all data used in view
@@ -47,7 +50,8 @@ angular.module('stackStoreApp')
         image: $scope.image,
         description: $scope.description,
         defaultMessage: $scope.message,
-        categories: $scope.categories
+        categories: $scope.categories,
+        available: $scope.itemAvailable
       };
 
       if ($scope.categories.length > 0) {

@@ -45,20 +45,29 @@
 							<input ng-change="toggleCat(category)" ng-model="hi" type="checkbox"> {{category.name}}
 						</div>
 					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemAvailability" style="display:block;">Availability</label>
+						<div style="display:inline;margin:1rem;">
+							<input ng-model="itemAvailable" ng-value="availabilityTrue" name="availabilityRadioButtons" type="radio"> Available
+							<input ng-model="itemAvailable" ng-value="availabilityFalse" name="availabilityRadioButtons" type="radio"> Not Available
+						</div>
+					</div>
 				</div>
 				<button class="btn btn-primary" type="button" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>
 				<!-- <flash:messages></flash:messages> -->
 			</form>
-
-			<button ng-click="submitItem()">TEST</button>
 		</div>
 		<hr>
 		<div class="add-category-group">
 			<form action="">
 				<label for="">Add New Category</label><br>
 
-				<input class="form-control" type="text" ng-model="newCatName" placeholder="New Category Name">
-				<input class="form-control" type="text" ng-model="newCatPop" placeholder="New Category Popularity">
+				<div class="row">
+					<div class="col-xs-12 col-sm-3 col-sm-offset-4">
+						<input class="form-control" type="text" ng-model="newCatName" placeholder="New Category Name">
+						<input class="form-control" type="text" ng-model="newCatPop" placeholder="New Category Popularity">
+					</div>
+				</div>
 				<button type="button" class="btn btn-primary" ng-click="addCategory()">Add Category</button>
 			</form>
 		</div>
