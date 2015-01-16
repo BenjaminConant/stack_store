@@ -66,6 +66,8 @@ angular.module('stackStoreApp')
             $scope.image = "";
             $scope.description = "";
             $scope.message = "";
+            $scope.itemAvailable = true;
+            $scope.getData();
 
             console.log("after post", $scope.items);
             alert("Successfully added to database!")
