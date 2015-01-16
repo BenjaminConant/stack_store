@@ -141,36 +141,6 @@ Category.find({}).remove(function () {
 
 Item.find({}).remove(function () {
   Item.create({
-    title: 'Sweet Card',
-    image: 'http://www.kumah.org/uploaded_images/193_9331-730753.JPG',
-    defaultMessage: 'Happy Celebratory Day, Nimit!',
-    description: 'This card is for Sweet category of things',
-    reviews: [],
-    buyCount: 0,
-    purchaseHistory: [],
-    categories: [good._id, bad._id],
-    stars: 5
-  }, {
-    title: 'Sour Card',
-    image: 'http://alphamom.com/wp-content/uploads/2011/04/fun_things_april-e1302009947363.jpg',
-    defaultMessage: 'Happy Celebratory Day, Nimit!',
-    description: 'This card is for Sour category of things',
-    reviews: [],
-    buyCount: 0,
-    purchaseHistory: [],
-    categories: [ugly._id],
-    stars: 5
-  }, {
-    title: 'Spicy Card',
-    image: 'http://www.romanceways.com/files/2012/06/Fun-Things-To-Do-As-A-Couple.jpg',
-    defaultMessage: 'Happy Celebratory Day, Nimit!',
-    description: 'This card is for Spicy category of things',
-    reviews: [],
-    buyCount: 0,
-    purchaseHistory: [],
-    categories: [good._id, bad._id, ugly._id],
-    stars: 5
-  }, {
     title: 'Savory Card',
     image: 'http://www.breakmyface.com/images/funthings.jpg',
     defaultMessage: 'Happy Celebratory Day, Nimit!',

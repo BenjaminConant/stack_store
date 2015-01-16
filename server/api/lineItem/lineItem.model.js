@@ -28,6 +28,11 @@ var LineItemSchema = new Schema({
 	quantity: {
 		type: Number,
 		default: 1
+	},
+	orderId:{
+		type: Schema.Types.ObjectId,
+		ref: 'Order'/*,
+		required: true*/
 	}
 
 });
