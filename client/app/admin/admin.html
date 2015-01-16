@@ -45,20 +45,29 @@
 							<input ng-change="toggleCat(category)" ng-model="hi" type="checkbox"> {{category.name}}
 						</div>
 					</div>
+					<div class="form-group col-xs-12">
+						<label for="itemAvailability" style="display:block;">Availability</label>
+						<div style="display:inline;margin:1rem;">
+							<input ng-model="itemAvailable" ng-value="availabilityTrue" name="availabilityRadioButtons" type="radio"> Available
+							<input ng-model="itemAvailable" ng-value="availabilityFalse" name="availabilityRadioButtons" type="radio"> Not Available
+						</div>
+					</div>
 				</div>
 				<button class="btn btn-primary" type="button" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>
 				<!-- <flash:messages></flash:messages> -->
 			</form>
-
-			<button ng-click="submitItem()">TEST</button>
 		</div>
 		<hr>
 		<div class="add-category-group">
 			<form action="">
 				<label for="">Add New Category</label><br>
 
-				<input class="form-control" type="text" ng-model="newCatName" placeholder="New Category Name">
-				<input class="form-control" type="text" ng-model="newCatPop" placeholder="New Category Popularity">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+						<input class="form-control" type="text" ng-model="newCatName" placeholder="New Category Name">
+						<input class="form-control" type="text" ng-model="newCatPop" placeholder="New Category Popularity">
+					</div>
+				</div>
 				<button type="button" class="btn btn-primary" ng-click="addCategory()">Add Category</button>
 			</form>
 		</div>
@@ -68,7 +77,6 @@
 				<li class="list-group-item" ng-repeat="item in items">
 
 					<div class="row">
-					"HELLOOOooooo"
 						<div class="col-xs-2">
 							<a href="#" ng-click="pickFile(item)"><img ng-src="{{item.image}}" alt="" style="height:100px;width:150px;"></a>
 							<!-- <span class="text-content"><span>Edit</span></span> -->
@@ -79,8 +87,16 @@
 						<div class="col-xs-2">
 							<p editable-text="item.description" onbeforesave="updateItemDetail(item)">{{item.description}}</p>
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-2">
 							<p editable-text="item.defaultMessage" onbeforesave="updateItemDetail(item)">{{item.defaultMessage}}</p>
+						</div>
+						<div class="col-xs-1">
+							{{item.available}}
+							<select ng-model="availability" ng-change="changeAvailability(item, this)" name="" id="">
+								<option value="">Change Availability</option>
+								<option ng-value="availabilityTrue">Available</option>
+								<option ng-value="availabilityFalse">Not Available</option>
+							</select>
 						</div>
 						<div class="col-xs-2" style="overflow:scroll;">
 							<span class="admin-category" ng-repeat="cat in item.categories">
