@@ -18,14 +18,19 @@ angular.module('stackStoreApp')
     $scope.availabilityFalse = false;
     $scope.availabilityTrue = true;
     $scope.itemAvailable = true;
+    $scope.orders;
 
 
     // get all data used in view
     $scope.getData = function() {
       $http.get("/api/categorys").success(function(cat) {
         $http.get("/api/items").success(function(items) {
-          $scope.items = items;
-          $scope.cat = cat;
+          $http.get("/api/orders").success(function(orders){
+            $scope.items = items;
+            $scope.cat = cat;
+            $scope.orders = orders;
+            console.log(orders);
+          })
         })
       })
     }
