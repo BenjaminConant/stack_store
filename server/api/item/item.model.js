@@ -55,6 +55,14 @@ ItemSchema
 		});
 	}, 'The specified item title is already in use.');
 
+// Validate there is at least one category
+ItemSchema
+	.path('categories')
+	.validate(function(value, respond) {
+		var self = this;
+		respond(value.length > 0);
+	}, 'Items need at least 1 category.');
+
 ItemSchema.virtuals.stars = function() {
 	//this is an a product
 	// return math...

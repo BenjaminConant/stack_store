@@ -23,7 +23,7 @@ var LineItemSchema = new Schema({
 	longMessage: String,
 	value: {
 		type: Number,
-		default: 25
+		default: 2500
 	},
 	quantity: {
 		type: Number,
@@ -36,5 +36,17 @@ var LineItemSchema = new Schema({
 	}
 
 });
+
+LineItemSchema.virtuals.valueInDollars = function() {
+	return this.value/100;
+}
+
+// Validate value is expressed in cents
+LineItemSchema
+	.path('value')
+	.validate(function(value, respond) {
+		var self = this;
+		respond((Math.floor(value) === value)&&(Math.ceil(value) === value)); 
+	}, 'The value should be expressed in cents.');
 
 module.exports = mongoose.model('LineItem', LineItemSchema);
