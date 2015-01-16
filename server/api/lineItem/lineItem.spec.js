@@ -90,14 +90,30 @@ describe('GET /api/lineItems', function() {
     });
   });
 
-  it('should default the value to 25', function() {
+  it('should default the value to 2500', function() {
     var testLineItem = new LineItem({});
-    testLineItem.value.should.eql(25);
+    testLineItem.value.should.eql(2500);
 
     var testLineItem2 = new LineItem({
-      value: 5
+      value: 500
     });
-    testLineItem2.value.should.eql(5);
+    testLineItem2.value.should.eql(500);
+  });
+
+  it('should validate that the value is an integer', function() {
+    var user = new User();
+    var item = new Item();
+    var email = 'test@test.com';
+    var testLineItem = new LineItem({
+      item: item._id,
+      sender: user._id,
+      receiverEmail: email,
+      value: 25.50
+    });
+    testLineItem.save(function(err, data) {
+      err.should.be.ok;
+    })
+
   });
 
   it('should default the quantity to 1', function() {
