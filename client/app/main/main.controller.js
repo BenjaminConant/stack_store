@@ -6,7 +6,7 @@ angular.module('stackStoreApp')
     $scope.awesomeThings = [];
     $scope.orderItems = orderItems;
     $scope.cartTotal = cartTotal;
-    $scope.showCartDropdown = false;
+    //$scope.showCartDropdown = false;
 
 
     // $http.get('/api/things').success(function(awesomeThings, index) {
@@ -89,9 +89,9 @@ angular.module('stackStoreApp')
     }
 
 
-    $scope.toggleShowCartDropdown = function() {
-      $scope.showCartDropdown = !$scope.showCartDropdown;
-    }
+    // $scope.toggleShowCartDropdown = function() {
+    //   $scope.showCartDropdown = !$scope.showCartDropdown;
+    // }
 
 
     $scope.addThing = function() {
