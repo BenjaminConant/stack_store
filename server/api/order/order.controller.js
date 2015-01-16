@@ -9,7 +9,19 @@ exports.index = function(req, res) {
     if (err) {
       return handleError(res, err);
     }
-    return res.json(200, orders);
+    Order.populate(orders, 'orderItems', function() {
+        //console.log('order items + lineItem info: ', order);
+        Order.populate(orders, {
+          path: 'orderItems.item',
+          model: 'Item'
+        }, function() {
+          //console.log('order items + items info: ', order);
+          Order.populate(orders, 'user', function() {
+            return res.json(200, orders);
+
+          });
+        });
+      });
   });
 };
 
@@ -28,12 +40,17 @@ exports.show = function(req, res) {
 
       Order.populate(order, 'orderItems', function() {
         //console.log('order items + lineItem info: ', order);
-        Order.populate(order, {path:'orderItems.item', model:'Item'}, function() {
+        Order.populate(order, {
+          path: 'orderItems.item',
+          model: 'Item'
+        }, function() {
           //console.log('order items + items info: ', order);
-          
-          return res.json(order);
-        })
-      })
+          Order.populate(order, 'user', function() {
+            return res.json(order);
+
+          });
+        });
+      });
     })
     // .populate('orderItems')
     // .exec(function(err, orderItems){

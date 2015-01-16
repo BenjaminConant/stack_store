@@ -40,7 +40,7 @@ var user1 = new User({
 
 });
 
-order.userId = user1._id;
+order.user = user1._id;
 
 
 var user2 = new User({
@@ -210,19 +210,19 @@ var lineItem7 = new LineItem({
 var pastOrder1 = new Order({
   status: 'complete',
   orderItems: [lineItem4._id, lineItem5._id],
-  userId: user2._id
+  user: user2._id
 });
 
 var pastOrder2 = new Order({
   status: 'complete',
   orderItems: [lineItem6._id],
-  userId: user1._id
+  user: user1._id
 });
 
 var pastOrder3 = new Order({
   status: 'complete',
   orderItems: [lineItem7._id],
-  userId: user1._id
+  user: user1._id
 })
 
 Item.find({}).remove(function() {

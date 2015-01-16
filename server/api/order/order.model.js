@@ -8,7 +8,7 @@ var OrderSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'LineItem'
 	}],
-	userId: {
+	user: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
 		required: true
