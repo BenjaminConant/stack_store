@@ -125,16 +125,16 @@
 				<h2 style="text-align:center;">Orders</h2>
 				<div class="row order-status">
 					
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" ng-value="" name="orderStatusRadio" type="radio"> All
+						<input ng-model="filterStatus" value="""" name="orderStatusRadio" type="radio"> All
 				
 					
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="pending" name="orderStatusRadio" type="radio"> Pending
+						<input ng-model="filterStatus" value="created" name="orderStatusRadio" type="radio"> Created
 				
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="cancelled" name="orderStatusRadio" type="radio"> Cancelled
+						<input ng-model="filterStatus" value="processing" name="orderStatusRadio" type="radio"> Processing
 				
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="complete" name="orderStatusRadio" type="radio"> Completed
+						<input ng-model="filterStatus" value="cancelled" name="orderStatusRadio" type="radio"> Cancelled
 			
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="created" name="orderStatusRadio" type="radio"> Created
+						<input ng-model="filterStatus" value="complete" name="orderStatusRadio" type="radio"> Completed
 				</div>
 				<accordion>
 					
@@ -159,14 +159,12 @@
 
 						<div class="row">
 							<div>
-								<select ng-model="category" ng-change="updateItemDetail(item, this)" name="" id="">
+								<select ng-model="category" ng-change="changeOrderStatus(order, this)" name="" id="">
 									<option value="">Change Order Status</option>
-									<option value="{{category}}" ng-repeat="category in cat">{{category.name}}</option>
+									<option value="{{status}}" ng-repeat="status in possibleStatus">{{status}}</option>
 								</select>
 							</div>
 						</div>
-						<p>The body of the accordion group grows to fit the contents</p>
-						<div ng-repeat="item in items">fghjfghjf</div>
 					</accordion-group>
 				</accordion>
 			</div>
