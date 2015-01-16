@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" ng-controller="AdminCtrl">
 	<div ng-include="'components/navbar/navbar.html'"></div>
 	<div id="page-content-wrapper">
 		<div class="container">
@@ -15,11 +15,11 @@
 		<div class="container">
 
 			<h2 style="text-align:center;margin-bottom:2rem;">Add Item</h2>
-			<form ng-controller="AdminCtrl">
+			<form>
 				<div class="row" style="margin:0 20%;">
 					<div class="form-group col-xs-12">
 						<label for="itemTitle">Title</label>
-						<input ng-model="title" type="text" class="form-control" id="itemTitle" placeholder="Title" required>
+						<input ng-model="title" type="text" class="form-control" id="itemTitle" placeholder="Title">
 					</div>
 					<div class="form-group col-xs-12" style="text-align:center;">
 						<div ng-hide="image" class="placeholder-image" style="height:200px;width:200px;border-radius:5px;background-color:whitesmoke;border:1px solid #ccc;display:block;margin:auto;">
@@ -33,11 +33,11 @@
 					</div>
 					<div class="form-group col-xs-12">
 						<label for="itemDescription">Description</label>
-						<input ng-model="description" type="text" class="form-control" id="itemDescription" placeholder="Description" required>
+						<input ng-model="description" type="text" class="form-control" id="itemDescription" placeholder="Description">
 					</div>
 					<div class="form-group col-xs-12">
 						<label for="itemMessage">Message</label>
-						<textarea ng-model="message" type="text" class="form-control" id="itemMessage" placeholder="Message" required></textarea>
+						<textarea ng-model="message" type="text" class="form-control" id="itemMessage" placeholder="Message"></textarea>
 					</div>
 					<div class="form-group col-xs-12">
 						<label for="itemCategories" style="display:block;">Categories</label>
@@ -46,9 +46,11 @@
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-primary" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>
+				<button class="btn btn-primary" type="button" style="display:block;margin:auto;" ng-click="submitItem()">Submit Item</button>
 				<!-- <flash:messages></flash:messages> -->
 			</form>
+
+			<button ng-click="submitItem()">TEST</button>
 		</div>
 		<hr>
 		<div class="add-category-group">
@@ -61,10 +63,12 @@
 			</form>
 		</div>
 		<hr>
-		<div class="container" ng-controller="AdminCtrl">
+		<div class="container">
 			<ul class="list-group" style="margin:5% 0;">
 				<li class="list-group-item" ng-repeat="item in items">
+
 					<div class="row">
+					"HELLOOOooooo"
 						<div class="col-xs-2">
 							<a href="#" ng-click="pickFile(item)"><img ng-src="{{item.image}}" alt="" style="height:100px;width:150px;"></a>
 							<!-- <span class="text-content"><span>Edit</span></span> -->
