@@ -37,7 +37,8 @@ exports.create = function(req, res) {
   LineItem.create(req.body, function(err, lineItem) {
     console.log('we created this lineItem: ', lineItem);
     if (err) {
-      return handleError(res, err);
+      return res.json(422, err);
+      //return handleError(res, err);
     }
     if (!lineItem.sender) return res.json(201, lineItem);
 
@@ -93,7 +94,8 @@ exports.update = function(req, res) {
     var updated = _.merge(lineItem, req.body);
     updated.save(function(err) {
       if (err) {
-        return handleError(res, err);
+        return res.json(422, err);
+        //return handleError(res, err);
       }
       return res.json(200, lineItem);
     });

@@ -1,5 +1,7 @@
 'use strict';
 
+var min_length = 40;
+
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
@@ -24,5 +26,14 @@ var ReviewSchema = new Schema({
 		required: true
 	}
 });
+
+// Validate the length of the review is at least min_length
+ReviewSchema
+	.path('text')
+	.validate(function(value, respond) {
+		var self = this;
+		respond(value.length >= min_length); 
+	}, 'The review must be at least 40 characters long.');
+
 
 module.exports = mongoose.model('Review', ReviewSchema);

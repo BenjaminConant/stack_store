@@ -42,13 +42,13 @@ angular.module('stackStoreApp')
   };
 
 
-  
+
   this.add2Cart = function(item, optionsObj)
   {
     addToCart(item, optionsObj);
-    $scope.modal.close();    
+    $scope.modal.close();
   }
-  
+
   self.productView = function()
   {
     console.log("hey");
@@ -91,7 +91,7 @@ angular.module('stackStoreApp')
   //       //$scope.cartTotal += newLineItem.value;
   //       cartTotal.adjust(newLineItem.value);
   //     });
- 
+
   //     // .error(function(data, status) {
   //     //   console.log('Error Data = ' + data);
   //     //   console.log('Error Status = ' + status);

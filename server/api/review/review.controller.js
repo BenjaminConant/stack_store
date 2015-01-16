@@ -5,17 +5,23 @@ var Review = require('./review.model');
 
 // Get list of reviews
 exports.index = function(req, res) {
-  Review.find(function (err, reviews) {
-    if(err) { return handleError(res, err); }
+  Review.find(function(err, reviews) {
+    if (err) {
+      return handleError(res, err);
+    }
     return res.json(200, reviews);
   });
 };
 
 // Get a single review
 exports.show = function(req, res) {
-  Review.findById(req.params.id, function (err, review) {
-    if(err) { return handleError(res, err); }
-    if(!review) { return res.send(404); }
+  Review.findById(req.params.id, function(err, review) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!review) {
+      return res.send(404);
+    }
     return res.json(review);
   });
 };
@@ -23,20 +29,32 @@ exports.show = function(req, res) {
 // Creates a new review in the DB.
 exports.create = function(req, res) {
   Review.create(req.body, function(err, review) {
-    if(err) { return handleError(res, err); }
+    if (err) {
+      return res.json(422, err);
+      //return handleError(res, err); 
+    }
     return res.json(201, review);
   });
 };
 
 // Updates an existing review in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Review.findById(req.params.id, function (err, review) {
-    if (err) { return handleError(res, err); }
-    if(!review) { return res.send(404); }
+  if (req.body._id) {
+    delete req.body._id;
+  }
+  Review.findById(req.params.id, function(err, review) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!review) {
+      return res.send(404);
+    }
     var updated = _.merge(review, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+    updated.save(function(err) {
+      if (err) {
+        return res.json(422, err);
+        //return handleError(res, err); 
+      }
       return res.json(200, review);
     });
   });
@@ -44,11 +62,17 @@ exports.update = function(req, res) {
 
 // Deletes a review from the DB.
 exports.destroy = function(req, res) {
-  Review.findById(req.params.id, function (err, review) {
-    if(err) { return handleError(res, err); }
-    if(!review) { return res.send(404); }
+  Review.findById(req.params.id, function(err, review) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!review) {
+      return res.send(404);
+    }
     review.remove(function(err) {
-      if(err) { return handleError(res, err); }
+      if (err) {
+        return handleError(res, err);
+      }
       return res.send(204);
     });
   });
