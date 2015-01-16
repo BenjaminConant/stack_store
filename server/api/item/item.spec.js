@@ -106,8 +106,6 @@ describe('GET /api/items', function() {
       testItem.save(function(err, data) {
         err.should.be.ok;
       })
-    })
-    Item.find({}).remove(function() {
 
       var testItem2 = new Item({
         title: 'New Item',

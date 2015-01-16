@@ -53,7 +53,7 @@ exports.index = function(req, res) {
 // Get a single order
 exports.show = function(req, res) {
   Order.findById(req.params.id)
-    .populate(order, 'orderItems user')
+    .populate('orderItems user')
     .exec(function(err) {
       if (err) {
         return handleError(res, err);
