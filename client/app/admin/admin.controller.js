@@ -162,14 +162,18 @@ angular.module('stackStoreApp')
     }
 
     $scope.deleteCat = function(item, catId) {
-      var index = 0;
-      item.categories.forEach(function(category) {
-        if (category._id === catId) {
-          index = category._id;
-        }
-      })
-      item.categories.splice(index, 1);
-      $scope.updateItemDetail(item);
+      if (item.categories.length <= 1) {
+        alert("Items must have at least one category!")
+      } else {
+        var index = 0;
+        item.categories.forEach(function(category) {
+          if (category._id === catId) {
+            index = category._id;
+          }
+        })
+        item.categories.splice(index, 1);
+        $scope.updateItemDetail(item);
+      }
     }
     ////////////////////////////////////////////////////////////////////////////////
 
