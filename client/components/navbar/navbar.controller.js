@@ -18,6 +18,11 @@ angular.module('stackStoreApp')
       $location.path('/login');
     };
 
+    $scope.adminChecker = function(){
+      return Auth.isAdmin();
+    }
+
+
     $scope.isActive = function(route) {
       return route === $location.path();
     };
