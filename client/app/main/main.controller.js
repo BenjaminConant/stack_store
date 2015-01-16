@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('MainCtrl', function($scope, $http, socket, Auth) {
+  .controller('MainCtrl', function($scope, $http, socket, Auth, orderItems, cartTotal) {
+
     $scope.awesomeThings = [];
-    $scope.orderItems = [];
+    $scope.orderItems = orderItems;
+    $scope.cartTotal = cartTotal;
     $scope.showCartDropdown = false;
 
 
@@ -49,10 +51,13 @@ angular.module('stackStoreApp')
           .success(function(data) {
             console.log('This is the order from the server', data);
             var lineItems = data.orderItems;
-            $scope.orderItems = lineItems;
-            $scope.cartTotal = 0;
+            //$scope.orderItems = lineItems;
+            $scope.orderItems.set(lineItems);
+            //$scope.cartTotal = 0;
+            $scope.cartTotal.set(0);
             lineItems.forEach(function(lineItem) {
-              $scope.cartTotal += lineItem.value;
+              //$scope.cartTotal += lineItem.value;
+              $scope.cartTotal.adjust(lineItem.value);
             });
           });
     }
@@ -100,7 +105,6 @@ angular.module('stackStoreApp')
     };
 
 
-
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
     };
@@ -108,4 +112,6 @@ angular.module('stackStoreApp')
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
+
+
   });

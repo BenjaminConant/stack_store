@@ -1,5 +1,5 @@
 <div id="cart-dropdown">
-  <table class="table table-striped" ng-show="orderItems.length">
+  <table class="table table-striped" ng-show="orderItems.get().length">
     <thead>
       <tr>
         <th>Title</th>
@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="lineItem in orderItems">
+      <tr ng-repeat="lineItem in orderItems.get()">
         <td>{{lineItem.item.title}}</td>
         <td style="text-align:center;">{{lineItem.quantity}}</td>
         <td>{{lineItem.value | currency : $ : 2}}</td>
@@ -16,11 +16,11 @@
       <tr>
         <td></td>
         <td style="font-weight:bold;">Subtotal</td>
-        <td style="font-weight:bold;">{{cartTotal | currency : $ : 2}}</td>
+        <td style="font-weight:bold;">{{cartTotal.get() | currency : $ : 2}}</td>
       </tr>
     </tbody>
   </table>
-  <h3 class="empty-cart" ng-hide="orderItems.length">Cart is Empty!</h3>
+  <h3 class="empty-cart" ng-hide="orderItems.get().length">Cart is Empty!</h3>
   <div class="row">
     <div class="col-xs-6">
       <button class="btn checkout-button" style="display:block;margin:auto;margin-bottom:2rem;">Checkout!</button>
