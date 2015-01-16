@@ -28,8 +28,14 @@ angular.module('stackStoreApp')
           $http.get("/api/orders").success(function(orders){
             $scope.orders = [];
             orders.forEach(function(order) {
-              if (order.status !== "pending")  $scope.orders.push(order);
-            })
+              if (order.status !== "pending") {
+                order.total = 0;
+                order.orderItems.forEach(function(item) {
+                  order.total += item.value;
+                });
+                $scope.orders.push(order);
+              }
+            });
             $scope.items = items;
             $scope.cat = cat;
             console.log(orders);
@@ -201,6 +207,11 @@ angular.module('stackStoreApp')
       console.log(orderStatus.category);
       order.status = orderStatus.category;
       order.user = [order.user._id];
+      var orderItemIds = [];
+      order.orderItems.forEach(function(orderItem){
+        orderItemIds.push(orderItem._id);
+      }); 
+      order.orderItems = orderItemIds;
       console.log("this is the order we we send", order)
       $http.put('api/orders/' + order._id, order).success(function(order){
         alert("This orders order status has been changed to " + order.status);

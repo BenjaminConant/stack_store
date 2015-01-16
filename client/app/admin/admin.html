@@ -128,42 +128,63 @@
 						<input ng-model="filterStatus" value="""" name="orderStatusRadio" type="radio"> All
 				
 					
-						<input ng-model="filterStatus" value="created" name="orderStatusRadio" type="radio"> Created
+						<input ng-model="filterStatus" value="Created" name="orderStatusRadio" type="radio"> Created
 				
-						<input ng-model="filterStatus" value="processing" name="orderStatusRadio" type="radio"> Processing
+						<input ng-model="filterStatus" value="Processing" name="orderStatusRadio" type="radio"> Processing
 				
-						<input ng-model="filterStatus" value="cancelled" name="orderStatusRadio" type="radio"> Cancelled
+						<input ng-model="filterStatus" value="Cancelled" name="orderStatusRadio" type="radio"> Cancelled
 			
-						<input ng-model="filterStatus" value="complete" name="orderStatusRadio" type="radio"> Completed
+						<input ng-model="filterStatus" value="Completed" name="orderStatusRadio" type="radio"> Completed
 				</div>
 				<accordion>
 					
 					<accordion-group ng-repeat="order in orders | filter: {status: filterStatus}">
 						<accordion-heading>
 							<div class="row">
-								<div class="col-xs-6 col-sm-3">
+								<div class="col-xs-3 col-sm-3">
 									{{order.user.email}}
 								</div>
-								<div class="col-xs-6 col-sm-3">
+								<div class="col-xs-3 col-sm-3">
 									{{order.status}}
 								</div>
-								<div class="col-xs-6 col-sm-3">
+								<div class="col-xs-3 col-sm-3">
 									{{order.date}}
 								</div>
-								<div class="col-xs-6 col-sm-3">
-									{{order.total}}
+								<div class="col-xs-3 col-sm-3">
+									{{order.total | currency : $ : 2 }}
 								</div>
 							</div>
 						</accordion-heading>
-
-
 						<div class="row">
-							<div>
-								<select ng-model="category" ng-change="changeOrderStatus(order, this)" name="" id="">
+							<div class="col-xs-3 col-xs-offset-3 col-sm-3 col-sm-offset-3">
+								<select ng-model="category" ng-change="changeOrderStatus(order, this)" name="">
 									<option value="">Change Order Status</option>
 									<option value="{{status}}" ng-repeat="status in possibleStatus">{{status}}</option>
 								</select>
 							</div>
+						</div>
+						<div class="row">
+							<table class="table table-striped">
+							    <thead>
+							      <tr>
+							        <th>Title</th>
+							        <th>Qty.</th>
+							        <th>Price</th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							      <tr ng-repeat="lineItem in order.orderItems">
+							        <td>{{lineItem.item.title}}</td>
+							        <td style="text-align:center;">{{lineItem.quantity}}</td>
+							        <td>{{lineItem.value | currency : $ : 2}}</td>
+							      </tr>
+							      <tr>
+							        <td></td>
+							        <td style="font-weight:bold;">Subtotal</td>
+							        <td style="font-weight:bold;">{{order.total | currency : $ : 2}}</td>
+							      </tr>
+							    </tbody>
+							  </table>
 						</div>
 					</accordion-group>
 				</accordion>
