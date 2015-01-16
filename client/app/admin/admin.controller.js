@@ -42,46 +42,33 @@ angular.module('stackStoreApp')
 
     ///////// Adding an Item ////////////////
     $scope.submitItem = function() {
-      $scope.items.push({
-        title: "TEST",
-        image: "asdada",
-          description: "adasasd",
-          defaultMessage: "asdad",
-          categories: "bad"
+      var newItem = {
+        title: $scope.title,
+        image: $scope.image,
+        description: $scope.description,
+        defaultMessage: $scope.message,
+        categories: $scope.categories
+      };
 
-      });
+      if ($scope.categories.length > 0) {
+        $http.post('api/items', newItem)
+          .success(function(item) {
+            // if (err) {
+            //   console.log(err);
+            // }
+            console.log(item);
+            $scope.items.push(item);
+            $scope.title = "";
+            $scope.image = "";
+            $scope.description = "";
+            $scope.message = "";
 
-      console.log($scope.items);
-      // var newItem = {
-      //   title: $scope.title,
-      //   image: $scope.image,
-      //   description: $scope.description,
-      //   defaultMessage: $scope.message,
-      //   categories: $scope.categories
-      // };
-      //
-      // console.log($scope.items);
-      //
-      // if ($scope.categories.length > 0) {
-      //   console.log("before post", $scope.items);
-      //   $http.post('api/items', newItem)
-      //     .success(function(item) {
-      //       // if (err) {
-      //       //   console.log(err);
-      //       // }
-      //       console.log(item);
-      //       $scope.items.push(item);
-      //       $scope.title = "";
-      //       $scope.image = "";
-      //       $scope.description = "";
-      //       $scope.message = "";
-      //
-      //       console.log("after post", $scope.items);
-      //       // alert("Successfully added to database!")
-      //     })
-      // } else {
-      //   // alert("must have at least one cat")
-      // }
+            console.log("after post", $scope.items);
+            alert("Successfully added to database!")
+          })
+      } else {
+        alert("must have at least one cat")
+      }
     }
 
 
