@@ -159,14 +159,12 @@
 
 						<div class="row">
 							<div>
-								<select ng-model="category" ng-change="updateItemDetail(item, this)" name="" id="">
+								<select ng-model="category" ng-change="changeOrderStatus(order, this)" name="" id="">
 									<option value="">Change Order Status</option>
-									<option value="{{category}}" ng-repeat="category in cat">{{category.name}}</option>
+									<option value="{{status}}" ng-repeat="status in possibleStatus">{{status}}</option>
 								</select>
 							</div>
 						</div>
-						<p>The body of the accordion group grows to fit the contents</p>
-						<div ng-repeat="item in items">fghjfghjf</div>
 					</accordion-group>
 				</accordion>
 			</div>

@@ -70,6 +70,7 @@ exports.create = function(req, res) {
 
 // Updates an existing order in the DB.
 exports.update = function(req, res) {
+  console.log(req.body);
   if (req.body._id) {
     delete req.body._id;
   }
