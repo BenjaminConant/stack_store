@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-lg-12">
             <div class="row">
-              <item-thumbnail ng-repeat='item in store.allItems'></item-thumbnail>
+              <item-thumbnail ng-repeat='item in store.allItems | filter:store.available'></item-thumbnail>
             </div>
             {{store.cart}}
         </div>

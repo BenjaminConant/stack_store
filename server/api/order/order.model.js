@@ -8,14 +8,16 @@ var OrderSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'LineItem'
 	}],
-	userId: {
+	user: {
 		type: Schema.Types.ObjectId,
-		ref: 'User'
+		ref: 'User',
+		required: true
 	},
 	status: {
 		type: String,
 		default: 'pending'
-	}
+	},
+	creationDate: Date
 });
 
 module.exports = mongoose.model('Order', OrderSchema);
