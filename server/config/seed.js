@@ -241,6 +241,11 @@ LineItem.find({}).remove(function() {
   lineItem1.save();
   lineItem2.save();
   lineItem3.save();
+  lineItem4.save();
+  lineItem5.save();
+  lineItem6.save();
+  lineItem7.save();
+
 });
 // Order.find({}).remove();
 
