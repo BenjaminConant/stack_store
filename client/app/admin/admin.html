@@ -125,16 +125,16 @@
 				<h2 style="text-align:center;">Orders</h2>
 				<div class="row order-status">
 					
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" ng-value="" name="orderStatusRadio" type="radio"> All
+						<input ng-model="filterStatus" value="""" name="orderStatusRadio" type="radio"> All
 				
 					
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="pending" name="orderStatusRadio" type="radio"> Pending
+						<input ng-model="filterStatus" value="created" name="orderStatusRadio" type="radio"> Created
 				
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="cancelled" name="orderStatusRadio" type="radio"> Cancelled
+						<input ng-model="filterStatus" value="processing" name="orderStatusRadio" type="radio"> Processing
 				
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="complete" name="orderStatusRadio" type="radio"> Completed
+						<input ng-model="filterStatus" value="cancelled" name="orderStatusRadio" type="radio"> Cancelled
 			
-						<input ng-change="changedStatusRadio()" ng-model="filterStatus" value="created" name="orderStatusRadio" type="radio"> Created
+						<input ng-model="filterStatus" value="complete" name="orderStatusRadio" type="radio"> Completed
 				</div>
 				<accordion>
 					

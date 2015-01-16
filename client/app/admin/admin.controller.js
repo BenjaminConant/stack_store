@@ -18,22 +18,19 @@ angular.module('stackStoreApp')
     $scope.availabilityFalse = false;
     $scope.availabilityTrue = true;
     $scope.itemAvailable = true;
-    $scope.orders;
+    $scope.orders = [];
     $scope.filterStatus = "";
-    console.log($scope.filterStatus);
-
-    $scope.changedStatusRadio = function () {
-      console.log($scope.filterStatus);
-    }
-
 
     // get all data used in view
     $scope.getData = function() {
       $http.get("/api/categorys").success(function(cat) {
         $http.get("/api/items").success(function(items) {
           $http.get("/api/orders").success(function(orders){
+            orders.forEach(function(order) {
+              if (order.status !== "pending")  $scope.orders.push(order);
+            })
             $scope.items = items;
-            $scope.orders = orders;
+            $scope.cat = cat;
             console.log(orders);
           })
         })
