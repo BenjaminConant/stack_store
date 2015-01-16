@@ -455,7 +455,7 @@ span.text-content {
 .add-category-group {
   text-align: center;
 }
-/* 
+/*
 #flash-messages {
   text-align:center;
   list-style-type:none;
@@ -475,3 +475,10 @@ span.text-content {
   slide-down-leave 500ms 3s ease;
 }
  */
+
+.order-status {
+  background-color: #eee;
+  border-radius: 5px;
+  padding:2rem;
+  margin: 1rem;
+}
