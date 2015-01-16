@@ -208,19 +208,19 @@ var lineItem7 = new LineItem({
 })
 
 var pastOrder1 = new Order({
-  status: 'complete',
+  status: 'Completed',
   orderItems: [lineItem4._id, lineItem5._id],
   user: user2._id
 });
 
 var pastOrder2 = new Order({
-  status: 'complete',
+  status: 'Processing',
   orderItems: [lineItem6._id],
   user: user1._id
 });
 
 var pastOrder3 = new Order({
-  status: 'complete',
+  status: 'Cancelled',
   orderItems: [lineItem7._id],
   user: user1._id
 })
@@ -241,6 +241,11 @@ LineItem.find({}).remove(function() {
   lineItem1.save();
   lineItem2.save();
   lineItem3.save();
+  lineItem4.save();
+  lineItem5.save();
+  lineItem6.save();
+  lineItem7.save();
+
 });
 // Order.find({}).remove();
 
