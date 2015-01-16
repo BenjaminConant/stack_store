@@ -120,5 +120,61 @@
 
 		</div>
 		<hr>
+		<div class="container">
+			<div ng-controller="AccordionCtrl">
+				<h2 style="text-align:center;">Orders</h2>
+				<div class="row order-status">
+					<div class="col-xs-3">
+						<input name="orderStatusRadio" type="radio"> Created
+					</div>
+					<div class="col-xs-3">
+						<input name="orderStatusRadio" type="radio"> Processing
+					</div>
+					<div class="col-xs-3">
+						<input name="orderStatusRadio" type="radio"> Cancelled
+					</div>
+					<div class="col-xs-3">
+						<input name="orderStatusRadio" type="radio"> Completed
+					</div>
+				</div>
+				<accordion>
+					<accordion-group>
+						<accordion-heading>
+							<div class="row">
+								<div class="col-xs-6 col-sm-3">
+									User
+								</div>
+								<div class="col-xs-6 col-sm-3">
+									Status
+								</div>
+								<div class="col-xs-6 col-sm-3">
+									Date
+								</div>
+								<div class="col-xs-6 col-sm-3">
+									Total
+								</div>
+							</div>
+						</accordion-heading>
+						<div class="row">
+							<div class="col-xs-6 col-sm-3">
+								ccol
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								col
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								col
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								col
+							</div>
+						</div>
+						<p>The body of the accordion group grows to fit the contents</p>
+						<div ng-repeat="item in items"></div>
+					</accordion-group>
+				</accordion>
+			</div>
+		</div>
+		<hr>
 	</div>
 </div>
