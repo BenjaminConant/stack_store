@@ -40,11 +40,22 @@ var user1 = new User({
 
 });
 
-Order.find({}).remove(function () {
-  order.save();
+order.userId = user1._id;
 
+
+var user2 = new User({
+  provider: 'local',
+  name: 'Test User',
+  email: 'test@test.com',
+  password: 'test'
 });
-
+var user3 = new User({
+  provider: 'local',
+  role: 'admin',
+  name: 'Admin',
+  email: 'admin@admin.com',
+  password: 'admin'
+});
 
 
 var item1 = new Item({
@@ -83,6 +94,42 @@ var item3 = new Item({
   stars: 5
 });
 
+var item4 = new Item({
+  title: 'Savory Card',
+  image: 'http://www.breakmyface.com/images/funthings.jpg',
+  defaultMessage: 'Happy Celebratory Day, Nimit!',
+  description: 'This card is for Savory category of things',
+  reviews: [],
+  buyCount: 0,
+  purchaseHistory: [],
+  categories: [good._id],
+  stars: 5
+});
+
+var item5 = new Item({
+  title: 'Salty Card',
+  image: 'http://www.bopandtigerbeat.com/wp-content/uploads/2013/08/00summertreatpoll.jpg',
+  defaultMessage: 'Happy Celebratory Day, Nimit!',
+  description: 'This card is for Salty category of things',
+  reviews: [],
+  buyCount: 0,
+  purchaseHistory: [],
+  categories: [good._id, bad._id],
+  stars: 5
+});
+
+var item6 = new Item({
+  title: 'Umami Card',
+  image: 'http://img.allw.mn/content/www/2010/02/10-fun-things-to-do-with-kids-in-winter/Make-hot-chocolate_fun-things-do-kids-winter.jpg',
+  defaultMessage: 'Happy Celebratory Day, Nimit!',
+  description: 'This card is for Umami category of things',
+  reviews: [],
+  buyCount: 0,
+  purchaseHistory: [],
+  categories: [good._id, ugly._id],
+  stars: 5
+});
+
 var lineItem1 = new LineItem({
   item: item1._id,
   sender: user1._id,
@@ -116,11 +163,76 @@ var lineItem3 = new LineItem({
   quantity: 1
 });
 
-Item.find({}).remove(function () {
+var lineItem4 = new LineItem({
+  item: item4._id,
+  sender: user2._id,
+  receiverName: "Bob the Builder",
+  receiverEmail: "bob@builder.com",
+  message: "go build a thing",
+  longMessage: "yes he can!",
+  value: 2000,
+  quantity: 1
+});
+
+var lineItem5 = new LineItem({
+  item: item5._id,
+  sender: user2._id,
+  receiverName: "Spiderman",
+  receiverEmail: "peter@parker.com",
+  message: "spider man, spider man",
+  longMessage: "does whatever a spider can",
+  value: 2000,
+  quantity: 1
+});
+
+var lineItem6 = new LineItem({
+  item: item6._id,
+  sender: user1._id,
+  receiverName: 'Slim Shady',
+  receiverEmail: 'therealslimshady@gmail.com',
+  message: "he's slim shady",
+  longMessage: "the real slim shady",
+  value: 3000,
+  quantity: 4
+});
+
+var lineItem7 = new LineItem({
+  item: item1._id,
+  sender: user1._id,
+  receiverName: "Calamity Jane",
+  receiverEmail: "calamity@jane.com",
+  message: 'this is a stickup',
+  longMessage: 'yes it is... running out of ideas',
+  value: 5000,
+  quantity: 2
+})
+
+var pastOrder1 = new Order({
+  status: 'complete',
+  orderItems: [lineItem4._id, lineItem5._id],
+  userId: user2._id
+});
+
+var pastOrder2 = new Order({
+  status: 'complete',
+  orderItems: [lineItem6._id],
+  userId: user1._id
+});
+
+var pastOrder3 = new Order({
+  status: 'complete',
+  orderItems: [lineItem7._id],
+  userId: user1._id
+})
+
+Item.find({}).remove(function() {
 
   item1.save();
   item2.save();
   item3.save();
+  item4.save();
+  item5.save();
+  item6.save();
 });
 
 
@@ -132,48 +244,11 @@ LineItem.find({}).remove(function() {
 });
 // Order.find({}).remove();
 
-Category.find({}).remove(function () {
+Category.find({}).remove(function() {
   good.save();
   bad.save();
   ugly.save();
 });
-
-
-Item.find({}).remove(function () {
-  Item.create({
-    title: 'Savory Card',
-    image: 'http://www.breakmyface.com/images/funthings.jpg',
-    defaultMessage: 'Happy Celebratory Day, Nimit!',
-    description: 'This card is for Savory category of things',
-    reviews: [],
-    buyCount: 0,
-    purchaseHistory: [],
-    categories: [good._id],
-    stars: 5
-  }, {
-    title: 'Salty Card',
-    image: 'http://www.bopandtigerbeat.com/wp-content/uploads/2013/08/00summertreatpoll.jpg',
-    defaultMessage: 'Happy Celebratory Day, Nimit!',
-    description: 'This card is for Salty category of things',
-    reviews: [],
-    buyCount: 0,
-    purchaseHistory: [],
-    categories: [good._id, bad._id],
-    stars: 5
-  }, {
-    title: 'Umami Card',
-    image: 'http://img.allw.mn/content/www/2010/02/10-fun-things-to-do-with-kids-in-winter/Make-hot-chocolate_fun-things-do-kids-winter.jpg',
-    defaultMessage: 'Happy Celebratory Day, Nimit!',
-    description: 'This card is for Umami category of things',
-    reviews: [],
-    buyCount: 0,
-    purchaseHistory: [],
-    categories: [good._id, ugly._id],
-    stars: 5
-  });
-});
-
-
 
 //
 //
@@ -189,23 +264,17 @@ Item.find({}).remove(function () {
 //   User.findOne({name: 'a'});
 // });
 
+Order.find({}).remove(function() {
+  order.save();
+  pastOrder1.save();
+  pastOrder2.save();
+  pastOrder3.save();
 
-User.find({}).remove(function () {
+});
+
+User.find({}).remove(function() {
   user1.save();
+  user2.save();
+  user3.save();
 
-  User.create({
-    provider: 'local',
-    name: 'Test User',
-    email: 'test@test.com',
-    password: 'test'
-  }, {
-    provider: 'local',
-    role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
-    password: 'admin'
-  }, function () {
-
-    console.log('finished populating users');
-  });
 });
