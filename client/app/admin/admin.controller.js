@@ -154,54 +154,23 @@ angular.module('stackStoreApp')
       console.log("this is the imte we send", item);
       $http.put("/api/items/" + item._id, item).success(function(item){
 
-        console.log("this is item being sent",item);
-        // $scope.getItems();
+        console.log("this is item being received",item);
+        $scope.getData();
+
 
       });
     }
 
     $scope.deleteCat = function(item, catId) {
-      var itemCatArray = []; // This has all the IDs of the categories in the item
+      var index = 0;
       item.categories.forEach(function(category) {
-        itemCatArray.push(category._id);
+        if (category._id === catId) {
+          index = category._id;
+        }
       })
-      var index = itemCatArray.indexOf(catId); //this is the index of what we want to remove
-      itemCatArray.splice(index, 1);
-      item.categories = itemCatArray;
+      item.categories.splice(index, 1);
       $scope.updateItemDetail(item);
-      // $scope.getItems();
     }
     ////////////////////////////////////////////////////////////////////////////////
 
   });
-
-
-
-
-
-
-
-
-  // $scope.getCategories = function() {
-  //   $http.get("/api/categorys").success(function(cat) {
-  //     $scope.cat = cat;
-  //   })
-  // }
-  // $scope.getCategories();
-  //
-  // $scope.getItems = function() {
-  //   $http.get("/api/items").success(function(items) {
-  //     $scope.items = items;
-  //   })
-  // }
-  // $scope.getItems();
-
-  // Use the User $resource to fetch all users
-
-  // var CategorySchema = new Schema({
-  //   name: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   popularity: Number
-  // });
