@@ -75,8 +75,11 @@ angular.module('stackStoreApp')
     //$scope.getLineItems();
 
     $scope.deleteLineItem = function(lineItem) {
-      $http.delete('/api/lineItems/' + lineItem._id);
-      $scope.getLineItems();
+      $http.delete('/api/lineItems/' + lineItem._id)
+        .success(function(){
+          $scope.getCart();
+        });
+      //$scope.getLineItems();
     };
 
     $scope.updateLineItemQuantity = function(lineItem) {
