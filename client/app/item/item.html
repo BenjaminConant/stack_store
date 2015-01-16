@@ -7,7 +7,7 @@
       <form class="form">
         <fieldset ng-disabled="!Item.currentItem.available">
           <h1 style="text-align:center;">{{Item.currentItem.title}}</h1>
-          <h1 style="text-align:center;" ng-hide="{{Item.currentItem.available}}">Product Unavailable</h1>
+          <h1 style="text-align:center;" ng-hide="Item.currentItem.available">Product Unavailable</h1>
           <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{Item.currentItem.image}}">
           <div class="row" style="margin:0 2rem;">
             <div class="col-xs-12 col-sm-6">
@@ -32,7 +32,6 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="Item.add2Cart(Item.currentItem, Item.newItem)">Add to Cart</button>
-          <h1>{{Item.newItem}}</h1>
         </fieldset>
       </form>
     </div>
