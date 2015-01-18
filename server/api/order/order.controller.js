@@ -52,58 +52,81 @@ exports.index = function(req, res) {
 
 // Get a single order
 exports.show = function(req, res) {
-  Order.findById(req.params.id)
-    .populate(order, 'orderItems user')
-    .exec(function(err) {
+  Order.findById(req.params.id, function(err, order) {
+
       if (err) {
         return handleError(res, err);
       }
       if (!order) {
         return res.send(404);
       }
-      Order.populate(order, {
+
+      Order.populate(order, 'orderItems', function() {
+        Order.populate(order, {
           path: 'orderItems.item',
           model: 'Item'
-        })
-        .exec(function(err) {
-          if (err) {
-            return handleError(res, err);
-          }
-          return res.json(order);
+        }, function() {
+          Order.populate(order, 'user', function() {
+            return res.json(order);
 
+          });
         });
-    });
-
-
-
-  // console.log(req.params.id);
-  // Order.findById(req.params.id, function(err, order) {
-
-
-  //   if (err) {
-  //     return handleError(res, err);
-  //   }
-  //   if (!order) {
-  //     return res.send(404);
-  //   }
-
-  //   Order.populate(order, 'orderItems', function() {
-  //     Order.populate(order, {
-  //       path: 'orderItems.item',
-  //       model: 'Item'
-  //     }, function() {
-  //       Order.populate(order, 'user', function() {
-  //         return res.json(order);
-
-  //       });
-  //     });
-  //   });
-  // });
-  // .populate('orderItems')
-  // .exec(function(err, orderItems){
-  //   console.log(err + orderItems);
-  // });
+      });
+    })
 };
+// exports.show = function(req, res) {
+//   Order.findById(req.params.id)
+//     .populate(order, 'orderItems user')
+//     .exec(function(err) {
+//       if (err) {
+//         return handleError(res, err);
+//       }
+//       if (!order) {
+//         return res.send(404);
+//       }
+//       Order.populate(order, {
+//           path: 'orderItems.item',
+//           model: 'Item'
+//         })
+//         .exec(function(err) {
+//           if (err) {
+//             return handleError(res, err);
+//           }
+//           return res.json(order);
+
+//         });
+//     });
+
+
+
+//   // console.log(req.params.id);
+//   // Order.findById(req.params.id, function(err, order) {
+
+
+//   //   if (err) {
+//   //     return handleError(res, err);
+//   //   }
+//   //   if (!order) {
+//   //     return res.send(404);
+//   //   }
+
+//   //   Order.populate(order, 'orderItems', function() {
+//   //     Order.populate(order, {
+//   //       path: 'orderItems.item',
+//   //       model: 'Item'
+//   //     }, function() {
+//   //       Order.populate(order, 'user', function() {
+//   //         return res.json(order);
+
+//   //       });
+//   //     });
+//   //   });
+//   // });
+//   // .populate('orderItems')
+//   // .exec(function(err, orderItems){
+//   //   console.log(err + orderItems);
+//   // });
+// };
 
 // Creates a new order in the DB.
 exports.create = function(req, res) {
