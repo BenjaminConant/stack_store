@@ -19,6 +19,11 @@ var LineItemSchema = new Schema({
 		type: String,
 		required: true
 	},
+	senderName: String,
+	senderEmail: {
+		type: String,
+		required: true
+	},
 	message: String,
 	longMessage: String,
 	value: {

@@ -5,10 +5,15 @@ angular.module('stackStoreApp')
     return function(item, optionsObj) {
 	    //find current user
 	    var user = Auth.getCurrentUser();
+	    console.log("---------");
+	    console.log(user);
+	    console.log("---------");
 	    //create temporary frontend object to send as req.body
 	    var tempLineItem = {
 	      item: item._id,
-	      sender: user._id,
+	      sender: user._id || null,
+	      senderName: user.name || optionsObj.senderName,
+	      senderEmail: user.email || optionsObj.senderEmail,
 	      receiverName: optionsObj.receiverName,
 	      receiverEmail: optionsObj.receiverEmail,
 	      message: optionsObj.message,
@@ -17,6 +22,9 @@ angular.module('stackStoreApp')
 	        // themeURL: item.image
 	    }
 
+	    console.log("---------");
+	    console.log(tempLineItem);
+	    console.log("---------");
 
 	    //if user has a cart: add to cart ONLY DO THIS IN FIRST STEP
 

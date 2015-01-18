@@ -7,7 +7,7 @@ angular.module('stackStoreApp')
   self.allItems = items.query();
   self.available = {available:true};
 
-  var user = Auth.getCurrentUser();
+  //var user = Auth.getCurrentUser();
 
   // if (user.$promise) {
   // 	console.log('User has a promise!');
@@ -36,6 +36,7 @@ angular.module('stackStoreApp')
 
   this.openModal = function(item) {
     $scope.currentItem = item;
+    $scope.user = Auth.getCurrentUser();
     $scope.modal = $modal.open({
       templateUrl: '../../components/modal/itemModal.html',
       scope: $scope
