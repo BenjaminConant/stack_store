@@ -14,6 +14,10 @@ angular.module('stackStoreApp')
           lineItems.forEach(function(lineItem){
             cartTotal.adjust(lineItem.value * lineItem.quantity);
           });
+        })
+        .error(function(err){
+          orderItems.set([]);
+          cartTotal.set(0);
         });
     }
 
