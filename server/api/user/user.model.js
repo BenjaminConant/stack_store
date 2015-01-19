@@ -32,6 +32,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  isGuest : Boolean,
   hashedPassword: String,
   provider: String,
   salt: String,
@@ -168,5 +169,21 @@ UserSchema.methods = {
     return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
   }
 };
+
+
+UserSchema.statics.findOrCreate = function(tempUser, cb)
+{
+  var self = this;
+  self.find({email:tempUser.email})
+    .exec(function(err, result)
+    {
+      if(err){return cb(err);}     
+      if(result.length){return cb(null, result[0]);}
+      self.create(tempUser, function(err, user){
+        if(err){cb(err);}
+        cb(null, user);
+      });
+    });
+}
 
 module.exports = mongoose.model('User', UserSchema);

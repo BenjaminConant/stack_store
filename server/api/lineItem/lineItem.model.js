@@ -11,8 +11,7 @@ var LineItemSchema = new Schema({
 	},
 	sender: {
 		type: Schema.Types.ObjectId,
-		ref: 'User',
-		required: true
+		ref: 'User'
 	},
 	receiverName: String,
 	receiverEmail: {
