@@ -235,14 +235,8 @@ angular.module('stackStoreApp')
     /////////////////////////////////////////////////////////////////////////////////
 
 
-
     /////////////////////////////// change a users password //////////////////////////
-    $scope.changePassword = function(user) {
-      console.log(user);
-      //$http.put('api/users/' + user._id + '/adminchangepassword')
+    $scope.changePassword = function(user, newPass) {
+      $http.put('api/users/' + user._id + '/adminchangepassword', {newPassword: user.newPassword});
     }
-
-
-
-
   });
