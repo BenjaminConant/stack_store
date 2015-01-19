@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('MainCtrl', function($scope, $http, socket, Auth, orderItems, cartTotal) {
+  .controller('MainCtrl', function($scope, $http, socket, Auth, orderItems, cartTotal, getCart) {
 
     $scope.awesomeThings = [];
+    $scope.getCart = getCart;
+    $scope.getCart.call();
     $scope.orderItems = orderItems;
     $scope.cartTotal = cartTotal;
+
     //$scope.showCartDropdown = false;
 
 
@@ -14,53 +17,54 @@ angular.module('stackStoreApp')
     //   socket.syncUpdates('thing', $scope.awesomeThings);
     // });
 
-    $scope.getCart = function() {
-      var user = Auth.getCurrentUser();
+    //$scope.getCart();
 
-      if (user.$promise) {
-        user.$promise.then(function(currentUser) {
-          cartServerCall(currentUser);
-          // $http.get('/api/orders/' + currentUser.cart)
-          //   .success(function(data) {
-          //     var lineItems = data.orderItems;
-          //     $scope.orderItems = lineItems;
-          //     $scope.cartTotal = 0;
-          //     lineItems.forEach(function(lineItem) {
-          //       $scope.cartTotal += lineItem.value;
-          //     });
-          //   });
-        });
-      } else {
-        cartServerCall(user);
-        // $http.get('/api/orders/' + user.cart)
-        //   .success(function(data) {
-        //     var lineItems = data.orderItems;
-        //     $scope.orderItems = lineItems;
-        //     $scope.cartTotal = 0;
-        //     lineItems.forEach(function(lineItem) {
-        //       $scope.cartTotal += lineItem.value;
-        //     });
-        //   });
+    // $scope.getCart = function() {
+    //   var user = Auth.getCurrentUser();
 
-      }
-    };
-    $scope.getCart();
+    //   if (user.$promise) {
+    //     user.$promise.then(function(currentUser) {
+    //       cartServerCall(currentUser);
+    //       // $http.get('/api/orders/' + currentUser.cart)
+    //       //   .success(function(data) {
+    //       //     var lineItems = data.orderItems;
+    //       //     $scope.orderItems = lineItems;
+    //       //     $scope.cartTotal = 0;
+    //       //     lineItems.forEach(function(lineItem) {
+    //       //       $scope.cartTotal += lineItem.value;
+    //       //     });
+    //       //   });
+    //     });
+    //   } else {
+    //     cartServerCall(user);
+    //     // $http.get('/api/orders/' + user.cart)
+    //     //   .success(function(data) {
+    //     //     var lineItems = data.orderItems;
+    //     //     $scope.orderItems = lineItems;
+    //     //     $scope.cartTotal = 0;
+    //     //     lineItems.forEach(function(lineItem) {
+    //     //       $scope.cartTotal += lineItem.value;
+    //     //     });
+    //     //   });
 
-    function cartServerCall(user) {
-      $http.get('/api/orders/' + user.cart)
-          .success(function(data) {
-            console.log('This is the order from the server', data);
-            var lineItems = data.orderItems;
-            //$scope.orderItems = lineItems;
-            $scope.orderItems.set(lineItems);
-            //$scope.cartTotal = 0;
-            $scope.cartTotal.set(0);
-            lineItems.forEach(function(lineItem) {
-              //$scope.cartTotal += lineItem.value;
-              $scope.cartTotal.adjust(lineItem.value);
-            });
-          });
-    }
+    //   }
+    // };
+
+    // function cartServerCall(user) {
+    //   $http.get('/api/orders/' + user.cart)
+    //       .success(function(data) {
+    //         console.log('This is the order from the server', data);
+    //         var lineItems = data.orderItems;
+    //         //$scope.orderItems = lineItems;
+    //         $scope.orderItems.set(lineItems);
+    //         //$scope.cartTotal = 0;
+    //         $scope.cartTotal.set(0);
+    //         lineItems.forEach(function(lineItem) {
+    //           //$scope.cartTotal += lineItem.value;
+    //           $scope.cartTotal.adjust(lineItem.value);
+    //         });
+    //       });
+    // }
 
     // $scope.getLineItems = function() {
     // $http.get('/api/lineItems').success(function(lineItems) {
@@ -73,23 +77,6 @@ angular.module('stackStoreApp')
 
 
     //$scope.getLineItems();
-
-    $scope.deleteLineItem = function(lineItem) {
-      $http.delete('/api/lineItems/' + lineItem._id)
-        .success(function(){
-          $scope.getCart();
-        });
-      //$scope.getLineItems();
-    };
-
-    $scope.updateLineItemQuantity = function(lineItem) {
-      console.log(lineItem);
-      $http.put('/api/lineItems/' + lineItem._id, lineItem);
-    }
-
-    $scope.editLineItem = function(lineItem) {
-      console.log(lineItem);
-    }
 
 
     // $scope.toggleShowCartDropdown = function() {

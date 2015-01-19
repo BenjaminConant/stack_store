@@ -52,7 +52,6 @@ angular.module('stackStoreApp')
 
   self.productView = function()
   {
-    console.log("hey");
     //$window.location.href = '/item/' + $scope.currentItem._id;
     $scope.modal.close();
   }

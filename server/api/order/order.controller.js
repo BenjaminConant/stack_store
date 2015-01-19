@@ -55,7 +55,9 @@ exports.show = function(req, res) {
   Order.findById(req.params.id)
     .populate('orderItems user')
     .exec(function(err, order) {
-
+      console.log("------");
+      console.log(order);
+      console.log("------");
       if (err) {
         return handleError(res, err);
       }
