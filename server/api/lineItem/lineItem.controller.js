@@ -42,7 +42,7 @@ exports.create = function(req, res) {
     }
     if (!lineItem.sender) return res.json(201, lineItem);
 
-    Order.findOneAndUpdate({ userId:lineItem.sender._id },
+    Order.findOneAndUpdate({ userId:lineItem.sender._id, status:'cart' },
     {$push: { orderItems: lineItem._id }},
       function(err, order) {
         console.log('We found this order: ', order);
