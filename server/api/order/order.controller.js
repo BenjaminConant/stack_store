@@ -54,7 +54,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   Order.findById(req.params.id)
     .populate('orderItems user')
-    .exec(function(err) {
+    .exec(function(err, order) {
       if (err) {
         return handleError(res, err);
       }
@@ -62,16 +62,15 @@ exports.show = function(req, res) {
         return res.send(404);
       }
       Order.populate(order, {
-          path: 'orderItems.item',
-          model: 'Item'
-        })
-        .exec(function(err) {
-          if (err) {
-            return handleError(res, err);
-          }
-          return res.json(order);
+        path: 'orderItems.item',
+        model: 'Item'
+      }, function(err, data) {
+        if (err) {
+          return handleError(res, err);
+        }
+        return res.json(order);
 
-        });
+      });
     });
 
 
