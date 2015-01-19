@@ -15,9 +15,18 @@ var OrderSchema = new Schema({
 	},
 	status: {
 		type: String,
-		default: 'pending'
+		default: 'cart'
 	},
 	creationDate: Date
 });
+
+// Validate there is at least one category
+OrderSchema
+	.path('status')
+	.validate(function(value, respond) {
+		var self = this;
+		var match = value.match(/cart|created|processing|cancelled|completed/i);
+		respond(!!match);
+	}, 'Order status can only be cart, created, processing, cancelled, completed.');
 
 module.exports = mongoose.model('Order', OrderSchema);
