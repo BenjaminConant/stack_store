@@ -30,6 +30,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Review.create(req.body, function(err, review) {
     if (err) {
+      console.log(err);
       return res.json(422, err);
       //return handleError(res, err); 
     }

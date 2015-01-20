@@ -42,7 +42,8 @@
                 <td>{{lineItem.item.title}}</td>
                 <td style="text-align:center;">{{lineItem.quantity}}</td>
                 <td>{{lineItem.value | currency : $ : 2}}</td>
-                <td><button ng-click="openModal(lineItem.item)" class="btn btn-default" >Review</button></td>
+                <td><button ng-click="openModal(lineItem.item)" class="btn btn-default" ng-class="{disabled: lineItem.isReviewed}">Review</button> 
+                  <span ng-show="lineItem.isReviewed">You've already reviewed this item!</span></td>
               </tr>
               <tr>
                 <td></td>
