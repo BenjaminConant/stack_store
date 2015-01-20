@@ -33,30 +33,79 @@ exports.show = function(req, res) {
 };
 
 // Creates a new lineItem in the DB.
-exports.create = function(req, res) {
-  LineItem.create(req.body, function(err, lineItem) {
-    console.log('we created this lineItem: ', lineItem);
-    if (err) {
-      return res.json(422, err);
-      //return handleError(res, err);
-    }
-    if (!lineItem.sender) return res.json(201, lineItem);
+// exports.create = function(req, res) {
+//   LineItem.create(req.body, function(err, lineItem) {
+//     console.log('we created this lineItem: ', lineItem);
+//     if (err) {
+//       return res.json(422, err);
+//       //return handleError(res, err);
+//     }
+//     if (!lineItem.sender) return res.json(201, lineItem);
 
-    Order.findOneAndUpdate({ userId:lineItem.sender._id, status:'cart' },
-    {$push: { orderItems: lineItem._id }},
-      function(err, order) {
-        console.log('We found this order: ', order);
-        if (err) {
-          console.log(err);
-        }
-        console.log('lineItem unpopulated', lineItem);
-        LineItem.populate(lineItem, 'item', function() {
-        console.log('lineitem populated: ', lineItem)
-        return res.json(201, lineItem);
+//     Order.findOneAndUpdate({ userId:lineItem.sender._id },
+//     {$push: { orderItems: lineItem._id }},
+//       function(err, order) {
+//         console.log('We found this order: ', order);
+//         if (err) {
+//           console.log(err);
+//         }
+//         console.log('lineItem unpopulated', lineItem);
+//         LineItem.populate(lineItem, 'item', function() {
+//         console.log('lineitem populated: ', lineItem)
+//         return res.json(201, lineItem);
+//       });
+//     });
+//   });
+// };
+
+exports.create = function(req, res)
+{
+  var tempLineItem = req.body;
+
+  LineItem.create(tempLineItem, function(err, lineItem)
+  {
+    if(err){return res.json(422, err);}
+
+    if(lineItem.sender)
+    {
+      Order.findOneAndUpdate({ userId:lineItem.sender._id, status:'cart' },
+        {$push: { orderItems:lineItem._id }})
+        .exec(function(err, order)
+        {
+          if(err){return res.json(422, err);}
+          LineItem.populate(lineItem, 'item')
+            .exec(function()
+            {
+              return res.json(201, lineItem);
+            })
+        })
+    }
+
+    else
+    {
+      var tempUser = {
+        name : lineItem.senderName,
+        password : "xxxx",
+        email : lineItem.senderEmail,
+        isGuest : true
+      }
+      User.findOrCreate(tempUser, function(err, user)
+      {
+        if(err){return res.json(422, err);}
+        Order.findOrCreateAndAdd(user._id, lineItem, function(err, order)
+        {
+          if(err){return res.json(422, err);}
+          LineItem.populate(lineItem, 'item', function(err, result)
+          {
+            if(err){return res.json(422, err);}
+            return res.json(201, result);
+          })
+        })
+
       });
-    });
+    }
   });
-};
+}
 
 // exports.create = function(req, res) {
 //   LineItem.create(req.body, function(err, lineItem) {

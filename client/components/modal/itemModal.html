@@ -8,6 +8,14 @@
   <h1 style="text-align:center;">{{currentItem.title}}</h1>
   <a href="/item/{{currentItem._id}}"><img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{currentItem.image}}" ng-click="store.productView()"></a>
   <div class="row" style="margin:0 2rem;">
+    <div class="col-xs-12 col-sm-6" ng-hide="user.name">
+      <label for="receiverName">Sender Name:</label>
+      <input type="text" class="form-control" id="senderName" ng-model="newItem.senderName"></input>
+    </div>
+    <div class="col-xs-12 col-sm-6" ng-hide="user.name">
+      <label for="receiverEmail">Sender Email:</label>
+      <input type="text" class="form-control" id="senderEmail" ng-model="newItem.senderEmail"></input>
+    </div>
     <div class="col-xs-12 col-sm-6">
       <label for="receiverName">Recipient Name:</label>
       <input type="text" class="form-control" id="receiverName" ng-model="newItem.receiverName"></input>

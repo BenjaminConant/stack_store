@@ -33,6 +33,7 @@
 
     <div class="nav-right">
       <span>
+        <span ng-hide="isLoggedIn()">Guest</span>
         <span ng-show="isAdmin()"><a href="/admin">Admin Panel</a></span>
         <div style="display:inline;padding-right:2rem;"><span class="badge cart-badge">{{orderItems.get().length}}</span><a href="#"><i ng-click="toggleShowCartDropdown()" class="glyphicon glyphicon-shopping-cart" style="font-size:1.6em;margin-top:1rem;"></i></a></div>
         <a href="/account">{{getCurrentUser().name}}</a>
