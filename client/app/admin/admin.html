@@ -7,11 +7,13 @@
 		    <li class="list-group-item" ng-repeat="user in users">
 		        <strong>{{user.name}}</strong><br>
 		        <span class="text-muted">{{user.email}}</span>
-		        <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-		        <a ng-click="makeAdmin(user)"><span class="btn btn-primary pull-right">make admin</span></a>
-		        <form class="pull-right" ng-submit="changePassword(user)">
-		        	<input type="text" placeholder="change password" ng-model="user.newPassword" />
-		        </form> 
+						<div class="password-change">
+							<a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+							<a ng-click="makeAdmin(user)"><span class="btn btn-primary pull-right">Make Admin</span></a>
+							<form class="pull-right" ng-submit="changePassword(user)">
+								<input type="password" placeholder="change password" class="form-control" ng-model="user.newPassword"/>
+							</form>
+						</div>
 		    </li>
 		  </ul>
 		</div>
@@ -85,28 +87,32 @@
 							<a href="#" ng-click="pickFile(item)"><img ng-src="{{item.image}}" alt="" style="height:100px;width:150px;"></a>
 							<!-- <span class="text-content"><span>Edit</span></span> -->
 						</div>
-						<div class="col-xs-2">
+						<div class="col-xs-1">
 							<p editable-text="item.title" onbeforesave="updateItemDetail(item)">{{item.title}}</p>
 						</div>
-						<div class="col-xs-2">
+						<div class="col-xs-1">
 							<p editable-text="item.description" onbeforesave="updateItemDetail(item)">{{item.description}}</p>
 						</div>
-						<div class="col-xs-2">
+						<div class="col-xs-1">
 							<p editable-text="item.defaultMessage" onbeforesave="updateItemDetail(item)">{{item.defaultMessage}}</p>
 						</div>
-						<div class="col-xs-1">
-							{{item.available}}
-							<select ng-model="availability" ng-change="changeAvailability(item, this)" name="" id="">
+						<div class="col-xs-2">
+							<div>
+								{{item.available ? "Available" : "Not Available"}}
+							</div>
+<!-- 							<input type="radio" name="itemAvailabilityRadios{{\$index}}" ng-model="item.availability" ng-value="item.availability" ng-change="changeAvailability(item, this)"> Available
+<input type="radio" name="itemAvailabtiliyRadios{{\$index}}" ng-model="!item.availability" ng-value="!item.availability" ng-change="changeAvailability(item, this)"> Not Available
+ -->					<select style="margin:1rem;" ng-model="availability" ng-change="changeAvailability(item, this)" name="" id="">
 								<option value="">Change Availability</option>
 								<option ng-value="availabilityTrue">Available</option>
 								<option ng-value="availabilityFalse">Not Available</option>
 							</select>
 						</div>
-						<div class="col-xs-2" style="overflow:scroll;">
+						<div class="col-xs-3" style="overflow:scroll;">
 							<span class="admin-category" ng-repeat="cat in item.categories">
 								{{cat.name}} <a ng-click="deleteCat(item, cat._id)" class="remove-category" href="#">&times;</a>
 							</span>
-							<div>
+							<div style="margin:1rem;">
 								<select ng-model="category" ng-change="updateItemDetail(item, this)" name="" id="">
 									<option value="">Add new category</option>
 									<option value="{{category}}" ng-repeat="category in cat">{{category.name}}</option>
@@ -128,20 +134,20 @@
 			<div ng-controller="AccordionCtrl">
 				<h2 style="text-align:center;">Orders</h2>
 				<div class="row order-status">
-					
+
 						<input ng-model="filterStatus" value="""" name="orderStatusRadio" type="radio"> All
-				
-					
+
+
 						<input ng-model="filterStatus" value="Created" name="orderStatusRadio" type="radio"> Created
-				
+
 						<input ng-model="filterStatus" value="Processing" name="orderStatusRadio" type="radio"> Processing
-				
+
 						<input ng-model="filterStatus" value="Cancelled" name="orderStatusRadio" type="radio"> Cancelled
-			
+
 						<input ng-model="filterStatus" value="Completed" name="orderStatusRadio" type="radio"> Completed
 				</div>
 				<accordion>
-					
+
 					<accordion-group ng-repeat="order in orders | filter: {status: filterStatus}">
 						<accordion-heading>
 							<div class="row">
