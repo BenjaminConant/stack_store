@@ -1,13 +1,19 @@
-<div class="homepage-item col-sm-6 col-md-4 col-xs-12" ng-click="store.openModal(item)">
-	<a href="#" class="item-thumbnail">
-		<img class="z-depth-1" ng-src="{{item.image}}" alt="¯\_(ツ)_/¯">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6">
-				<p>{{item.title}}</p>
+<div class="homepage-item col-sm-6 col-md-4 col-xs-12">
+		<a href="#" class="item-thumbnail">
+			<img class="z-depth-1" ng-src="{{item.image}}" alt="¯\_(ツ)_/¯" ng-click="store.openModal(item)">
+		</a>
+		<div class="row item-thumbnail">
+<!-- 			<div class="col-xs-12 col-sm-6">
+				<p class="pull-right">{{item.title}}</p>
 			</div>
 			<div class="col-xs-12 col-sm-6">
-				<button class="btn customize-button z-depth-1">Customize!</button>
+				<button class="btn customize-button z-depth-1 pull-left" ng-click="store.openModal(item)">Customize!</button>
+			</div> -->
+			<div class="col-xs-12">
+				<div class="btn-group-vertical item-buttons" role="group">
+					<button class="btn btn-default" disabled>{{item.title}}</button>
+					<button type="button" class="btn btn-primary" ng-click="store.openModal(item)">Customize!</button>
+				</div>
 			</div>
 		</div>
-	</a>
 </div>

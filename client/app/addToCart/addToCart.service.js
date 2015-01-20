@@ -35,7 +35,7 @@ angular.module('stackStoreApp')
 	        //$scope.orderItems.push(newLineItem);
 	        orderItems.push(newLineItem);
 	        //$scope.cartTotal += newLineItem.value;
-	        cartTotal.adjust(newLineItem.value);
+	        cartTotal.adjust(newLineItem.value * newLineItem.quantity);
 	      });
 	 
 	      // .error(function(data, status) {

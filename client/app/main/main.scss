@@ -190,8 +190,7 @@ body {
 .nav-brand {
   font: 2em $title-font;
   letter-spacing: 0.25em;
-  text-align: center;
-  margin: 0.5rem 0 0 0;
+  margin: 0.5rem 0 0 50px;
   a {
   text-decoration: none !important;
   color: white !important;
@@ -264,10 +263,13 @@ body {
     text-decoration: none;
   }
   img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     overflow: hidden;
-    max-width: 100%;
     height: 20rem;
     border-radius: 5px;
+    width: 60%;
   }
 }
 
@@ -307,6 +309,21 @@ body {
   text-align: center;
   padding-bottom: 60px;
   padding-top: 60px;
+}
+
+.homepage-item {
+  margin-bottom: 20px;
+}
+
+.item-buttons {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    
+    button {
+      width: 50%;
+    }
 }
 
 #cart-dropdown {
