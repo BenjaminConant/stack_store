@@ -71,7 +71,7 @@ angular.module('stackStoreApp')
 	    //Push line item to users cart
 	    //
 
-	    $http.post('/api/lineItems/', tempLineItem, newUser)
+	    $http.post('/api/lineItems/', tempLineItem)
 	      .success(function(newLineItem, status) {
 	        //newLineItem.item = item;
 	        //$scope.orderItems.push(newLineItem);
