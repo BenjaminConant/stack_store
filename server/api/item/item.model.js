@@ -64,7 +64,7 @@ ItemSchema
 	}, 'Items need at least 1 category.');
 
 ItemSchema.virtuals.stars = function() {
-	//this is an a product
+	// this is an a product
 	// return math...
 }
 
