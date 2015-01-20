@@ -5,7 +5,6 @@ angular.module('stackStoreApp')
   	return function (items, filterInputs) {
   		var catArray = filterInputs.catArray;
   		var liveSearch = filterInputs.liveSearch.toLowerCase();
-  		console.log(liveSearch);
   		var outputArray = [];
   		
   		// handel categories first
@@ -18,14 +17,21 @@ angular.module('stackStoreApp')
   		} else {
   			items.forEach(function(item){
   				if (item.available) {
-  					var itemPushed = false
+  					var itemPushed = false;
+  					var itemCats = [];
   					item.categories.forEach(function(cat){
-  						if ((catArray.indexOf(cat.name) !== -1) && !itemPushed) {
-  							outputArray.push(item);
-  							itemPushed = true;
-  						}
+  						itemCats.push(cat.name);
   					});
-  				}
+  					var pushItem = true;
+  					catArray.forEach(function(cat){
+  						if (itemCats.indexOf(cat) === -1) {
+  							pushItem = false;
+  						}
+  					})
+  					if (pushItem) {
+  						outputArray.push(item);
+  					}
+  				}	
   			});
   		}
   		// now handel live search
