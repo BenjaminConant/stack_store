@@ -1,4 +1,6 @@
   <!-- Sidebar -->
+  <div ng-controller="NavbarCtrl">
+
   <div id="sidebar-wrapper">
 
     <ul class="sidebar-nav">
@@ -16,39 +18,15 @@
       </li>
       <div class="category-group">
         <h4>Categories</h4>
-        <li>
-          <label><input type="checkbox"> Sports </label>
-        </li>
-        <li>
-          <label><input type="checkbox"> Politics </label>
-        </li>
-        <li>
-          <label><input type="checkbox"> Art </label>
-        </li>
-        <li>
-          <label><input type="checkbox"> Marriage </label>
-        </li>
-      </div>
-      <div class="category-group">
-        <h4>Companies</h4>
-        <li>
-          <label><input type="checkbox"> Amazon </label>
-        </li>
-        <li>
-          <label><input type="checkbox"> Best Buy </label>
-        </li>
-        <li>
-          <label><input type="checkbox"> Circuit City </label>
-        </li>
-        <li>
-          <label><input type="checkbox"> Brooks Brothers </label>
+        <li ng-repeat="cat in cats">
+          <label><input ng-model="foo" ng-change="addRemoveCat(this.cat.name)" type="checkbox"> {{cat.name}} </label>
         </li>
       </div>
     </ul>
   </div>
   <!-- /#sidebar-wrapper -->
 
-  <div class="top-nav" ng-controller="NavbarCtrl">
+  <div class="top-nav" >
     <div class="nav-left">
       <a href="#" id="navbar-toggle"><i class="fa fa-bars"></i></a>
     </div>
@@ -65,6 +43,7 @@
     <h2 class="nav-brand"><a href="/">SwiftCard</a></h2>
   </div>
   <div class="fixed-nav-padding">
+</div>
 
   <script>
   $("#navbar-toggle").click(function(e) {
