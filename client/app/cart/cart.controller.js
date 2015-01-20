@@ -23,4 +23,5 @@ angular.module('stackStoreApp')
       console.log(lineItem);
     }
 
+  $scope.getCart.call();
   });

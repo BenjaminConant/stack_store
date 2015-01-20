@@ -7,7 +7,9 @@ angular.module('stackStoreApp')
       'link': '/'
     }];
     $scope.selectedCats= "all";
-    $scope.liveSearch = ""
+    $scope.liveSearch = "";
+
+    getCart.call();
 
     $scope.changeLiveSearch = function (liveSearch) {
       $rootScope.$broadcast('liveSearchChange', liveSearch);

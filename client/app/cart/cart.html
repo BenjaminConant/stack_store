@@ -18,7 +18,7 @@
         <tbody>
           <tr ng-repeat="item in orderItems.get()">
             <td><img ng-src="{{item.item.image}}" alt=""></td>
-            <td>{{item.item.title}}</td>
+            <td><a ng-href="/item/{{item.item._id}}">{{item.item.title}}</a></td>
             <td>{{item.message}}</td>
             <td>{{item.longMessage}}</td>
             <td>{{item.receiverName}}</td>
