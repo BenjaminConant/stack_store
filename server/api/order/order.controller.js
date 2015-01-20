@@ -174,6 +174,7 @@ exports.create = function(req, res) {
 
 // Updates an existing order in the DB.
 exports.update = function(req, res) {
+  //debugger;
   console.log(req.body);
   if (req.body._id) {
     delete req.body._id;
@@ -185,13 +186,23 @@ exports.update = function(req, res) {
     if (!order) {
       return res.send(404);
     }
-    var updated = _.merge(order, req.body);
-    updated.save(function(err) {
-      if (err) {
-        return handleError(res, err);
-      }
+    
+    order.orderItems = order.orderItems.concat(req.body);
+
+    order.markModified('orderItems');
+
+    order.save(function(err){
+      if(err){return handleError(res, err);}
       return res.json(200, order);
-    });
+    })
+
+    // var updated = _.merge(order, req.body);
+    // updated.save(function(err) {
+    //   if (err) {
+    //     return handleError(res, err);
+    //   }
+    //   return res.json(200, order);
+    // });
   });
 };
 

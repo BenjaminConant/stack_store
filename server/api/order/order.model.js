@@ -37,7 +37,7 @@ OrderSchema.statics.findOrCreateAndAdd = function(userId, lineItem, cb)
 				});
 			}
 
-			self.create({status:'active', user:userId}, function(err, order)
+			self.create({status:'cart', user:userId}, function(err, order)
 			{
 				if(err){cb(err);}
 				order.orderItems.push(lineItem);
