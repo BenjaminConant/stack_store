@@ -10,8 +10,8 @@ var OrderSchema = new Schema({
 	}],
 	user: {
 		type: Schema.Types.ObjectId,
-		ref: 'User',
-		required: true
+		ref: 'User'/*,
+		required: true*/
 	},
 	status: {
 		type: String,
@@ -20,10 +20,10 @@ var OrderSchema = new Schema({
 	creationDate: Date
 });
 
-OrderSchema.statics.findOrCreateAndAdd = function(userId, lineItem, cb)
+OrderSchema.statics.findOrCreateAndAdd = function(cart, lineItem, cb)
 {
 	var self = this;
-	self.find({user:userId})
+	self.find({_id:cart})
 		.exec(function(err, result)
 		{
 			if(err){return cb(err);}
@@ -35,17 +35,21 @@ OrderSchema.statics.findOrCreateAndAdd = function(userId, lineItem, cb)
 					if(err){return cb(err);}
 					return cb(null, order);
 				});
-			}
+			} else{
 
-			self.create({status:'cart', user:userId}, function(err, order)
-			{
-				if(err){cb(err);}
-				order.orderItems.push(lineItem);
-				order.save(function(err, order){
+				self.create({}, function(err, order)
+				{
 					if(err){cb(err);}
-					cb(null, order);
-				})
-			});
+					order.orderItems.push(lineItem);
+					order.markModified('orderItems');
+					order.save(function(err, order){
+						if(err){cb(err);}
+
+						cb(null, order);
+
+					})
+				});
+			}
 		});
 }
 

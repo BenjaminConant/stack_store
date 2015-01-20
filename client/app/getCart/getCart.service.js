@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .factory('getCart', function (Auth, $http, orderItems, cartTotal) {
+  .factory('getCart', function (Auth, $http, orderItems, cartTotal, $cookieStore, $cookies) {
     // Service logic
     // ...
-    function cartServerCall(user) {
-      $http.get('/api/orders/' + user.cart)
+    function cartServerCall(cart) {
+      $http.get('/api/orders/' + cart)
         .success(function(data){
           var lineItems = data.orderItems;
           orderItems.set(lineItems);
@@ -38,7 +38,7 @@ angular.module('stackStoreApp')
             // }
             // else
             // {
-              return cartServerCall(currentUser);
+              return cartServerCall(currentUser.cart);
             //}
           });
         } else {
@@ -46,11 +46,16 @@ angular.module('stackStoreApp')
           // if(cb)
           // {
           //   //debugger;
-          //   return cb(cartServerCall(currentUser));            
+          //   return cb(cartServerCall(currentUser));
           // }
           // else
           // {
-            return cartServerCall(user);
+            if(!user._id){
+              var cookie = $cookies.cartCookie || 'noCartZone';
+              console.log('COokie ', cookie);
+              return cartServerCall(cookie);
+            }
+            return cartServerCall(user.cart);
           // }
         }
       }

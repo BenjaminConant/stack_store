@@ -61,6 +61,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res)
 {
   var tempLineItem = req.body;
+  var cart = req.body.cart;
 
   LineItem.create(tempLineItem, function(err, lineItem)
   {
@@ -83,25 +84,16 @@ exports.create = function(req, res)
 
     else
     {
-      var tempUser = {
-        name : lineItem.senderName,
-        password : "xxxx",
-        email : lineItem.senderEmail,
-        isGuest : true
-      }
-      User.findOrCreate(tempUser, function(err, user)
+      Order.findOrCreateAndAdd(cart, lineItem, function(err, order)
       {
         if(err){return res.json(422, err);}
-        Order.findOrCreateAndAdd(user._id, lineItem, function(err, order)
+        LineItem.populate(lineItem, 'item', function(err, result)
         {
           if(err){return res.json(422, err);}
-          LineItem.populate(lineItem, 'item', function(err, result)
-          {
-            if(err){return res.json(422, err);}
-            return res.json(201, result);
-          })
+          var returnedObj = {orderId: order._id, lineItem: result}
+          console.log(returnedObj)
+          return res.json(201, returnedObj);
         })
-
       });
     }
   });
