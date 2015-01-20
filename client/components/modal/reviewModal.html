@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+  <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body">
+  <p ng-if="modal.text" ng-bind="modal.text"></p>
+  <form class="modal-form">
+    <h1 style="text-align:center;">{{currentItem.title}}</h1>
+    <a href="/item/{{currentItem._id}}"><img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{currentItem.image}}" ng-click="store.productView()"></a>
+    <div class="row" style="margin:0 2rem;">
+      <div class="col-xs-12">
+        <select ng-model="review.stars" name="" id="stars">
+          <option value="">Select Stars</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="col-xs-12">
+        <label for="message">Review</label>
+        <textarea class="form-control" id="review" ng-model="review.text"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="submitReview()">Add to Cart</button>
+
+  </form>
+
+  <div ng-if="modal.html" ng-bind-html="itemModal.html"></div>
+</div>
+<div class="modal-footer">
+  <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
+</div>
