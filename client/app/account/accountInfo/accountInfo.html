@@ -34,6 +34,7 @@
                 <th>Title</th>
                 <th>Qty.</th>
                 <th>Price</th>
+                <th>Review</th>
               </tr>
             </thead>
             <tbody>
@@ -41,6 +42,7 @@
                 <td>{{lineItem.item.title}}</td>
                 <td style="text-align:center;">{{lineItem.quantity}}</td>
                 <td>{{lineItem.value | currency : $ : 2}}</td>
+                <td><button class="btn btn-default">Review</button></td>
               </tr>
               <tr>
                 <td></td>

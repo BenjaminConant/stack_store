@@ -8,7 +8,15 @@ angular.module('stackStoreApp')
 
     $scope.getOrders = function() {
       $http.get('/api/users/'+$scope.currentUser._id + '/orders').success(function(orders) {
-        $scope.orders = orders;
+        orders.forEach(function(order) {
+          if (order.status !== "cart") {
+            order.total = 0;
+            order.orderItems.forEach(function(item) {
+              order.total += item.value * item.quantity;
+            });
+            $scope.orders.push(order);
+          }
+        });
       })
     }
     $scope.getOrders();
