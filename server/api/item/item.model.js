@@ -77,4 +77,10 @@ ItemSchema.methods.review = function() {
 	//update average
 }
 
+ItemSchema.statics.getReviewsQuery = function() {
+	return Review.find({
+		item: this.id
+	});
+};
+
 module.exports = mongoose.model('Item', ItemSchema);
