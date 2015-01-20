@@ -42,7 +42,7 @@
                 <td>{{lineItem.item.title}}</td>
                 <td style="text-align:center;">{{lineItem.quantity}}</td>
                 <td>{{lineItem.value | currency : $ : 2}}</td>
-                <td><button class="btn btn-default">Review</button></td>
+                <td><button ng-click="openModal(lineItem.item)" class="btn btn-default" >Review</button></td>
               </tr>
               <tr>
                 <td></td>
