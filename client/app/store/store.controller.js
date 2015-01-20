@@ -12,12 +12,10 @@ angular.module('stackStoreApp')
   self.liveSearch = "";
   $scope.$on('selectedCatsChange', function(event, mass) {
 
-    console.log(mass);
     self.cats = mass;
   });
 
   $scope.$on('liveSearchChange', function(event, mass) { 
-    console.log(mass);
     self.liveSearch = mass;
   });
 
