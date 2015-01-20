@@ -58,46 +58,50 @@ exports.show = function(req, res) {
 //   });
 // };
 
-exports.create = function(req, res)
-{
+exports.create = function(req, res) {
   var tempLineItem = req.body;
 
-  LineItem.create(tempLineItem, function(err, lineItem)
-  {
-    if(err){return res.json(422, err);}
-
-    if(lineItem.sender)
-    {
-      Order.findOneAndUpdate({ userId:lineItem.sender._id, status:'cart' },
-        {$push: { orderItems:lineItem._id }})
-        .exec(function(err, order)
-        {
-          if(err){return res.json(422, err);}
-          LineItem.populate(lineItem, 'item')
-            .exec(function()
-            {
-              return res.json(201, lineItem);
-            })
-        })
+  LineItem.create(tempLineItem, function(err, lineItem) {
+    if (err) {
+      return res.json(422, err);
     }
 
-    else
-    {
+    if (lineItem.sender) {
+      Order.findOneAndUpdate({
+          userId: lineItem.sender._id,
+          status: 'cart'
+        }, {
+          $push: {
+            orderItems: lineItem._id
+          }
+        })
+        .exec(function(err, order) {
+          if (err) {
+            return res.json(422, err);
+          }
+          LineItem.populate(lineItem, 'item', function() {
+            return res.json(201, lineItem);
+          })
+        })
+    } else {
       var tempUser = {
-        name : lineItem.senderName,
-        password : "xxxx",
-        email : lineItem.senderEmail,
-        isGuest : true
+        name: lineItem.senderName,
+        password: "xxxx",
+        email: lineItem.senderEmail,
+        isGuest: true
       }
-      User.findOrCreate(tempUser, function(err, user)
-      {
-        if(err){return res.json(422, err);}
-        Order.findOrCreateAndAdd(user._id, lineItem, function(err, order)
-        {
-          if(err){return res.json(422, err);}
-          LineItem.populate(lineItem, 'item', function(err, result)
-          {
-            if(err){return res.json(422, err);}
+      User.findOrCreate(tempUser, function(err, user) {
+        if (err) {
+          return res.json(422, err);
+        }
+        Order.findOrCreateAndAdd(user._id, lineItem, function(err, order) {
+          if (err) {
+            return res.json(422, err);
+          }
+          LineItem.populate(lineItem, 'item', function(err, result) {
+            if (err) {
+              return res.json(422, err);
+            }
             return res.json(201, result);
           })
         })
