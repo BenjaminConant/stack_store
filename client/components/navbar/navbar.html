@@ -5,8 +5,8 @@
 
     <ul class="sidebar-nav">
       <div class="fixed-nav-padding"></div>
-      <li class="navbar-search">
-        <input type="text" class="form-control" placeholder="Search">
+      <li class="navbar-search" ng-controller="StoreCtrl as store">
+        <input ng-model="liveSearch" ng-change="changeLiveSearch(this.liveSearch)" type="text" class="form-control" placeholder="Search">
       </li>
       <li class="navbar-select">
         <select class="form-control" name="sort" id="sort">
