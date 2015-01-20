@@ -204,7 +204,6 @@ angular.module('stackStoreApp')
     //////////////////////// Change Order Status //////////////////////////////////
     $scope.possibleStatus = ["created", "processing", "cancelled", "complete"];
     $scope.changeOrderStatus = function (order, orderStatus) {
-      console.log(orderStatus.category);
       order.status = orderStatus.category;
       order.user = [order.user._id];
       var orderItemIds = [];
@@ -237,6 +236,10 @@ angular.module('stackStoreApp')
 
     /////////////////////////////// change a users password //////////////////////////
     $scope.changePassword = function(user, newPass) {
-      $http.put('api/users/' + user._id + '/adminchangepassword', {newPassword: user.newPassword});
+      $http.put('api/users/' + user._id + '/adminchangepassword', {newPassword: user.newPassword}).success(function() {
+        user.newPassword = "";
+        alert("Password successfully changed!")
+      });
+
     }
   });

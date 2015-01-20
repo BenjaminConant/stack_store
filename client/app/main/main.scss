@@ -320,7 +320,7 @@ body {
     margin-right: auto;
     margin-left: auto;
     display: block;
-    
+
     button {
       width: 50%;
     }
@@ -498,4 +498,8 @@ span.text-content {
   border-radius: 5px;
   padding:2rem;
   margin: 1rem;
+}
+
+.password-change {
+  transform: translateY(-3.5rem)
 }
