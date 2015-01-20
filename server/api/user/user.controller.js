@@ -138,3 +138,20 @@ exports.me = function(req, res, next) {
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
+
+exports.getOrders = function(req, res, next) {
+  var userId = req.user._id;
+  var Order = require('../order/order.model')
+  Order.find({
+    user: userId
+  }).populate('user orderItems').exec(function(err, orders) {
+    Order.populate(orders, {
+      path: 'orderItems.item',
+      model: 'Item'
+    }, function(err, orders) {
+      console.log(orders);
+      if (err) return next(err);
+      res.json(orders);
+    })
+  })
+}

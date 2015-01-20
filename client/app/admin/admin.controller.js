@@ -28,10 +28,10 @@ angular.module('stackStoreApp')
           $http.get("/api/orders").success(function(orders){
             $scope.orders = [];
             orders.forEach(function(order) {
-              if (order.status !== "pending") {
+              if (order.status !== "cart") {
                 order.total = 0;
                 order.orderItems.forEach(function(item) {
-                  order.total += item.value;
+                  order.total += item.value * item.quantity;
                 });
                 $scope.orders.push(order);
               }
@@ -210,7 +210,7 @@ angular.module('stackStoreApp')
       var orderItemIds = [];
       order.orderItems.forEach(function(orderItem){
         orderItemIds.push(orderItem._id);
-      }); 
+      });
       order.orderItems = orderItemIds;
       console.log("this is the order we we send", order)
       $http.put('api/orders/' + order._id, order).success(function(order){
@@ -219,7 +219,7 @@ angular.module('stackStoreApp')
       })
     }
 
-  
+
     ////////////////////////////////////////////////////////////////////////////////
 
 

@@ -1,0 +1,65 @@
+<div id="wrapper">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+  <div id="page-content-wrapper">
+    <a class="btn btn-lg btn-default" href="/settings">
+      Change Password
+    </a>
+    <button ng-controller="NavbarCtrl" class="btn btn-inverse btn-lg" ng-click="logout()">
+      Logout
+    </button>
+    <hr>
+    <accordion>
+
+      <accordion-group ng-repeat="order in orders">
+        <accordion-heading>
+          <div class="row">
+            <div class="col-xs-3 col-sm-3">
+              {{order.user.email}}
+            </div>
+            <div class="col-xs-3 col-sm-3">
+              {{order.status}}
+            </div>
+            <div class="col-xs-3 col-sm-3">
+              {{order.date}}
+            </div>
+            <div class="col-xs-3 col-sm-3">
+              {{order.total | currency : $ : 2 }}
+            </div>
+          </div>
+        </accordion-heading>
+        <div class="row">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Qty.</th>
+                <th>Price</th>
+                <th>Review</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="lineItem in order.orderItems">
+                <td>{{lineItem.item.title}}</td>
+                <td style="text-align:center;">{{lineItem.quantity}}</td>
+                <td>{{lineItem.value | currency : $ : 2}}</td>
+                <td><button ng-click="openModal(lineItem.item)" class="btn btn-default" >Review</button></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td style="font-weight:bold;">Subtotal</td>
+                <td style="font-weight:bold;">{{order.total | currency : $ : 2}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </accordion-group>
+    </accordion>
+
+
+
+
+
+
+
+  </div>
+</div>
