@@ -1,11 +1,39 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, orderItems, getCart) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, orderItems, getCart, $http, $rootScope) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
     }];
+    $scope.selectedCats= "all";
+    
+    $scope.addRemoveCat = function (thing) {
+      if ($scope.selectedCats === "all") {
+        $scope.selectedCats = [thing];
+      } else {
+        if ($scope.selectedCats.indexOf(thing) !== -1) {
+          $scope.selectedCats.splice($scope.selectedCats.indexOf(thing), 1);
+          if($scope.selectedCats.length === 0) {
+            $scope.selectedCats = "all";
+          }
+        } else {
+          $scope.selectedCats.push(thing);
+        }
+      }
+      $rootScope.$broadcast('selectedCatsChange', $scope.selectedCats)
+    }
+    
+
+    $scope.cats = [1,2,3];
+
+    var getCategories = function () {
+      $http.get('api/categorys').success(function(cats) {
+        $scope.cats = cats;
+        console.log($scope.cats);
+      });
+    };
+    getCategories();
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
@@ -32,5 +60,8 @@ angular.module('stackStoreApp')
 
     $scope.toggleShowCartDropdown = function() {
       $scope.showCartDropdown = !$scope.showCartDropdown;
-    }    
+    } 
+
+
+
   });
