@@ -285,4 +285,17 @@ User.find({}).remove(function() {
 });
 
 Review.find({}).remove(function() {
+  Review.create({
+    author: user1._id,
+    item: item1._id,
+    stars: 4,
+    text: "papowinevpaoweinvpoawinevpoawienvpoaiwnevpoianweovinawpoeivnpaowienvpoawenpoiawnevpoin"
+  });
+  Review.create({
+    author: user2._id,
+    item: item1._id,
+    stars: 3,
+    text: "oaiwnvpoawenvpoawnepvknspvdonaopiwepowievpiawnevpoianwevoinaweopivnapwoievnpaiowenvopainwevopan"
+  });
+
 });

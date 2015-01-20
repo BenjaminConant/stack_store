@@ -103,6 +103,13 @@ exports.findReview = function(req, res) {
   });
 }
 
+exports.findAllReviews = function(req, res) {
+  Review.find({item:req.params.id}).exec(function(err, reviews){
+    console.log(reviews);
+    return res.json(200, reviews);
+  });
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }

@@ -44,6 +44,16 @@ angular.module('stackStoreApp')
 
   this.openModal = function(item) {
     $scope.currentItem = item;
+    $http.get('/api/items/'+item._id+'/reviews').success(function(reviews) {
+      $scope.currentItem.reviews = reviews;
+      $scope.averageStars = 0;
+      var numReviews = 0;
+      reviews.forEach(function(rev) {
+        $scope.averageStars += rev.stars;
+numReviews++;
+      })
+      $scope.averageStars /= numReviews;
+    })
     $scope.modal = $modal.open({
       templateUrl: '../../components/modal/itemModal.html',
       scope: $scope
