@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('ItemCtrl', function($scope, $http, $routeParams, item, orderItems, cartTotal, addToCart, $window) {
+
+  .controller('ItemCtrl', function ($scope, $routeParams, $http, item, orderItems, cartTotal, addToCart, $window, Auth) {
     //$scope.message = 'Hello';
     var self = this;
+    
+    self.user = Auth.getCurrentUser();
 
     self.currentItem = {};
     self.newItem = {

@@ -11,11 +11,15 @@ var LineItemSchema = new Schema({
 	},
 	sender: {
 		type: Schema.Types.ObjectId,
-		ref: 'User',
-		required: true
+		ref: 'User'
 	},
 	receiverName: String,
 	receiverEmail: {
+		type: String,
+		required: true
+	},
+	senderName: String,
+	senderEmail: {
 		type: String,
 		required: true
 	},

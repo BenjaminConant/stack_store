@@ -7,6 +7,11 @@ angular.module('stackStoreApp')
       'link': '/'
     }];
     $scope.selectedCats= "all";
+    $scope.liveSearch = ""
+
+    $scope.changeLiveSearch = function (liveSearch) {
+      $rootScope.$broadcast('liveSearchChange', liveSearch);
+    }
     
     $scope.addRemoveCat = function (thing) {
       if ($scope.selectedCats === "all") {
@@ -30,7 +35,6 @@ angular.module('stackStoreApp')
     var getCategories = function () {
       $http.get('api/categorys').success(function(cats) {
         $scope.cats = cats;
-        console.log($scope.cats);
       });
     };
     getCategories();

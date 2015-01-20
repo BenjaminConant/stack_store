@@ -2,15 +2,19 @@
 
 angular.module('stackStoreApp')
   .filter('item', function () {
-  	return function (items, catArray) {
+  	return function (items, filterInputs) {
+  		var catArray = filterInputs.catArray;
+  		var liveSearch = filterInputs.liveSearch.toLowerCase();
+  		console.log(liveSearch);
   		var outputArray = [];
+  		
+  		// handel categories first
   		if (catArray === "all") {
   			items.forEach(function(item){
   				if (item.available) {
   					outputArray.push(item);
   				}
   			});
-  			return outputArray;
   		} else {
   			items.forEach(function(item){
   				if (item.available) {
@@ -23,7 +27,19 @@ angular.module('stackStoreApp')
   					});
   				}
   			});
+  		}
+  		// now handel live search
+  		if (liveSearch === "") {
   			return outputArray;
+  		} else {
+	  		var returnArray = []
+	  		outputArray.forEach(function(item, index){
+	  			var itemTitle = item.title.toLowerCase();
+	  			if (itemTitle.indexOf(liveSearch) !== -1) {
+	  				returnArray.push(item);
+	  			}
+	  		});
+	  		return returnArray;
   		}
   	};
   });

@@ -6,7 +6,7 @@
       <div ng-controller='StoreCtrl as store' class="row">
         <div class="col-lg-12">
             <div class="row">
-              <item-thumbnail ng-repeat='item in store.allItems | item:store.cats'></item-thumbnail>
+              <item-thumbnail ng-repeat='item in store.allItems | item:{catArray: store.cats, liveSearch: store.liveSearch}'></item-thumbnail>
             </div>
             {{store.cart}}
         </div>

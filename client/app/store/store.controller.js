@@ -5,19 +5,25 @@ angular.module('stackStoreApp')
 .controller('StoreCtrl', function($scope, items, orderItems, cartTotal, addToCart, $http, $modal, Auth, $window) {
   var self = this;
   self.allItems = items.query();
-  console.log(self.allItems);
   self.available = {
     available: true
   };
   self.cats = "all"
+  self.liveSearch = "";
   $scope.$on('selectedCatsChange', function(event, mass) {
+
     console.log(mass);
     self.cats = mass;
   });
 
+  $scope.$on('liveSearchChange', function(event, mass) { 
+    console.log(mass);
+    self.liveSearch = mass;
+  });
 
 
-  var user = Auth.getCurrentUser();
+
+  //var user = Auth.getCurrentUser();
 
   // if (user.$promise) {
   // 	console.log('User has a promise!');
@@ -46,6 +52,7 @@ angular.module('stackStoreApp')
 
   this.openModal = function(item) {
     $scope.currentItem = item;
+    $scope.user = Auth.getCurrentUser();
     $http.get('/api/items/' + item._id + '/reviews').success(function(reviews) {
       $scope.currentItem.reviews = reviews;
       $scope.averageStars = 0;
@@ -56,6 +63,7 @@ angular.module('stackStoreApp')
       })
       $scope.averageStars /= $scope.numReviews;
     })
+
     $scope.modal = $modal.open({
       templateUrl: '../../components/modal/itemModal.html',
       scope: $scope

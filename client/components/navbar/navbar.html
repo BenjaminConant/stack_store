@@ -5,8 +5,8 @@
 
     <ul class="sidebar-nav">
       <div class="fixed-nav-padding"></div>
-      <li class="navbar-search">
-        <input type="text" class="form-control" placeholder="Search">
+      <li class="navbar-search" ng-controller="StoreCtrl as store">
+        <input ng-model="liveSearch" ng-change="changeLiveSearch(this.liveSearch)" type="text" class="form-control" placeholder="Search">
       </li>
       <li class="navbar-select">
         <select class="form-control" name="sort" id="sort">
@@ -33,6 +33,7 @@
 
     <div class="nav-right">
       <span>
+        <span ng-hide="isLoggedIn()">Guest</span>
         <span ng-show="isAdmin()"><a href="/admin">Admin Panel</a></span>
         <div style="display:inline;padding-right:2rem;"><span class="badge cart-badge">{{orderItems.get().length}}</span><a href="#"><i ng-click="toggleShowCartDropdown()" class="glyphicon glyphicon-shopping-cart" style="font-size:1.6em;margin-top:1rem;"></i></a></div>
         <a href="/account">{{getCurrentUser().name}}</a>

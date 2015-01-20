@@ -12,6 +12,14 @@
           <div ng-show="averageStars">{{averageStars}} Stars <span>from {{numReviews}} reviews</span></div>
           <div ng-hide="averageStars">This item has not yet been reviewed</div>
           <div class="row" style="margin:0 2rem;">
+            <div class="col-xs-12 col-sm-6" ng-hide="Item.user.name">
+              <label for="receiverName">Sender Name:</label>
+              <input type="text" class="form-control" id="senderName" ng-model="Item.newItem.senderName"></input>
+            </div>
+            <div class="col-xs-12 col-sm-6" ng-hide="Item.user.name">
+              <label for="receiverEmail">Sender Email:</label>
+              <input type="text" class="form-control" id="senderEmail" ng-model="Item.newItem.senderEmail"></input>
+            </div>
             <div class="col-xs-12 col-sm-6">
               <label for="receiverName">Recipient Name:</label>
               <input type="text" class="form-control" id="receiverName" ng-model="Item.newItem.receiverName"></input>
