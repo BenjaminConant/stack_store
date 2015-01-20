@@ -284,4 +284,5 @@ User.find({}).remove(function() {
 
 });
 
-Review.find({}).remove();
+Review.find({}).remove(function() {
+});

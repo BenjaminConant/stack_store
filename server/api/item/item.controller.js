@@ -86,11 +86,11 @@ exports.destroy = function(req, res) {
 };
 
 exports.findReview = function(req, res) {
-  console.log(req.params)
   Review.findOne({
     author: req.params.userId,
     item: req.params.itemId
   }, function(err, review) {
+    console.log(review)
     if (err) {
       return handleError(res, err);
     }

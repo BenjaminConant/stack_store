@@ -14,12 +14,13 @@ angular.module('stackStoreApp')
         orders.forEach(function(order) {
           if (order.status !== "cart") {
             order.total = 0;
-            order.orderItems.forEach(function(item) {
-              order.total += item.value * item.quantity;
-              $http.get('/api/items/' + item._id + '/user/' + $scope.currentUser._id)
+            order.orderItems.forEach(function(lineItem) {
+              order.total += lineItem.value * lineItem.quantity;
+              $http.get('/api/items/' + lineItem.item._id + '/user/' + $scope.currentUser._id)
                 .success(function(review) {
-                  console.log(review);
-                  item.isReviewed = !!review;
+                  //console.log(review);
+                  lineItem.isReviewed = !!review;
+                  console.log(lineItem.isReviewed);
                 });
             });
             $scope.orders.push(order);
@@ -38,7 +39,7 @@ angular.module('stackStoreApp')
     };
 
     $scope.submitReview = function() {
-      console.log("getting called");
+      //console.log("getting called");
       $scope.review.author = $scope.currentUser._id;
       $scope.review.item = $scope.currentItem._id;
       $http.post('/api/reviews', $scope.review).success(function(review) {
@@ -48,6 +49,7 @@ angular.module('stackStoreApp')
         //console.log(review);
       })
       $scope.modal.close();
+      $scope.getOrders();
     }
 
     // $scope.isReviewed = function(item) {
