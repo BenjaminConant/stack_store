@@ -30,7 +30,8 @@
     </div>
   </div>
 
-  <span>{{averageStars | number : 2}} Stars</span>
+  <span ng-show="averageStars">{{averageStars | number : 2}} Stars <span>from {{numReviews}} reviews</span></span>
+  <span ng-hide="averageStars">This product hasn't been rated yet</span>
   <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="store.add2Cart(currentItem, newItem)">Add to Cart</button>
 
 </form>

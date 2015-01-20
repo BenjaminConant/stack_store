@@ -104,7 +104,7 @@ exports.findReview = function(req, res) {
 }
 
 exports.findAllReviews = function(req, res) {
-  Review.find({item:req.params.id}).exec(function(err, reviews){
+  Review.find({item:req.params.id}).populate('author').exec(function(err, reviews){
     console.log(reviews);
     return res.json(200, reviews);
   });
