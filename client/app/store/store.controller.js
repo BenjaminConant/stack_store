@@ -5,12 +5,17 @@ angular.module('stackStoreApp')
 .controller('StoreCtrl', function($scope, items, orderItems, cartTotal, addToCart, $http, $modal, Auth, $window) {
   var self = this;
   self.allItems = items.query();
-  console.log(self.allItems);
   self.available = {available:true};
   self.cats = "all"
+  self.liveSearch = "";
   $scope.$on('selectedCatsChange', function(event, mass) { 
     console.log(mass);
     self.cats = mass;
+  });
+
+  $scope.$on('liveSearchChange', function(event, mass) { 
+    console.log(mass);
+    self.liveSearch = mass;
   });
 
 
