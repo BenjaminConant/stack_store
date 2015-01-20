@@ -10,6 +10,7 @@ var LineItem = require('../api/lineItem/lineItem.model');
 var User = require('../api/user/user.model');
 var Category = require('../api/category/category.model');
 var Order = require('../api/order/order.model');
+var Review = require('../api/review/review.model');
 
 var good = new Category({
   name: 'Good',
@@ -282,3 +283,5 @@ User.find({}).remove(function() {
   user3.save();
 
 });
+
+Review.find({}).remove();

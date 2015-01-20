@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Item = require('./item.model');
+var Review = require('../review/review.model');
 
 // Get list of items
 exports.index = function(req, res) {
@@ -83,6 +84,24 @@ exports.destroy = function(req, res) {
     });
   });
 };
+
+exports.findReview = function(req, res) {
+  console.log(req.params)
+  Review.findOne({
+    author: req.params.userId,
+    item: req.params.itemId
+  }, function(err, review) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!review) {
+      return res.json(200, false);
+    } else {
+      console.log('this review is already here: ', review);
+      return res.json(200, review);
+    }
+  });
+}
 
 function handleError(res, err) {
   return res.send(500, err);

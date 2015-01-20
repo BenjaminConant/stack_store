@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('AccountInfoCtrl', function ($scope, Auth, $http, $modal) {
+  .controller('AccountInfoCtrl', function($scope, Auth, $http, $modal) {
 
     $scope.currentUser = Auth.getCurrentUser();
     $scope.currentItem;
@@ -9,13 +9,18 @@ angular.module('stackStoreApp')
 
 
     $scope.getOrders = function() {
-      $http.get('/api/users/'+$scope.currentUser._id + '/orders').success(function(orders) {
+      $http.get('/api/users/' + $scope.currentUser._id + '/orders').success(function(orders) {
         $scope.orders = [];
         orders.forEach(function(order) {
           if (order.status !== "cart") {
             order.total = 0;
             order.orderItems.forEach(function(item) {
               order.total += item.value * item.quantity;
+              $http.get('/api/items/' + item._id + '/user/' + $scope.currentUser._id)
+                .success(function(review) {
+                  console.log(review);
+                  item.isReviewed = !!review;
+                });
             });
             $scope.orders.push(order);
           }
@@ -39,11 +44,19 @@ angular.module('stackStoreApp')
       $http.post('/api/reviews', $scope.review).success(function(review) {
         $scope.review.stars = '';
         $scope.review.text = '';
-        alert("Successfully added to database!")
-        console.log(review);
+        //alert("Successfully added to database!")
+        //console.log(review);
       })
       $scope.modal.close();
     }
+
+    // $scope.isReviewed = function(item) {
+    //   //console.log(item);
+    //   // $http.get('/api/items/' + item._id + '/user/' + $scope.currentUser._id)
+    //   //   .success(function(review) {
+    //   //     console.log(review);
+    //   //   });
+    // }
 
     // $scope.orders = [];
     //
@@ -69,9 +82,6 @@ angular.module('stackStoreApp')
     //   })
     // }
     // $scope.getData();
-
-
-
 
 
 
