@@ -17,8 +17,8 @@ angular.module('stackStoreApp')
         })
         .error(function(err){
           //debugger;
-          orderItems.set([]);
-          cartTotal.set(0);
+          // orderItems.set([]);
+          // cartTotal.set(0);
         //  return user;
         });
     }
