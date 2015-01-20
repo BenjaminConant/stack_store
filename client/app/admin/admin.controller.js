@@ -223,6 +223,20 @@ angular.module('stackStoreApp')
     ////////////////////////////////////////////////////////////////////////////////
 
 
+    ///////////////////////////// make user admin //////////////////////////////////
+
+    $scope.makeAdmin = function(user) {
+      user.role = "admin";
+      $http.put('api/users/' + user._id + '/makeadmin').success(function(user){
+        alert(user.name + " " + "has been made into an admin")
+        $scope.getData();
+      })
+    }
+    /////////////////////////////////////////////////////////////////////////////////
 
 
+    /////////////////////////////// change a users password //////////////////////////
+    $scope.changePassword = function(user, newPass) {
+      $http.put('api/users/' + user._id + '/adminchangepassword', {newPassword: user.newPassword});
+    }
   });

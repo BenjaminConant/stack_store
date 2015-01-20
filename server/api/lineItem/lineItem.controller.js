@@ -68,7 +68,7 @@ exports.create = function(req, res)
 
     if(lineItem.sender)
     {
-      Order.findOneAndUpdate({ userId:lineItem.sender._id },
+      Order.findOneAndUpdate({ userId:lineItem.sender._id, status:'cart' },
         {$push: { orderItems:lineItem._id }})
         .exec(function(err, order)
         {
@@ -101,6 +101,7 @@ exports.create = function(req, res)
             return res.json(201, result);
           })
         })
+
       });
     }
   });

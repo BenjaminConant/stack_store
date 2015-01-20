@@ -16,8 +16,9 @@ angular.module('stackStoreApp')
 
   	this.add2Cart = function(item, optionsObj)
   	{
+      //debugger;
     	addToCart(item, optionsObj);
-    	$window.location.href = '/cart';
+    	//$window.location.href = '/cart';
     }    
 
   });
