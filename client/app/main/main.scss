@@ -269,7 +269,8 @@ body {
     overflow: hidden;
     height: 20rem;
     border-radius: 5px;
-    width: 60%;
+  
+    max-width: 25rem;
   }
 }
 
@@ -316,7 +317,8 @@ body {
 }
 
 .item-buttons {
-    width: 60%;
+  margin-top: 0.25rem;
+    max-width: 25rem;
     margin-right: auto;
     margin-left: auto;
     display: block;
