@@ -1,14 +1,25 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
+  .controller('SignupCtrl', function ($scope, $cookieStore, addToCart, $http, Auth, $location, $window, orderItems) {
     $scope.user = {};
     $scope.errors = {};
+
+    var sctrl = this;
+    sctrl.orderItems = orderItems;
 
     $scope.register = function(form) {
       $scope.submitted = true;
 
       if(form.$valid) {
+
+        var oldItemsIds = [];
+        var oldItems = sctrl.orderItems.get();
+
+        for (var item in oldItems) {
+          oldItemsIds.push(oldItems[item]._id);
+        }
+
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
@@ -16,7 +27,25 @@ angular.module('stackStoreApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          
+            var newUser = Auth.getCurrentUser();
+            var oldCart = $cookieStore.get('ccookie');
+            $cookieStore.remove('ccookie');
+            if (newUser.$promise) {
+              newUser.$promise
+                .then(function(user) {
+                  //debugger;
+                  addToCart(oldItemsIds, [], user);
+                  $http.delete('/api/orders/' + oldCart);
+                  $location.path('/');
+                });
+            } else {
+              addToCart(oldItemsIds, [], newUser);
+              $http.delete('/api/orders/' + oldCart);
+              $location.path('/');
+            }
+
+          //$location.path('/');
         })
         .catch( function(err) {
           err = err.data;
