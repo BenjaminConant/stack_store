@@ -71,6 +71,10 @@ angular.module('stackStoreApp')
           }.bind(this)).$promise;
       },
 
+      updateUser: function(user) {
+        currentUser = user;
+      },
+
       /**
        * Change password
        *
