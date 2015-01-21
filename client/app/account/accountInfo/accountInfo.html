@@ -7,6 +7,7 @@
     <button ng-controller="NavbarCtrl" class="btn btn-inverse btn-lg" ng-click="logout()">
       Logout
     </button>
+    <a href="/giftcards" class="btn btn-primary btn-lg">Redeem Gift Card</a>
     <hr>
     <accordion>
 
@@ -42,7 +43,7 @@
                 <td><a ng-href="/item/{{lineItem.item._id}}">{{lineItem.item.title}}</a></td>
                 <td style="text-align:center;">{{lineItem.quantity}}</td>
                 <td>{{lineItem.value | currency : $ : 2}}</td>
-                <td><button ng-click="openModal(lineItem.item)" class="btn btn-default" ng-class="{disabled: lineItem.isReviewed}">Review</button> 
+                <td><button ng-click="openModal(lineItem.item)" class="btn btn-default" ng-class="{disabled: lineItem.isReviewed}">Review</button>
                   <span ng-show="lineItem.isReviewed">You've already reviewed this item!</span></td>
               </tr>
               <tr>

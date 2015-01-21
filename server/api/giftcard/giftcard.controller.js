@@ -13,7 +13,7 @@ exports.index = function(req, res) {
     if(err) { return handleError(res, err); }
     return res.json(200, giftcard);
   })
-  
+
   // Giftcard.find(function (err, giftcards) {
   //   if(err) { return handleError(res, err); }
   //   return res.json(200, giftcards);
@@ -36,10 +36,10 @@ exports.sendEmail = function(req,res) {
   console.log(lineItems);
 
     var message = {
-      "html": "<p>Hello " + lineItems[0].receiverName + ",</p><p>" + lineItems[0].senderName + " has sent you a gift card!</p><p>Your code is: " + code +"</p><p>" + lineItems[0].message + "</p>",
-      "subject": "Hello World",
-      "from_email": "sam@corcos.io",
-      "from_name": "Sam Corcos",
+      "html": "<p>Hello " + lineItems[0].receiverName + ",</p><p>" + lineItems[0].message + "</p><p>" + lineItems[0].senderName + " has sent you a gift card!</p></br><p>Your code is:</p><p>"+ code + "</p>",
+      "subject": "You received a giftcard from " + lineItems[0].senderName,
+      "from_email": lineItems[0].senderEmail,
+      "from_name": lineItems[0].senderName,
       "to": [{
         "email": lineItems[0].receiverEmail,
         "name": lineItems[0].receiverName
