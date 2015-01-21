@@ -18,9 +18,7 @@ angular.module('stackStoreApp')
               order.total += lineItem.value * lineItem.quantity;
               $http.get('/api/items/' + lineItem.item._id + '/user/' + $scope.currentUser._id)
                 .success(function(review) {
-                  //console.log(review);
                   lineItem.isReviewed = !!review;
-                  console.log(lineItem.isReviewed);
                 });
             });
             $scope.orders.push(order);
@@ -39,24 +37,20 @@ angular.module('stackStoreApp')
     };
 
     $scope.submitReview = function() {
-      //console.log("getting called");
       $scope.review.author = $scope.currentUser._id;
       $scope.review.item = $scope.currentItem._id;
       $http.post('/api/reviews', $scope.review).success(function(review) {
         $scope.review.stars = '';
         $scope.review.text = '';
         //alert("Successfully added to database!")
-        //console.log(review);
       })
       $scope.modal.close();
       $scope.getOrders();
     }
 
     // $scope.isReviewed = function(item) {
-    //   //console.log(item);
     //   // $http.get('/api/items/' + item._id + '/user/' + $scope.currentUser._id)
     //   //   .success(function(review) {
-    //   //     console.log(review);
     //   //   });
     // }
 

@@ -14,7 +14,7 @@ angular.module('stackStoreApp')
     $scope.changeLiveSearch = function (liveSearch) {
       $rootScope.$broadcast('liveSearchChange', liveSearch);
     }
-    
+
     $scope.addRemoveCat = function (thing) {
       if ($scope.selectedCats === "all") {
         $scope.selectedCats = [thing];
@@ -30,7 +30,7 @@ angular.module('stackStoreApp')
       }
       $rootScope.$broadcast('selectedCatsChange', $scope.selectedCats)
     }
-    
+
 
     $scope.cats = [1,2,3];
 
@@ -42,16 +42,8 @@ angular.module('stackStoreApp')
     getCategories();
 
     $scope.giftCardValue;
-    
-    function makeid() {
-      var text = "";
-      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-      for( var i=0; i < 5; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-      return text;
-    }
 
     $scope.buyGiftCard = function () {
       console.log($scope.giftCardValue);
@@ -63,9 +55,8 @@ angular.module('stackStoreApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
-    $scope.showCartDropdown = false;   
-    $scope.orderItems = orderItems; 
-    console.log($scope.getCurrentUser() + " hey");
+    $scope.showCartDropdown = false;
+    $scope.orderItems = orderItems;
 
     $scope.logout = function() {
       Auth.logout();
@@ -84,7 +75,7 @@ angular.module('stackStoreApp')
 
     $scope.toggleShowCartDropdown = function() {
       $scope.showCartDropdown = !$scope.showCartDropdown;
-    } 
+    }
 
 
 

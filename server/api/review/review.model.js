@@ -3,7 +3,7 @@
 var min_length = 40;
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+	Schema = mongoose.Schema; 
 
 var ReviewSchema = new Schema({
 	author: {
