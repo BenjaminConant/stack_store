@@ -48,5 +48,16 @@ angular.module('stackStoreApp')
       })
     }
 
+    /**
+    * This file controls the page logic
+    *
+    * depends on jQuery>=1.7
+    */
 
-  });
+      /**
+      * Returns true if this browser supports canvas
+      *
+      * From http://diveintohtml5.info/
+      */
+
+})
