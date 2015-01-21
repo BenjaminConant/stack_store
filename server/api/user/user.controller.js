@@ -5,6 +5,8 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 
+var Order = require('../order/order.model');
+
 var validationError = function(res, err) {
   return res.json(422, err);
 };
@@ -27,6 +29,12 @@ exports.create = function(req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
+  if (!newUser.cart) {
+    var newCart = new Order({
+      user: newUser._id
+    });
+    newUser.cart = newCart._id;
+  }
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({
@@ -34,9 +42,17 @@ exports.create = function(req, res, next) {
     }, config.secrets.session, {
       expiresInMinutes: 60 * 5
     });
-    res.json({
-      token: token
-    });
+    if (newCart) {
+      newCart.save(function() {
+        res.json({
+          token: token
+        });
+      })
+    } else {
+      res.json({
+        token: token
+      });
+    }
   });
 };
 

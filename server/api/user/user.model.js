@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var Order = require('../order/order.model');
 
 var UserSchema = new Schema({
   name: String,
@@ -32,7 +33,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
-  isGuest : Boolean,
+  isGuest: Boolean,
   hashedPassword: String,
   provider: String,
   salt: String,
@@ -171,19 +172,38 @@ UserSchema.methods = {
 };
 
 
-UserSchema.statics.findOrCreate = function(tempUser, cb)
-{
+UserSchema.statics.findOrCreate = function(tempUser, cb) {
   var self = this;
-  self.find({email:tempUser.email})
-    .exec(function(err, result)
-    {
-      if(err){return cb(err);}     
-      if(result.length){return cb(null, result[0]);}
-      self.create(tempUser, function(err, user){
-        if(err){cb(err);}
+  self.find({
+      email: tempUser.email
+    })
+    .exec(function(err, result) {
+      if (err) {
+        return cb(err);
+      }
+      if (result.length) {
+        return cb(null, result[0]);
+      }
+      self.create(tempUser, function(err, user) {
+        if (err) {
+          cb(err);
+        }
         cb(null, user);
       });
     });
 }
+
+UserSchema.pre('save', function(next) {
+  if (!this.cart) {
+    Order.create({
+      user: this._id
+    }, function(err, newCart) {
+      this.cart = newCart._id;
+      next();
+    });
+  } else {
+    next();
+  }
+});
 
 module.exports = mongoose.model('User', UserSchema);
