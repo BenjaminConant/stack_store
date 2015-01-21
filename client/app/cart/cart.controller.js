@@ -21,10 +21,12 @@ angular.module('stackStoreApp')
     $scope.stripeCallback = function (code, result) {
       if (result.error) {
         window.alert('it failed! error: ' + result.error.message);
+        $scope.modal.close()
       } else {
         window.alert('success! token: ' + result.id);
+        console.log($scope.orderItems.get());
+        $scope.modal.close()
       }
-      $scope.modal.close()
     };
 
 
