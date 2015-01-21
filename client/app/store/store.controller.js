@@ -14,7 +14,7 @@ angular.module('stackStoreApp')
     self.cats = mass;
   });
 
-  $scope.$on('liveSearchChange', function(event, mass) { 
+  $scope.$on('liveSearchChange', function(event, mass) {
     self.liveSearch = mass;
   });
 
@@ -47,6 +47,10 @@ angular.module('stackStoreApp')
 
   this.add2Cart = function(item, optionsObj) {
     addToCart(item, optionsObj);
+    $scope.newItem.receiverName = "";
+    $scope.newItem.receiverEmail = "";
+    $scope.newItem.amount = "";
+    $scope.newItem.message = "";
     $scope.modal.close();
   }
 
