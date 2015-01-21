@@ -1,48 +1,28 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .factory('addToCart', ['Auth', '$http', 'orderItems', 'cartTotal', function (Auth, $http, orderItems, cartTotal) {
+  .factory('addToCart', ['Auth', '$http', 'orderItems', 'cartTotal', '$cookieStore', function (Auth, $http, orderItems, cartTotal, $cookieStore) {
     return function(item, optionsObj, newUser) {
-	    //find current user
 
-	    	// console.log("----item-----");
-	    	// console.log(item);
-	    	// console.log("-----item----");
-
-
-
-	    if(newUser)
+      if(newUser)
 	    {
-
-	    	// var oldItems = item;
-	
-	    	// console.log("---------");
-	    	// console.log(item);
-		    // console.log("---------");
-
-
-	    	$http.put('/api/orders/'+newUser.cart, item)
+        $http.put('/api/orders/'+newUser.cart, item)
 	    		.success(function(newCart){
 	    			return;
-	    			// debugger;
-	    			// for(var i in item)
-	    			// {
-	    			// 	orderItems.push(item[i]);
-	    			// 	cartTotal.adjust(item[i].value * item[i].quantity);
-	    			// }
 	    		})
 	    		.error(function(){
-	    			//debugger;
 	    		});
 
 	    	return;
 	    }
 
-	    var user = Auth.getCurrentUser();
-	    console.log("---------");
-	    console.log(user);
-	    console.log("---------");
+	  var user = Auth.getCurrentUser();
 	    //create temporary frontend object to send as req.body
+      var cookie;
+      if(!user._id){
+        cookie = $cookieStore.get('ccookie');
+      }
+
 	    var tempLineItem = {
 	      item: item._id,
 	      sender: user._id || null,
@@ -51,40 +31,21 @@ angular.module('stackStoreApp')
 	      receiverName: optionsObj.receiverName,
 	      receiverEmail: optionsObj.receiverEmail,
 	      message: optionsObj.message,
+          cartId: user.cart || cookie || 'noCartZone',
 	      quantity: optionsObj.quantity,
 	      value: 20 //, //replace with actual value later
 	        // themeURL: item.image
 	    }
 
-	    console.log("---------");
-	    console.log(tempLineItem);
-	    console.log("---------");
-
-	    //if user has a cart: add to cart ONLY DO THIS IN FIRST STEP
-
-
-
-	    //if user does not have a cart, create cart and add line item
-
-
-	    // add that line item to the cart of the current user
-	    //Push line item to users cart
-	    //
-
 	    $http.post('/api/lineItems/', tempLineItem)
-	      .success(function(newLineItem, status) {
-	        //newLineItem.item = item;
-	        //$scope.orderItems.push(newLineItem);
+	      .success(function(returnedObj, status) {
+          	if(!tempLineItem.sender && !cookie) {
+            	$cookieStore.put('ccookie', returnedObj.orderId);
+          	}
 
-		    orderItems.push(newLineItem);
-	        //$scope.cartTotal += newLineItem.value;
-	        cartTotal.adjust(newLineItem.value * newLineItem.quantity);
+		    orderItems.push(returnedObj.lineItem);
+	        cartTotal.adjust(returnedObj.lineItem.value * returnedObj.lineItem.quantity);
 	      });
-	 
-	      // .error(function(data, status) {
-	      //   console.log('Error Data = ' + data);
-	      //   console.log('Error Status = ' + status);
-	      // });
-	    //$scope.modal.close(); //this works
+
 	}
 }]);
