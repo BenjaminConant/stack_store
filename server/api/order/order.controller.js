@@ -233,10 +233,14 @@ exports.checkout = function(req, res) {
     status: 'created',
     creationDate: new Date()
   }, function(err, order) {
-    User.findByIdAndUpdate(req.body._id, {
-      cart: null
-    }, function(err, user) {
-      res.send(200, order);
+    Order.create({
+      user: req.body._id
+    }, function(err, newCart) {
+      User.findByIdAndUpdate(req.body._id, {
+        cart: newCart._id
+      }, function(err, user) {
+        res.send(200, order);
+      })
     })
   })
 

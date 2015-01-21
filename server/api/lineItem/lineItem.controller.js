@@ -61,6 +61,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   var tempLineItem = req.body;
   var cart = req.body.cartId;
+  //console.log('Adding this item: ', tempLineItem);
 
   LineItem.create(tempLineItem, function(err, lineItem)
   {
@@ -68,10 +69,15 @@ exports.create = function(req, res) {
 
     if(lineItem.sender)
     {
-      Order.findOneAndUpdate({ userId:lineItem.sender._id, status:'cart' },
+      //console.log('this is the sender: ', lineItem.sender);
+      //console.log('this is its id', lineItem._id);
+      //console.log('this is the cart id', cart);
+      Order.findOneAndUpdate({ user:lineItem.sender, status:'cart' },
         {$push: { orderItems:lineItem._id }})
         .exec(function(err, order)
         {
+          //console.log('there was this error', err);
+          //console.log('this is the updated order: ', order);
           if(err){return res.json(422, err);}
           LineItem.populate(lineItem, 'item', function()
           {
