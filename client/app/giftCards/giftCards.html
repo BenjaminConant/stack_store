@@ -1,0 +1,15 @@
+<div id="wrapper">
+  <div ng-include="'../components/navbar/navbar.html'"></div>
+  <div id="page-content-wrapper" style="min-height:100vh;"class="shadow-inset">
+    <h2>YOU GOT A GIFT CARD!</h2>
+    <h4>Enter the code from your email below:</h4>
+    <input type="text" class="form-control" placeholder="Enter your code..." ng-model="giftCardCode">
+    <button class="btn btn-default" ng-click="submitGiftCard()">Submit</button>
+
+    <div ng-show="giftCardShow">
+      {{giftCardAmount}}
+    </div>
+
+
+  </div>
+</div>
