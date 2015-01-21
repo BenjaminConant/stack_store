@@ -14,5 +14,9 @@ angular.module('stackStoreApp')
       .when("/item/:id", {
         templateUrl: "app/item/item.html",
         controller: "ItemCtrl as Item"
+      })
+      .when('/giftcards', {
+        templateUrl: 'app/giftCards/giftCards.html',
+        controller: "MainCtrl"
       });
   });

@@ -7,10 +7,17 @@ var mandrill_client = new mandrill.Mandrill('oI4ORuYUtNS5MFNOEcJBcQ');
 
 // Get list of giftcards
 exports.index = function(req, res) {
-  Giftcard.find(function (err, giftcards) {
+  var theCode = req.params.code;
+  var query = Giftcard.where({code: theCode});
+  query.findOne(function(err, giftcard){
     if(err) { return handleError(res, err); }
-    return res.json(200, giftcards);
-  });
+    return res.json(200, giftcard);
+  })
+  
+  // Giftcard.find(function (err, giftcards) {
+  //   if(err) { return handleError(res, err); }
+  //   return res.json(200, giftcards);
+  // });
 };
 
 // Get a single giftcard

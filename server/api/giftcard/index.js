@@ -5,7 +5,7 @@ var controller = require('./giftcard.controller');
 
 var router = express.Router();
 
-router.get('/', controller.index);
+router.get('/verify/:code', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.post('/email', controller.sendEmail)
