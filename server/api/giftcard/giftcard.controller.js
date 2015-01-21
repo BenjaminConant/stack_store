@@ -28,15 +28,14 @@ exports.sendEmail = function(req,res) {
   console.log("THIS IS CODE", code);
   console.log(lineItems);
 
-  // function sendEmail(to_name, to_email, from_name, from_email, subject, message_html){
     var message = {
-      "html": "<p>Moops</p>",
+      "html": "<p>Hello " + lineItems[0].receiverName + ",</p><p>" + lineItems[0].senderName + " has sent you a gift card!</p><p>Your code is: " + code +"</p><p>" + lineItems[0].message + "</p>",
       "subject": "Hello World",
-      "from_email": "samcorcos@gmail.com",
+      "from_email": "sam@corcos.io",
       "from_name": "Sam Corcos",
       "to": [{
-        "email": "conantbenjamin@gmail.com",
-        "name": "Ben Conant"
+        "email": lineItems[0].receiverEmail,
+        "name": lineItems[0].receiverName
       }],
       "important": false,
       "track_opens": true,

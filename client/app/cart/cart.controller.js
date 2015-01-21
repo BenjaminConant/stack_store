@@ -30,14 +30,14 @@ angular.module('stackStoreApp')
     $scope.stripeCallback = function(code, result) {
       var user = Auth.getCurrentUser();
       if (result.error) {
-        //window.alert('it failed! error: ' + result.error.message);
+        window.alert('it failed! error: ' + result.error.message);
       } else {
         window.alert('success! token: ' + result.id);
 
         $http.put('/api/orders/' + user.cart + '/checkout', user).success(function(order) {
           Auth.updateUser(user);
           $scope.getCart.call();
-          // $window.location.href = '/account';
+          $window.location.href = '/account';
         })
 
         if (user.stripeToken) {
@@ -50,9 +50,6 @@ angular.module('stackStoreApp')
         //This is where we want to send email
         $http.post('/api/giftcards', {value: $scope.cartTotal.get(), code: makeid()}).success(function(giftcard) {
           $http.post('/api/giftcards/email', {code: giftcard.code, lineItems: $scope.orderItems.get()})
-
-          alert("it worked!")
-
 
         })
 
