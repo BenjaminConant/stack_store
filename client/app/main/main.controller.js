@@ -10,6 +10,7 @@ angular.module('stackStoreApp')
     $scope.cartTotal = cartTotal;
     
 
+    
     //$scope.showCartDropdown = false;
 
 

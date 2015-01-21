@@ -58,8 +58,7 @@ exports.show = function(req, res) {
 //   });
 // };
 
-exports.create = function(req, res)
-{
+exports.create = function(req, res) {
   var tempLineItem = req.body;
   var cart = req.body.cartId;
 

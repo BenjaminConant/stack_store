@@ -29,8 +29,8 @@
       <input type="number" class="form-control" id="quantity" ng-model="newItem.quantity"></input>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <label for="receiverEmail">Amount</label>
-      <input type="text" class="form-control" id="" ng-model=""></input>
+      <label for="amount">Amount</label>
+      <input type="text" class="form-control" id="amount" ng-model="newItem.amount"></input>
     </div>
     <div class="col-xs-12">
       <label for="message">Message:</label>
@@ -38,6 +38,8 @@
     </div>
   </div>
 
+  <span ng-show="averageStars">{{averageStars | number : 2}} Stars <span>from {{numReviews}} reviews</span></span>
+  <span ng-hide="averageStars">This product hasn't been rated yet</span>
   <button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="store.add2Cart(currentItem, newItem)">Add to Cart</button>
 
 </form>

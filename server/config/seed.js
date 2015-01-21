@@ -10,6 +10,7 @@ var LineItem = require('../api/lineItem/lineItem.model');
 var User = require('../api/user/user.model');
 var Category = require('../api/category/category.model');
 var Order = require('../api/order/order.model');
+var Review = require('../api/review/review.model');
 
 var good = new Category({
   name: 'Good',
@@ -294,5 +295,21 @@ User.find({}).remove(function() {
   user1.save();
   user2.save();
   user3.save();
+
+});
+
+Review.find({}).remove(function() {
+  Review.create({
+    author: user1._id,
+    item: item1._id,
+    stars: 4,
+    text: "papowinevpaoweinvpoawinevpoawienvpoaiwnevpoianweovinawpoeivnpaowienvpoawenpoiawnevpoin"
+  });
+  Review.create({
+    author: user2._id,
+    item: item1._id,
+    stars: 3,
+    text: "oaiwnvpoawenvpoawnepvknspvdonaopiwepowievpiawnevpoianwevoinaweopivnapwoievnpaiowenvopainwevopan"
+  });
 
 });

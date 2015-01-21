@@ -6,6 +6,8 @@ var controller = require('./item.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/:itemId/user/:userId', controller.findReview);
+router.get('/:id/reviews', controller.findAllReviews);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);

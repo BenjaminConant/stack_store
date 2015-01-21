@@ -24,10 +24,10 @@ var UserSchema = new Schema({
     ref: 'Item'
   }],
   contacts: [String],
-  reviews: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Review'
-  }],
+  // reviews: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Review'
+  // }],
   role: {
     type: String,
     default: 'user'

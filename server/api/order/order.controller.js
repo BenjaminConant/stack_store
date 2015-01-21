@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Order = require('./order.model');
+var User = require('../user/user.model');
 
 // Get list of orders
 exports.index = function(req, res) {
@@ -187,13 +188,15 @@ exports.update = function(req, res) {
     if (!order) {
       return res.send(404);
     }
-    
+
     order.orderItems = order.orderItems.concat(req.body);
 
     order.markModified('orderItems');
 
-    order.save(function(err){
-      if(err){return handleError(res, err);}
+    order.save(function(err) {
+      if (err) {
+        return handleError(res, err);
+      }
       return res.json(200, order);
     })
 
@@ -224,6 +227,20 @@ exports.destroy = function(req, res) {
     });
   });
 };
+
+exports.checkout = function(req, res) {
+  Order.findByIdAndUpdate(req.params.id, {
+    status: 'created',
+    creationDate: new Date()
+  }, function(err, order) {
+    User.findByIdAndUpdate(req.body._id, {
+      cart: null
+    }, function(err, user) {
+      res.send(200, order);
+    })
+  })
+
+}
 
 function handleError(res, err) {
   return res.send(500, err);

@@ -9,6 +9,8 @@
           <h1 style="text-align:center;">{{Item.currentItem.title}}</h1>
           <h1 style="text-align:center;" ng-hide="Item.currentItem.available">Product Unavailable</h1>
           <img style="width:400px;display:block;border:2px solid #999;border-radius:3px;margin:2rem auto" class="z-depth-2" src="{{Item.currentItem.image}}">
+          <div ng-show="averageStars">{{averageStars}} Stars <span>from {{numReviews}} reviews</span></div>
+          <div ng-hide="averageStars">This item has not yet been reviewed</div>
           <div class="row" style="margin:0 2rem;">
             <div class="col-xs-12 col-sm-6" ng-hide="Item.user.name">
               <label for="receiverName">Sender Name:</label>
@@ -39,9 +41,18 @@
               <textarea class="form-control" id="message" ng-model="Item.newItem.message"></textarea>
             </div>
           </div>
+
           <a href='/cart'><button type="submit" class="btn btn-primary" style="margin:2rem 4rem;float:right;" ng-click="Item.add2Cart(Item.currentItem, Item.newItem)">Add to Cart</button></a>
         </fieldset>
       </form>
+
+      <ul>
+<li ng-repeat="review in reviews">
+<p><strong>{{review.author.name}}</strong> rates this poduct <strong>{{review.stars}}</strong> stars!</p>
+<p>{{review.text}}</p>
+</li>
+      </ul>
+
     </div>
   </div>
 </div>

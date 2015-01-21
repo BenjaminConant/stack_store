@@ -5,16 +5,16 @@ angular.module('stackStoreApp')
 .controller('StoreCtrl', function($scope, items, orderItems, cartTotal, addToCart, $http, $modal, Auth, $window) {
   var self = this;
   self.allItems = items.query();
-  self.available = {available:true};
+  self.available = {
+    available: true
+  };
   self.cats = "all"
   self.liveSearch = "";
   $scope.$on('selectedCatsChange', function(event, mass) {
-    console.log(mass);
     self.cats = mass;
   });
 
-  $scope.$on('liveSearchChange', function(event, mass) {
-    console.log(mass);
+  $scope.$on('liveSearchChange', function(event, mass) { 
     self.liveSearch = mass;
   });
 
@@ -26,6 +26,17 @@ angular.module('stackStoreApp')
   this.openModal = function(item) {
     $scope.currentItem = item;
     $scope.user = Auth.getCurrentUser();
+    $http.get('/api/items/' + item._id + '/reviews').success(function(reviews) {
+      $scope.currentItem.reviews = reviews;
+      $scope.averageStars = 0;
+      $scope.numReviews = 0;
+      reviews.forEach(function(rev) {
+        $scope.averageStars += rev.stars;
+        $scope.numReviews++;
+      })
+      $scope.averageStars /= $scope.numReviews;
+    })
+
     $scope.modal = $modal.open({
       templateUrl: '../../components/modal/itemModal.html',
       scope: $scope
@@ -34,14 +45,12 @@ angular.module('stackStoreApp')
 
 
 
-  this.add2Cart = function(item, optionsObj)
-  {
+  this.add2Cart = function(item, optionsObj) {
     addToCart(item, optionsObj);
     $scope.modal.close();
   }
 
-  self.productView = function()
-  {
+  self.productView = function() {
     //$window.location.href = '/item/' + $scope.currentItem._id;
     $scope.modal.close();
   }
