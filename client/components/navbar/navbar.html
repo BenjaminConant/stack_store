@@ -22,6 +22,13 @@
           <label><input ng-model="foo" ng-change="addRemoveCat(this.cat.name)" type="checkbox"> {{cat.name}} </label>
         </li>
       </div>
+      <li>
+        <input ng-model="giftCardValue" type="text"></input>
+      </li>
+      <li>
+        <button ng-click="buyGiftCard()" class="btn btn-warning">Purchase gift card</button>
+      </li>
+     
     </ul>
   </div>
   <!-- /#sidebar-wrapper -->

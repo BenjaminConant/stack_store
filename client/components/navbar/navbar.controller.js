@@ -41,6 +41,24 @@ angular.module('stackStoreApp')
     };
     getCategories();
 
+    $scope.giftCardValue;
+    
+    function makeid() {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+    }
+
+    $scope.buyGiftCard = function () {
+      console.log($scope.giftCardValue);
+      var code = makeid();
+      alert("you have purcahsed a new gift card for " + $scope.giftCardValue + ". Your redeem code is "+ code +".");
+    }
+
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
