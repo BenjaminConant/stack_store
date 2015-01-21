@@ -74,8 +74,7 @@ exports.create = function(req, res) {
           $push: {
             orderItems: lineItem._id
           }
-        })
-        .exec(function(err, order) {
+        }, function(err, order) {
           if (err) {
             return res.json(422, err);
           }

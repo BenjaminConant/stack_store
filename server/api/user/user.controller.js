@@ -14,8 +14,8 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.send(500, err);
+  User.find({}, '-salt -hashedPassword', function(err, users) {
+    if (err) return res.send(500, err);
     res.json(200, users);
   });
 };
@@ -23,24 +23,30 @@ exports.index = function(req, res) {
 /**
  * Creates a new user
  */
-exports.create = function (req, res, next) {
+exports.create = function(req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
+    var token = jwt.sign({
+      _id: user._id
+    }, config.secrets.session, {
+      expiresInMinutes: 60 * 5
+    });
+    res.json({
+      token: token
+    });
   });
 };
 
 /**
  * Get a single user
  */
-exports.show = function (req, res, next) {
+exports.show = function(req, res, next) {
   var userId = req.params.id;
 
-  User.findById(userId, function (err, user) {
+  User.findById(userId, function(err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
     res.json(user.profile);
@@ -53,7 +59,7 @@ exports.show = function (req, res, next) {
  */
 exports.destroy = function(req, res) {
   User.findByIdAndRemove(req.params.id, function(err, user) {
-    if(err) return res.send(500, err);
+    if (err) return res.send(500, err);
     return res.send(204);
   });
 };
@@ -62,9 +68,9 @@ exports.destroy = function(req, res) {
  * Makes a user a admin
  * restriction: 'admin'
  */
- exports.makeAdmin = function(req, res) {
+exports.makeAdmin = function(req, res) {
   var userId = req.params.id;
-  User.findById(userId, function (err, user) {
+  User.findById(userId, function(err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
     user.role = "admin"
@@ -81,19 +87,17 @@ exports.destroy = function(req, res) {
  * Allows admin to change a users password
  * restriction: 'admin'
  */
- exports.adminChangePassword = function(req, res) {
+exports.adminChangePassword = function(req, res) {
   var userId = req.params.id;
   var newPass = String(req.body.newPassword);
-  User.findById(userId, function (err, user) {
-      user.password = newPass;
-      user.save(function(err) {
-        if (err) return validationError(res, err);
-        res.send(200);
-      });
+  User.findById(userId, function(err, user) {
+    user.password = newPass;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
   });
 };
-
-
 
 
 
@@ -105,8 +109,8 @@ exports.changePassword = function(req, res, next) {
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 
-  User.findById(userId, function (err, user) {
-    if(user.authenticate(oldPass)) {
+  User.findById(userId, function(err, user) {
+    if (user.authenticate(oldPass)) {
       user.password = newPass;
       user.save(function(err) {
         if (err) return validationError(res, err);
@@ -153,5 +157,18 @@ exports.getOrders = function(req, res, next) {
       if (err) return next(err);
       res.json(orders);
     })
+  })
+};
+
+exports.setStripeToken = function(req, res, next) {
+  var id = req.params.id;
+  var token = req.body.stripeToken;
+  console.log('user id: ', id);
+  console.log('token: ', token);
+  User.findByIdAndUpdate(id, {
+    stripeToken: token
+  }, function(err, data) {
+    if (err) return next(err);
+    res.json(200, data);
   })
 }
