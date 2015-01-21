@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, orderItems, getCart, $http, $rootScope) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, orderItems, getCart, $http, $rootScope, cartTotal) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -60,7 +60,8 @@ angular.module('stackStoreApp')
 
     $scope.logout = function() {
       Auth.logout();
-      getCart.call();
+      orderItems.set([]);
+      cartTotal.set(0);
       $location.path('/login');
     };
 

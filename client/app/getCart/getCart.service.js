@@ -33,6 +33,7 @@ angular.module('stackStoreApp')
           });
         } else {
           if (!user._id) {
+            //$cookieStore.remove('ccookie');
             var cookie = $cookieStore.get('ccookie');
             cookie = cookie || 'noCartZone';
             console.log('COokie ', cookie);
