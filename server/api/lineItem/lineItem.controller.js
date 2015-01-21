@@ -61,7 +61,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res)
 {
   var tempLineItem = req.body;
-  var cart = req.body.cart;
+  var cart = req.body.cartId;
 
   LineItem.create(tempLineItem, function(err, lineItem)
   {
@@ -74,22 +74,23 @@ exports.create = function(req, res)
         .exec(function(err, order)
         {
           if(err){return res.json(422, err);}
-          LineItem.populate(lineItem, 'item')
-            .exec(function()
-            {
-              return res.json(201, lineItem);
-            })
+          LineItem.populate(lineItem, 'item', function()
+          {
+            var returnedObj = {orderId: 'not needed', lineItem: lineItem};
+            return res.json(201, returnedObj);
+          });
         })
     }
 
     else
     {
+      console.log("Cart, ", cart);
       Order.findOrCreateAndAdd(cart, lineItem, function(err, order)
       {
-        if(err){return res.json(422, err);}
+        if(err){console.log("error 1"); return res.json(422, err);}
         LineItem.populate(lineItem, 'item', function(err, result)
         {
-          if(err){return res.json(422, err);}
+          if(err){console.log("error 2"); return res.json(422, err);}
           var returnedObj = {orderId: order._id, lineItem: result}
           console.log(returnedObj)
           return res.json(201, returnedObj);

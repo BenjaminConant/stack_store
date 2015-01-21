@@ -16,12 +16,11 @@ angular.module('stackStoreApp')
 	    	return;
 	    }
 
-	    var user = Auth.getCurrentUser();
+	  var user = Auth.getCurrentUser();
 	    //create temporary frontend object to send as req.body
       var cookie;
       if(!user._id){
-        cookie = $cookieStore.get('cartCookie');
-        console.log(cookie);
+        cookie = $cookieStore.get('ccookie');
       }
 
 	    var tempLineItem = {
@@ -32,7 +31,7 @@ angular.module('stackStoreApp')
 	      receiverName: optionsObj.receiverName,
 	      receiverEmail: optionsObj.receiverEmail,
 	      message: optionsObj.message,
-        cartId: user.cart || cookie || 'noCartZone',
+          cartId: user.cart || cookie || 'noCartZone',
 	      quantity: optionsObj.quantity,
 	      value: 20 //, //replace with actual value later
 	        // themeURL: item.image
@@ -40,13 +39,11 @@ angular.module('stackStoreApp')
 
 	    $http.post('/api/lineItems/', tempLineItem)
 	      .success(function(returnedObj, status) {
-	        //newLineItem.item = item;
-	        //$scope.orderItems.push(newLineItem);
-          if(!tempLineItem.sender && !cookie){
-            $cookieStore.put('cartCookie', returnedObj.order);
-          }
-		      orderItems.push(returnedObj.lineItem);
-	        //$scope.cartTotal += newLineItem.value;
+          	if(!tempLineItem.sender && !cookie) {
+            	$cookieStore.put('ccookie', returnedObj.orderId);
+          	}
+
+		    orderItems.push(returnedObj.lineItem);
 	        cartTotal.adjust(returnedObj.lineItem.value * returnedObj.lineItem.quantity);
 	      });
 

@@ -23,31 +23,32 @@ var OrderSchema = new Schema({
 OrderSchema.statics.findOrCreateAndAdd = function(cart, lineItem, cb)
 {
 	var self = this;
-	self.find({_id:cart})
+	console.log("cart in findorcreate", cart);
+	cart = cart == 'noCartZone' ? undefined : cart;
+	self.findById(cart)
 		.exec(function(err, result)
 		{
-			if(err){return cb(err);}
-			if(result.length)
+			if(err){console.log("cheese dogs 1"); return cb(err);}
+			if(result)
 			{
-				result[0].orderItems.push(lineItem);
-				result[0].save(function(err, order)
+				console.log("cheese dogs 2"); 
+				result.orderItems.push(lineItem);
+				result.save(function(err, order)
 				{
 					if(err){return cb(err);}
 					return cb(null, order);
 				});
-			} else{
+			} else {
 
-				self.create({}, function(err, order)
+				self.create({status: 'cart'}, function(err, order)
 				{
 					if(err){cb(err);}
 					order.orderItems.push(lineItem);
 					order.markModified('orderItems');
 					order.save(function(err, order){
 						if(err){cb(err);}
-
 						cb(null, order);
-
-					})
+					});
 				});
 			}
 		});
