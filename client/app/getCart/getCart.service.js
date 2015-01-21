@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .factory('getCart', function (Auth, $http, orderItems, cartTotal) {
+  .factory('getCart', function (Auth, $http, orderItems, cartTotal, $cookieStore) {
     // Service logic
     // ...
-    function cartServerCall(user) {
-      $http.get('/api/orders/' + user.cart)
+    function cartServerCall(cart) {
+      $http.get('/api/orders/' + cart)
         .success(function(data){
           var lineItems = data.orderItems;
           orderItems.set(lineItems);
@@ -16,42 +16,25 @@ angular.module('stackStoreApp')
         //  return user;
         })
         .error(function(err){
-          //debugger;
-          // orderItems.set([]);
-          // cartTotal.set(0);
-        //  return user;
         });
     }
 
     // Public API here
     return {
       call: function (cb) {
-        //debugger;
         var user = Auth.getCurrentUser();
         if(user.$promise){
           user.$promise.then(function(currentUser){
-            //debugger;
-            // if(cb)
-            // {
-            //   //debugger;
-            //   return cb(cartServerCall(currentUser));
-            // }
-            // else
-            // {
-              return cartServerCall(currentUser);
-            //}
+              return cartServerCall(currentUser.cart);
           });
         } else {
-          // //debugger;
-          // if(cb)
-          // {
-          //   //debugger;
-          //   return cb(cartServerCall(currentUser));            
-          // }
-          // else
-          // {
-            return cartServerCall(user);
-          // }
+            if(!user._id){
+              var cookie = $cookieStore.get('ccookie');
+              cookie = cookie || 'noCartZone';
+              console.log('COokie ', cookie);
+              return cartServerCall(cookie);
+            }
+            return cartServerCall(user.cart);
         }
       }
     };

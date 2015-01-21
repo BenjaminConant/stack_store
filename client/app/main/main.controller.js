@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('stackStoreApp')
-  .controller('MainCtrl', function($scope, $http, socket, Auth, orderItems, cartTotal, getCart, $modal) {
+  .controller('MainCtrl', function($scope, $http, socket, Auth, orderItems, cartTotal, getCart, $cookieStore) {
 
     $scope.awesomeThings = [];
     $scope.getCart = getCart;
     $scope.getCart.call();
     $scope.orderItems = orderItems;
     $scope.cartTotal = cartTotal;
+    
 
     
     //$scope.showCartDropdown = false;

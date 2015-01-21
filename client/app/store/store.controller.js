@@ -11,37 +11,12 @@ angular.module('stackStoreApp')
   self.cats = "all"
   self.liveSearch = "";
   $scope.$on('selectedCatsChange', function(event, mass) {
-
     self.cats = mass;
   });
 
   $scope.$on('liveSearchChange', function(event, mass) { 
     self.liveSearch = mass;
   });
-
-
-
-  //var user = Auth.getCurrentUser();
-
-  // if (user.$promise) {
-  // 	console.log('User has a promise!');
-  // 	user.$promise.then(function(currentUser){
-
-  // 			$http.get('/api/orders/' + currentUser.cart)
-  // 			.success(function(data){
-  // 				self.cart = data.orderItems;
-  // 			});
-  // 	});
-  // } else {
-  // 	console.log("User doesn't have a promise")
-  // 	$http.get('/api/orders/' + user.cart)
-  // 	.success(function(data){
-  // 		self.cart = data.orderItems;
-  // 	});
-  // }
-
-  //console.log(user);
-  //console.log(user.cart);
 
   var currentItem = {};
   $scope.newItem = {
